@@ -48,7 +48,7 @@ frontend/.angular
 
 
 ### backend project
-backend/app/config.py
+backend/app/secret.py
 backend/lib
 backend/lib64
 backend/pyvenv.cfg
