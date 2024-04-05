@@ -26,19 +26,20 @@ The back-end is developed in Python with the help of the Flask framework, these 
 4. create your angular application (to get the clientId and the clientSecret key)
 5. create on backend/ folder a file name <i>secret.py"</i> and put that below keys:
 
-```python
-SECRET_KEY="XXX..."
-CLIENT_ID="23"
-```
+    ```python
+    SECRET_KEY="XXX..."
+    CLIENT_ID="23"
+    ```
 6. launch the server with this command:
-```cd backend; source ./bin/activate; flask --app app/app.py --debug run --cert='./cert/localhost.pem' --key='./cert/localhost-key.pem```
+    ```cd backend; source ./bin/activate; flask --app app/app.py --debug run --cert='./cert/localhost.pem' --key='./cert/localhost-key.pem```
 7. launch the client with this command:
-```cd frontend; npm run start-ssl```
+    ```cd frontend; npm run start-ssl```
 8. (eventually for speed up development) create a .bashrc alias named "nerdz" to launch the previous two command simultanely like:
-```bash
-alias nerdz="cd nerdz-ng && fe & cd .. && be"
-alias fe="cd frontend; npm run start-ssl"
-alias be="cd backend; source ./bin/activate; flask --app app/app.py --debug run --cert='./cert/localhost.pem' --key='./cert/localhost-key.pem"```
+    ```bash
+    alias nerdz="cd nerdz-ng && fe & cd .. && be"
+    alias fe="cd frontend; npm run start-ssl"
+    alias be="cd backend; source ./bin/activate; flask --app app/app.py --debug run --cert='./cert/localhost.pem' --key='./cert/localhost-key.pem"
+    ```
 
 ## Guidelines for contributors
 1. Make sure to apply the Carbon Design System guidelines for the front-end part. For example use for colors the colors token and for spacing the spacing token. 
