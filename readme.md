@@ -1,6 +1,6 @@
 # Nerdz-Ng
 
-Nerdz-Ng is a simple social network based on the Nerdz social network API ([link APIs](https://api.nerdz.eu/docs])).
+Nerdz-Ng is a simple social network based on the Nerdz social network API ([link APIs](https://api.nerdz.eu/docs)).
 
 Angular was chosen for the front-end and Python with the Flask module for the back-end to manage token recovery with the Oauth2 protocol.
 
