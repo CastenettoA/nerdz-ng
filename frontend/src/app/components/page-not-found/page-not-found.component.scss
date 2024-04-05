@@ -1,0 +1,9 @@
+@use "@carbon/layout";
+
+h1 {
+    margin-bottom: layout.$spacing-05;
+}
+
+button {
+    margin-top: layout.$spacing-05;
+}

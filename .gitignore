@@ -1,0 +1,62 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+docs/
+frontend/cert
+
+# compiled output
+frontend/dist
+frontend/tmp
+
+# dependencies
+frontend/node_modules
+
+# IDEs and editors
+frontend/.idea
+frontend/.project
+frontend/.classpath
+frontend/.c9/
+frontend/*.launch
+frontend/.settings/
+frontend/*.sublime-workspace
+
+# IDE - VSCode
+frontend/.vscode/*
+frontend/!.vscode/settings.json
+frontend/!.vscode/tasks.json
+frontend/!.vscode/launch.json
+frontend/!.vscode/extensions.json
+
+# misc
+frontend/.sass-cache
+frontend/connect.lock
+frontend/coverage/*
+frontend/libpeerconnection.log
+frontend/npm-debug.log*
+frontend/testem.log
+frontend/typings
+
+# e2e
+frontend/e2e/*.js
+frontend/e2e/*.map
+
+# System Files
+frontend/.DS_Store
+frontend/Thumbs.db
+
+# Angular cache
+frontend/.angular
+
+
+### backend project
+backend/app/config.py
+backend/lib
+backend/lib64
+backend/pyvenv.cfg
+backend/bin
+backend/cert
+backend/app/__pycache__
+backend/app/services/__pycache__
+backend/app/__pycache__/
+backend/app/__pycache__/app.cpython-310.pyc
+backend/app/__pycache__/routes.cpython-310.pyc
+

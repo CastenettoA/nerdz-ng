@@ -1,0 +1,18 @@
+<div class="post--info">
+    <div class="post--info__date">{{ post.time | prettyDate }}</div>
+    <div class="post--info__rate" [ngClass]="ngClass_postRate(post.rate)">
+        <div class="rate--normal-ui">
+            <svg class="cds--btn__icon" cdsIcon="badge" size="20"></svg>
+            <span class="post--info__rate-number">{{post.rate}}</span>
+        </div>
+
+        <div class="rate--hover-ui">
+            <div (click)="addVote(true)"><svg class="cds--btn__icon" cdsIcon="thumbs-up" size="16"></svg></div>
+            <div><svg class="cds--btn__icon" cdsIcon="thumbs-down" size="16"></svg></div>
+        </div>
+    </div>
+    <div class="post--info__pid" [routerLink]="['/board', author.id, post.pid]">
+        <svg cdsIcon="iD" size="24"></svg>
+        <span>{{post.pid}}</span>
+    </div>
+</div>

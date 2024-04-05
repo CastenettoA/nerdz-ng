@@ -1,0 +1,31 @@
+.nng-pm {
+
+	&--inner-header {
+
+		button {
+			margin-top: layout.$spacing-04;
+		}
+	}
+
+
+	.pm--info {
+		display: flex;
+		justify-content: flex-end;
+	
+		&__date {
+			@include little-info-box();
+			margin-left: layout.$spacing-03;
+		}
+
+        &__date {
+            min-width: 160px;
+            justify-content: right;
+            padding-right: layout.$spacing-05;
+            cursor: default;
+
+			&:hover {
+                background-color: themes.$background;
+            }
+        }
+	}
+}

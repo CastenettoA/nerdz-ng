@@ -1,0 +1,13 @@
+@use '@carbon/layout';
+
+
+:host ::ng-deep {
+    /** applicare la pseudo classe ::ng-deep per ogni regola css
+    disabilita completamente la view-incapsulation per quella regola. 
+    Ogni stile applicato con ::ng-deep diventa uno stile globale.
+    E' bene usarlo in comitanza di :host così ci si assicura che lo stie sia
+    applicato per questo componente e non per altri.*/
+    .cds--header {
+        margin: 0 layout.$spacing-05;
+    }
+}

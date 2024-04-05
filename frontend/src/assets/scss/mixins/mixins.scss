@@ -1,0 +1,22 @@
+/* Nerdz Ng Mixins */
+@mixin little-info-box {
+	@include type.type-style("label-01");
+	
+	display: inline-flex;
+    justify-content: center; /* Centra il contenuto orizzontalmente */
+    align-items: center; /* Centra il contenuto verticalmente */
+	background-color: themes.$layer-02;
+	padding: layout.$spacing-03 layout.$spacing-04;
+	margin-bottom: layout.$spacing-03;
+	
+	transition: background-color motion.$duration-fast-01;
+	cursor: pointer;
+
+	&:hover {
+		background-color: themes.$layer-hover-02;
+	}
+
+	&:active, &:focus {
+		background-color: themes.$layer-active-02;
+	}
+}

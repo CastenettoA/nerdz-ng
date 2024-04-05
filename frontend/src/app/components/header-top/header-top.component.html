@@ -1,0 +1,43 @@
+	<cds-header brand="NERDZ" name="• ng version" [route]="['/home']" class="test1">
+
+        <cds-hamburger
+          *ngIf="hasHamburger && userLoggedIn"
+          [active]="active" 
+          (selected)="active = !active"
+          (click)="expanded($event)"
+          class="cds--header__menu-toggle__hidden"
+        ></cds-hamburger>
+
+
+      <!-- for .active state use [isCurrentPage] boolean props -->
+        <cds-header-navigation *ngIf="userLoggedIn">
+          <cds-header-item [routerLink]="'/pm'">Pm <cds-tag size="sm" type="cool-gray">0</cds-tag></cds-header-item>
+          <cds-header-item (click)="logout()">Logout</cds-header-item>
+          <cds-header-item (click)="searchOpened = true">
+            <cds-search
+              [placeholder]="'Cerca su Nerdz'"
+              [autocomplete]="'off'"
+              [disabled]="false"
+              [size]="'sm'"
+              [expandable]="true"
+              [active]="searchOpened"
+              (open)="changeSearchBarStatus($event)"
+              ></cds-search>
+          </cds-header-item>
+
+          <!-- the cds-header-menu works but to be visible it has to be positionend on top and not on bottom -->
+          <!-- <cds-header-menu title="Manage">
+            <cds-header-item>Link 1</cds-header-item>
+            <cds-header-item>Link 2</cds-header-item>
+            <cds-header-item>Link 3</cds-header-item>
+        </cds-header-menu> -->
+        </cds-header-navigation>
+
+        <cds-header-global *ngIf="userLoggedIn">
+          <!-- <header-usr-icon src="https://www.gravatar.com/avatar/523af629e2e3b7cca7078bd53ba2ec6e" username="evolution"></header-usr-icon> -->
+          <cds-header-action description="action">
+              <cds-tag [type]="'green'" [size]="'md'">0</cds-tag>
+          </cds-header-action>
+        </cds-header-global>
+
+      </cds-header>

@@ -1,0 +1,56 @@
+.post-authors {
+    display: grid;
+    grid-template-columns: min-content min-content min-content;
+
+    &--separator {
+        @include little-info-box();
+        padding: 0 layout.$spacing-04; // remove botton+top padding to reduce height
+        margin-right: 0;
+
+        &:hover, &:active, &:focus {
+            background-color: themes.$layer-02;
+        }
+    }
+
+}   
+
+.post-author {
+    @include little-info-box();
+
+    &__userImage {
+        width: 16px;
+        height: 16px;
+
+        & img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    &__username {
+        margin-left: layout.$spacing-02;
+        @include type.type-style("label-01");
+    }
+
+    &.board { // <post-author> style in the header of user board
+        padding: layout.$spacing-04;
+
+        &:hover {
+            background-color: themes.$background;
+        }
+
+        .post-author__userImage {
+            width: 64px;
+            height: 64px;
+        }
+    }
+
+    &.comment { // <post-author> style in post comments section
+        padding: layout.$spacing-03 layout.$spacing-03; // smaller than little-info-box() mixin
+        border-radius: 50%;
+
+        .post-author__userImage img {
+            border-radius: 50%;
+        }
+    }
+}

@@ -1,0 +1,22 @@
+<div class="nng-pm" *ngIf="pms">
+    <div class="basic-box nng-pm--inner-header">
+        <h1>Pms</h1>
+        <p>Da qui puoi leggere i tuoi messaggi privati e scriverne di nuovi.</p>
+
+        <button cdsButton size="sm" (click)="null">
+            Nuovo messaggio privato 
+            <svg class="cds--btn__icon" cdsIcon="add" size="20"></svg>
+        </button>
+    </div>
+
+    <h4 class="title inner-title">Le tue conversazioni private</h4>
+    <p class="innert-title--subtitle">Ordinate dalla più recente alla più datata</p>
+
+    <div class="inner-main-container">
+        <div class="basic-box nng-pm--singlepm" *ngFor="let pm of pms.data">
+            <post-author [author]="{ username: pm.to.username, image: pm.to.image, id: pm.to.id }"></post-author>
+            <pm-info [pm]="pm"></pm-info>
+        </div>
+    </div>
+</div>
+

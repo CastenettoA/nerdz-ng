@@ -1,0 +1,14 @@
+@use "@carbon/layout";
+@use "@carbon/themes";
+
+
+.user-description {
+    margin-bottom: layout.$spacing-05;
+}
+
+.user-description--tags {
+
+    cds-tag:first-of-type { 
+        margin-left: -(layout.$spacing-01); // remove margin left from 1° tag
+    }
+}

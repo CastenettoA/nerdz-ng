@@ -1,0 +1,48 @@
+.post-comments {
+	&--count {
+		@include little-info-box();
+	}
+
+	.container__title {
+		font-weight: bold;
+	}
+
+	.container__loading {
+		display: flex;
+
+		.loading--userIcon {
+			margin-right: layout.$spacing-03;
+		}
+	}
+
+	&--comment {
+		display: flex;
+		align-items: center;
+
+		.content__author-info {
+			margin-left: layout.$spacing-03;
+			margin-bottom: 0;
+			opacity: 0.8;
+			@include type.type-style("body-compact-01");
+			
+			.info__name {
+				font-weight: bold;
+				cursor: pointer;
+			}
+
+			.info__icon {
+				margin: 0 layout.$spacing-02;
+			}
+
+			.info__date {
+				@include type.type-style("label-01");
+			}
+		}
+
+		.content__msg {
+			margin-left: layout.$spacing-03;
+			margin-top: 0;
+			@include type.type-style("body-compact-01");
+		}
+	}
+}

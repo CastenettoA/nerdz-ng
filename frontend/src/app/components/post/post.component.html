@@ -1,0 +1,25 @@
+<div class="post" *ngIf="post">
+
+    <div class="post--top" cdsGrid [useCssGrid]="true" [condensed]="true" [narrow]="true">     
+        <div cdsCol [columnNumbers]="{sm: 4, md: 4, lg: 3}">
+
+            <!-- component that is responsible of show the author or the "authors" of the current post. "Authors" stand 
+                for a user that publish a post in a board of other user -->
+                <post-authors [from]="post.from" [to]="post.to"></post-authors>
+            </div>   
+            
+        
+        <div cdsCol [columnNumbers]="{sm: 4, md: 4, lg: 7}">
+            <post-info [post]="post" [author]="author"></post-info>
+        </div>   
+    
+    </div>
+    
+    <p class="user-post__content" [innerHTML]="post.message | bbCode"></p>
+    <post-comments [post]="post" [author]="author"></post-comments>
+</div>
+
+<!-- if no post object passed is showed the cds-skeleton-text component -->
+<div class="post" *ngIf="!post">
+    <ng-content></ng-content>
+</div>

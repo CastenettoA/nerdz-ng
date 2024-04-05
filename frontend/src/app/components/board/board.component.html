@@ -1,0 +1,19 @@
+<div class="nng-board">
+    <user-description [user]="user"></user-description>
+    <h4 class="title" [innerHTML]="getBoardTitle()"></h4>
+
+    <!-- full post list on /board/:id -->
+    <posts-list 
+        [userId]="user.data.info.id" 
+        *ngIf="showingPostsList; else elseBlock"> 
+    </posts-list>
+    
+    <!-- single post component on /board/:id/:pid -->
+    <ng-template #elseBlock>
+        <post 
+            [post]="post.data" 
+            #elseBlock>
+        </post>
+    </ng-template>
+</div>
+

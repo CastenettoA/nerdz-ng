@@ -1,0 +1,33 @@
+<div cdsGrid [useCssGrid]="true" class="wellcome">
+
+    <div cdsCol [columnNumbers]="{sm: 4, md: 4, lg: {span:6, start: 1}}">
+        <h1>Benvenuto su Nerdz</h1>
+        <p class="heading">Concedi l'autorizzazione per utilizzare il social network.</p>
+        <p>Questo non è il <a href="https://www.nerdz.eu">social originale</a>, ma è una copia paziale che utilizza il framework Angular per gestire la parte front-end dell'applicazione.</p>
+        <p>Questa copia parziale prende il nome di <b>Nerdz Ng</b> e su GitHub è disponibile il suo codice sorgente.</p>
+
+        <div class="wellcome--help-text">
+            <p class="helper-text-02" *ngIf="!isLoggedIn; else elseBlockP">Clicca sul bottone in basso per autorizzare l'applicazione ed accedere.</p>
+            <ng-template #elseBlockP><p class="helper-text-02">Hai già concesso l'autorizzazione. Clicca sul bottone in basso per andare sulla home.</p></ng-template>
+        </div>
+
+        <button cdsButton class="login"
+            (click)="login()" *ngIf="!isLoggedIn; else elseBlockButton">
+            Autorizza Nerdz Ng 
+            <svg class="cds--btn__icon" cdsIcon="arrow--right" size="20"></svg>
+        </button>
+
+        <ng-template #elseBlockButton>
+            <button cdsButton class="login" [routerLink]="'/home'">
+                Continua 
+                <svg class="cds--btn__icon" cdsIcon="arrow--right" size="20"></svg>
+            </button>
+        </ng-template>
+    </div>
+
+    <div cdsCol [columnNumbers]="{sm: 4, md: 4, lg: {span: 8, start: 8}}" [ngStyle]="{ minHeight: '420px'}">
+        <div class="imgBg" 
+            [ngStyle]="{backgroundImage: imgUrl}">
+        </div>
+    </div>
+</div>

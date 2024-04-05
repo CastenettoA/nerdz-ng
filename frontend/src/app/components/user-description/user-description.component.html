@@ -1,0 +1,10 @@
+<div class="user-description post">
+    <post-author [author]="author" *ngIf="author" scope="board"></post-author>
+    <p>Bevenuto nella board di {{user.data.info.username}}. Le sue informazioni e contatti:</p>
+    <div class="user-description--tags" *ngIf="tags">
+            <cds-tag 
+                type="cool-gray" size="sm" 
+                *ngFor="let tag of tags">{{tag}}
+            </cds-tag>
+    </div>
+</div>

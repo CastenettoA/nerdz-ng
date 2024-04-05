@@ -1,0 +1,15 @@
+@use "@carbon/type";
+@use "@carbon/layout";
+
+main {
+	.cds--css-grid-column {
+		min-height: 200px;
+	}
+} 
+
+.title {
+    padding-top: layout.$spacing-05;
+    padding-bottom: layout.$spacing-06;
+
+    padding: layout.$spacing-05 layout.$spacing-05 layout.$spacing-06 layout.$spacing-05;
+}

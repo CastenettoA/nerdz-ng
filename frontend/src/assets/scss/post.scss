@@ -1,0 +1,109 @@
+// <post> ... </post>
+.post {
+    word-wrap: break-word;
+    margin-bottom: layout.$spacing-04;
+    padding: layout.$spacing-05;
+    background-color: themes.$layer-01;
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,0.16); // todo: create css var
+
+    &--new {
+        button {
+            margin-top: layout.$spacing-02;
+        }
+    }
+
+	&--top {
+		padding: 0; // to remove grid padding gutter (24px)
+	}
+
+    &__content {
+        @include type.type-style("body-compact-01")
+    }
+
+	.post--info {
+		display: flex;
+		justify-content: flex-end;
+	
+		&__date, &__rate, &__pid {
+			@include little-info-box();
+			margin-left: layout.$spacing-03;
+		}
+
+        &__date {
+            min-width: 160px;
+            justify-content: right;
+            padding-right: layout.$spacing-05;
+            cursor: default;
+
+			&:hover {
+                background-color: themes.$background;
+            }
+        }
+	
+		&__rate {
+			min-width: 60px;
+			position: relative;
+
+			&.green {
+				border-bottom: 4px solid colors.$green-20;
+			}
+	
+			&.red {
+				border-bottom: 4px solid colors.$red-40;
+			}
+				
+			.rate--normal-ui {
+				display: flex;			
+				.cds--btn__icon {
+					margin-right: layout.$spacing-02;
+				}
+			}
+
+			.rate--hover-ui {
+				display: none;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+
+				> div {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 50%;
+					height: 100%;
+
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					transition: background-color motion.$duration-fast-01;
+
+					&:last-of-type {
+						left: 50%;
+					}
+
+					&:hover {
+						background-color: themes.$layer-hover-02;
+					}
+
+					&:active, &:focus {
+						background-color: themes.$layer-active-02;
+					}
+				}
+			}
+
+			&:hover {
+				.rate--normal-ui { display: none }
+				.rate--hover-ui { display: inline-flex;}
+			}
+		}
+	
+		&__pid {
+			min-width: 75px;
+			display: flex;
+			justify-content: center;
+			@include type.type-style("label-01");
+		}
+	}
+}

@@ -1,0 +1,12 @@
+<div
+	cdsGrid
+	[useCssGrid]="true"
+	[fullWidth]="true">
+	<div cdsCol [columnNumbers]="{sm: 4, md: 6, lg: 10}" [ngStyle]="{ margin: 0 }">
+		<new-post></new-post>
+		<posts-list></posts-list>		
+	</div>
+	<div cdsCol [columnNumbers]="{sm: 0, md: 2, lg: 6}"  [ngStyle]="{ backgroundColor: 'lightgray'}">
+		<p>online-users-component</p>
+	</div>
+</div>

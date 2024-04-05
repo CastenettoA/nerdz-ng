@@ -1,0 +1,31 @@
+<div class="post post--new">
+    <post-author *ngIf="currentUser" [author]="currentUser"></post-author>
+    <div>
+        <button cdsButton="tertiary" size="sm" (click)="textareaOpen = !textareaOpen">Condividi i tuoi pensieri su Nerdz</button>
+    </div>
+
+    <!-- template driven form with [(ngModel) and ngForm directive]
+    
+     .ng-submitted class added to form element dopo che il form è 
+     inviato.
+    -->
+    <form #newPostForm="ngForm" (ngSubmit)="addPost()">
+        <ng-container *ngIf="textareaOpen">
+            <cds-textarea-label>
+                <textarea 
+                  cdsTextArea 
+                  class="textarea-field"
+                  placeholder="Scrivi qui i tuoi pensieri, poi clicca su 'Nerdz it!' per pubblicarli."
+                  cols="100"
+                  rows="3"
+                  theme="light"
+                  [(ngModel)]="form.message"
+                  name="message"
+                  ></textarea>
+            </cds-textarea-label>
+
+            <button cdsButton size="sm" [disabled]="!form.message || (form.message && form.message.trim() == '')" type="submit">Nerdz it!</button>
+            <button cdsButton size="sm" (click)="_addPost()">Nerdz it! (test post)</button>
+        </ng-container>
+    </form>
+</div>

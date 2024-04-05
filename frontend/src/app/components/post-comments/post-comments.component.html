@@ -1,0 +1,37 @@
+<div class="post-comments">
+    <div class="post-comments--count" (click)="loadComments()" [ngClass]="{ 'no-comment': post.comments <= 0}">
+        Commenti ({{post.comments}})
+    </div>
+
+    <div class="post-comments--container" *ngIf="comments && !commentsLoading">
+        
+        <!-- the comments preview -->
+        <post-comment *ngIf="!commentsOpen; else elseBlock" [comment]="comments[0]"></post-comment>
+        
+        <!-- list of all comments -->
+        <ng-template #elseBlock>     
+                <p class="container__title">Commenti</p>
+                <post-comment *ngFor="let comment of comments" [comment]="comment"></post-comment>
+        </ng-template>
+        
+    </div>
+
+    <div *ngIf="commentsLoading && !commentsOpen">
+        <div class="container__loading">
+            <div class="loading--userIcon">
+                <cds-skeleton-text [lines]="1" [minLineWidth]="40" [maxLineWidth]="40"></cds-skeleton-text>
+            </div>
+            <cds-skeleton-text [lines]="2" [minLineWidth]="150" [maxLineWidth]="320"></cds-skeleton-text>
+        </div>
+    </div>
+
+    <div *ngIf="commentsLoading && commentsOpen">
+        <div class="container__loading" *ngFor="let item of [0,1,2]">
+            <div class="loading--userIcon">
+                <cds-skeleton-text [lines]="1" [minLineWidth]="40" [maxLineWidth]="40"></cds-skeleton-text>
+            </div>
+            <cds-skeleton-text [lines]="2" [minLineWidth]="150" [maxLineWidth]="320"></cds-skeleton-text>
+        </div>
+    </div>
+
+</div>

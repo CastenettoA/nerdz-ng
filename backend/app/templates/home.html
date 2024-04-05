@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+
+<style>
+    body {
+      margin: 1rem;
+    }
+    pre { max-width: 100%; overflow: scroll; }
+    a.login { font-weight: bold; font-size: 1.4rem; }
+    li { padding: 1px;}
+    a { text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+  
+  <div>
+    <p>List of application routes.</p>
+    <ul>
+      {% for route in routes %}
+        <li>
+          <a href="{{route.path}}">{{route.name}} ({{route.path}})</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>

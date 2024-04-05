@@ -1,0 +1,19 @@
+@use "@carbon/layout";
+
+.wellcome {
+    div.imgBg {
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    &--help-text {
+        margin-top: layout.$spacing-07;  
+    }
+
+
+    // button.login {
+        // margin-top: layout.$spacing-01;
+    // }
+}

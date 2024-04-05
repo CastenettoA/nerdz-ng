@@ -1,0 +1,34 @@
+{
+    "data":         {
+        "from": {
+            "id": 243,
+            "owner": null,
+            "name": "Andrea",
+            "username": "evolution",
+            "website": "",
+            "image": "https://www.gravatar.com/avatar/523af629e2e3b7cca7078bd53ba2ec6e",
+            "closed": false,
+            "type": "user",
+            "board": "evolution."
+        },
+        "lastMessage": "si in effetti nel file dei test c&#039;\u00e8 la chiamata. Ok allora far\u00f2 una nuova verifica nei prossimi giorni grazie",
+        "time": "2024-04-03T15:11:57.532413Z",
+        "timestamp": 0,
+        "to": {
+            "id": 1,
+            "owner": null,
+            "name": "Paolo",
+            "username": "nessuno",
+            "website": "",
+            "image": "https://www.gravatar.com/avatar/07d27f03cd98b59774911f8dea5ee00b",
+            "closed": false,
+            "type": "user",
+            "board": "nessuno."
+        },
+        "toRead": false
+    },
+    "message": "success",
+    "humanMessage": "success",
+    "status": 200,
+    "success": true
+}

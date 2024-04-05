@@ -1,0 +1,11 @@
+<div class="post-comments--comment" *ngIf="comment">
+    <post-author [author]="author" scope="comment" *ngIf="comment.from"></post-author>
+    <div class="comment__content">
+        <p class="content__author-info">
+            <span class="info__name" [routerLink]="['/board', comment.from.id]">{{ comment.from.username }}</span>
+            <span class="info__icon">•</span>
+            <span class="info__date">{{ comment.time | prettyDate }}</span>
+        </p>
+        <p class="content__msg">{{ processMsg() }}</p>
+    </div>
+</div>
