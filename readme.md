@@ -10,8 +10,8 @@ At the moment the project has not yet been released and is only available locall
 
 ## Front end
 The front-end is developed using the Angular framework. Here are some main features:
-* Carbon Design System is the graphic and visual foundation of Nerdz Ng. Thanks to this Nerdz Ng is available in black and white theme.
-* continues...
+* ((Carbon Design System)[https://carbondesignsystem.com/]) (aka CDS) is the graphic and visual foundation of Nerdz Ng. Thanks to this Nerdz Ng is available in black and white theme. Is used for theming, spacing, colors, font, grid, icons and more. It also come with the BEM css metodologhy.
+* The style of component is write on the /assets/scss folder. Is not write in the component scss
 
 ## Backend
 The back-end is developed in Python with the help of the Flask framework, these are its main functions
@@ -25,6 +25,7 @@ The back-end is developed in Python with the help of the Flask framework, these 
 3. install python and angular dependencies (to install angular dependencies do: "npm install" on this path: frontend/)
 4. create your angular application (to get the clientId and the clientSecret key)
 5. create on backend the file config.py and put that below keys:
+
         SECRET_KEY="your-secret-key"
         ALLOWED_CLIENT_ORIGIN="https://127.0.0.1:4200"
         ALLOWED_CLIENT_METHODS="GET, POST"
@@ -53,3 +54,6 @@ The back-end is developed in Python with the help of the Flask framework, these 
     alias nerdz="cd nerdz-ng && fe & cd .. && be"
     alias fe="cd frontend; npm run start-ssl"
     alias be="cd backend; source ./bin/activate; flask --app app/app.py --debug run --cert='./cert/localhost.pem' --key='./cert/localhost-key.pem"
+
+## Guidelines for contributors
+1. Make sure to apply the Carbon Design System guidelines for the front-end part. For example use for colors the colors token and for spacing the spacing token. 
