@@ -26,6 +26,7 @@ The back-end is developed in Python with the help of the Flask framework, these 
 4. create your angular application (to get the clientId and the clientSecret key)
 5. create on backend the file config.py and put that below keys:
 
+        ```python
         SECRET_KEY="your-secret-key"
         ALLOWED_CLIENT_ORIGIN="https://127.0.0.1:4200"
         ALLOWED_CLIENT_METHODS="GET, POST"
@@ -46,6 +47,7 @@ The back-end is developed in Python with the help of the Flask framework, these 
             "authorize_url": O2_AUTHORIZE_URL,
             "api_base_url": API_BASE_URL+"/"
         }
+        ```
 6. launch the server with this command:
         cd backend; source ./bin/activate; flask --app app/app.py --debug run --cert='./cert/localhost.pem' --key='./cert/localhost-key.pem
 7. launch the client with this command:
