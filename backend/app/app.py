@@ -83,6 +83,7 @@ app.add_url_rule('/v1/me/pms', view_func=routes.me_pms)
 app.add_url_rule('/v1/users/<int:id>', view_func=routes.users)
 app.add_url_rule('/v1/users/<int:id>/posts', view_func=routes.users_posts)
 app.add_url_rule('/v1/users/<int:id>/posts/<int:pid>/votes', view_func=routes.new_user_post_vote, methods=["POST"])
+app.add_url_rule('/v1/users/<int:id>/posts/<int:pid>/comments', view_func=routes.users_posts_comments)
 
 app.add_url_rule('/v1/logout', view_func=routes.logout)
 app.add_url_rule('/v1/oembed/twitter', view_func=routes.oembed_twitter)

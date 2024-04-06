@@ -1,5 +1,5 @@
 <div class="nng-pm" *ngIf="pms">
-    <div class="basic-box nng-pm--inner-header">
+    <div class="nng-pm--inner-header">
         <h1>Pms</h1>
         <p>Da qui puoi leggere i tuoi messaggi privati e scriverne di nuovi.</p>
 
@@ -13,8 +13,10 @@
     <p class="innert-title--subtitle">Ordinate dalla più recente alla più datata</p>
 
     <div class="inner-main-container">
-        <div class="basic-box nng-pm--singlepm" *ngFor="let pm of pms.data">
-            <post-author [author]="{ username: pm.to.username, image: pm.to.image, id: pm.to.id }"></post-author>
+        <div class="nng-pm__single-pm"
+             *ngFor="let pm of pms.data" 
+             (click)="null">
+            <post-author [author]="{ username: pm.to.username, image: pm.to.image, id: pm.to.id }" [reactivity]="false"></post-author>
             <pm-info [pm]="pm"></pm-info>
         </div>
     </div>

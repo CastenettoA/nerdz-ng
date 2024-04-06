@@ -1,0 +1,23 @@
+html { height: 100%; }
+body { min-height: 100%; }
+
+.code-highlight {
+	background-color: themes.$layer-02;
+	margin: layout.$spacing-03;
+	padding: layout.$spacing-03 layout.$spacing-05;
+	@include type.type-style("code-01");
+
+	code {
+		text-wrap: pretty;
+	}
+
+	&__title {
+		display: inline-block;
+		background-color: themes.$layer-01;
+		margin: layout.$spacing-02 0;
+		padding: layout.$spacing-02;
+
+		b { font-weight: bold; }
+	}
+}
+

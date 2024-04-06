@@ -4,6 +4,7 @@ import { environment as env } from '../../environments/environment';
 import { BasicResponse } from '../models/basic-response.model';
 import { Post } from '../models/post/post.model';
 import { User } from '../models/user/user.model';
+import { PostComment } from '../models/post/post-comments.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,4 +28,15 @@ export class UserServices {
   newUserPostVote(id:number, pid:number) {    
     return this.http.post<BasicResponse<any>>(`${env.baseurl}/users/${id}/posts/${pid}/votes`, null,  { withCredentials: true });
   }
+
+    /** @description Get the comments of a single post 
+   * @id the user id
+   * @pid the post id
+   * @n the number of comment to be returned (aka limit), 20 by default
+  */
+    getPostComments(id:number, pid:number, n:number = 20) {
+      const _n:string = n ? `n=${n}` : ''
+      return this.http.get<BasicResponse<PostComment[]>>(`${env.baseurl}/users/${id}/posts/${pid}/comments?${n}`, { withCredentials: true });
+  
+    }
 }

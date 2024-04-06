@@ -14,106 +14,15 @@
 @include type.default-type();
 @include type.type-classes();
 @import "./assets/scss/mixins/mixins.scss";
-@import "./assets/scss/post.scss";
-@import "./assets/scss/post-authors.scss";
-@import "./assets/scss/post-comments.scss";
+@import "./assets/scss/base/reusables.scss";
+@import "./assets/scss/base/typography.scss";
+@import "./assets/scss/base/generic.scss";
+@import "./assets/scss/post/post.scss";
+@import "./assets/scss/post/post-authors.scss";
+@import "./assets/scss/post/post-comments.scss";
 @import "./assets/scss/pm.scss";
 
 // configure grid to use 16 columns instead default 12
 $feature-flags: (
 	grid-column-16: true
 );
-
-html { height: 100%; }
-body { min-height: 100%; }
-
-h1 { 
-	margin: layout.$spacing-02 0 layout.$spacing-04 0;
-	@include type.type-style("heading-05")
-}
-p {	
-	margin: layout.$spacing-03 0; 
-	@include type.type-style("body-02");
-
-	&.heading {
-		@include type.type-style("heading-03");
-		margin: layout.$spacing-03 0; 
-	 }
-
-	&.helper-text-01{
-		@include type.type-style("helper-text-01");
-	}
-
-	&.helper-text-02{
-		@include type.type-style("helper-text-02");
-	}
-}
-
-button {
-	@include type.type-style("body-compact-02")
-}
-
-.home__banner {
-
-	h1 { margin: layout.$spacing-02 0 layout.$spacing-02 0;}
-	button {
-		margin-top: layout.$spacing-04;
-	}
-}
-
-.title {
-    margin-bottom: layout.$spacing-04;   
-}
-
-// // set the csd header to be on the bottom of the UI
-// .cds--header {
-// 	inset-block-start: auto;
-// 	inset-block-end: 0;
-// 	border-top: 1px solid var(--cds-border-subtle);
-// 	border-bottom: 0px;
-// }
-
-img {
-	max-width: 100%;
-}
-
-
-.code-highlight {
-	background-color: themes.$layer-02;
-	margin: layout.$spacing-03;
-	padding: layout.$spacing-03 layout.$spacing-05;
-	@include type.type-style("code-01");
-
-	code {
-		text-wrap: pretty;
-	}
-
-	&__title {
-		display: inline-block;
-		background-color: themes.$layer-01;
-		margin: layout.$spacing-02 0;
-		padding: layout.$spacing-02;
-
-		b { font-weight: bold; }
-	}
-}
-
-.basic-box {
-    margin-bottom: layout.$spacing-06;
-    padding: layout.$spacing-05;
-    background-color: themes.$layer-01;
-	box-shadow: 0 1px 3px 0 rgba(0,0,0,0.16); // todo: create css var
-}
-
-.inner-title, .innert-title--subtitle  {
-	padding: 0 layout.$spacing-05;
-}
-
-.innert-title--subtitle {
-	@include type.type-style("body-compact-01");
-	margin-top: -(layout.$spacing-03);
-}
-
-.inner-main-container {
-	padding: 0 layout.$spacing-05;
-}

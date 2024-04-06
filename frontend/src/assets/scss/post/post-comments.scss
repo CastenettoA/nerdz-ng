@@ -1,6 +1,6 @@
 .post-comments {
 	&--count {
-		@include little-info-box();
+		@include box--info();
 	}
 
 	.container__title {

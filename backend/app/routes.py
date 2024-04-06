@@ -136,6 +136,18 @@ def users_posts(id):
     resp.data = json.dumps(json.loads(req.text))
     return resp, 200
 
+def users_posts_comments(id, pid):
+    """List comments on specified post, filtered by some parameters.
+        'id' is the user id, 'pid' is the post id. 'n' is a query param for limiting the comments returned"""
+
+    access_token = get_access_token()
+    n = request.args.get('n')
+    if n:
+        req = requests.get(f"{API_BASE_URL}/users/{id}/posts/{pid}/comments?access_token={access_token}&n={n}")
+    else:
+        req = requests.get(f"{API_BASE_URL}/users/{id}/posts/{pid}/comments?access_token={access_token}")
+    return req.text, 200
+
 # https://api.nerdz.eu/v1/users/{id}/posts/{pid}/votes
 # NewUserPostVote
 def new_user_post_vote(id, pid):

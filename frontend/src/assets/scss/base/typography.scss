@@ -1,0 +1,29 @@
+h1 { 
+	margin: layout.$spacing-02 0 layout.$spacing-04 0;
+	@include type.type-style("heading-05")
+}
+p {	
+	margin: layout.$spacing-03 0; 
+	@include type.type-style("body-02");
+
+	&.heading {
+		@include type.type-style("heading-03");
+		margin: layout.$spacing-03 0; 
+	 }
+
+	&.helper-text-01{
+		@include type.type-style("helper-text-01");
+	}
+
+	&.helper-text-02{
+		@include type.type-style("helper-text-02");
+	}
+}
+
+button {
+	@include type.type-style("body-compact-02")
+}
+
+img {
+	max-width: 100%;
+}

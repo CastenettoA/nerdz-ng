@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { MeService } from 'src/app/services/me.service';
 import { PostCommentComponent } from '../post-comment/post-comment.component';
 import { SkeletonModule } from 'carbon-components-angular';
+import { UserServices } from 'src/app/services/user.service';
 
 @Component({
   selector: 'post-comments',
@@ -23,7 +24,7 @@ export class PostCommentsComponent {
   commentsOpen = false
   commentsLoading = false
 
-  constructor(private meService: MeService) {}
+  constructor(private meService: MeService, private userService: UserServices) {}
 
   ngOnInit() {
     this.commentsLoading = true
@@ -41,7 +42,7 @@ export class PostCommentsComponent {
       // get comments and open comment sections
       this.commentsOpen = true
       this.commentsLoading = true
-      this.meService.getPostComments(this.post.pid).subscribe((res) => {
+      this.userService.getPostComments(this.author.id, this.post.pid).subscribe((res) => {
         this.comments = res.data
         this.commentsLoading = false
       })
@@ -52,12 +53,12 @@ export class PostCommentsComponent {
   
    /** @description load the last post comment if the post have one and save the post comments */
    loadLastComment() {
-    if(this.post.comments <= 0 || ![909, 908, 907].includes(this.post.pid)) {
+    if(this.post.comments <= 0 || ![7371, 359, 182, 909].includes(this.post.pid)) {
       // if the post have no comments we return back and not load comments
       this.commentsLoading = false
       return
     } else {
-      this.meService.getPostComments(this.post.pid, 1).subscribe((res) => {
+      this.userService.getPostComments(this.author.id, this.post.pid, 1).subscribe((res) => {
         if(res.data) this.comments = res.data
         this.commentsLoading = false
       })

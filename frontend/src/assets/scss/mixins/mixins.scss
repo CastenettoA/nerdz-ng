@@ -1,22 +1,47 @@
 /* Nerdz Ng Mixins */
-@mixin little-info-box {
+
+/** standard box for little info elements with hover status.
+    If reactivity is set to 'false' the hover, active, focus pseudo class 
+	are not defined on the element. */
+@mixin box--info($justify: center, $reactivity: true) {
 	@include type.type-style("label-01");
 	
 	display: inline-flex;
-    justify-content: center; /* Centra il contenuto orizzontalmente */
+    justify-content: $justify; /* Centra il contenuto orizzontalmente */
     align-items: center; /* Centra il contenuto verticalmente */
 	background-color: themes.$layer-02;
 	padding: layout.$spacing-03 layout.$spacing-04;
 	margin-bottom: layout.$spacing-03;
-	
-	transition: background-color motion.$duration-fast-01;
-	cursor: pointer;
+	cursor: default;
 
-	&:hover {
-		background-color: themes.$layer-hover-02;
+	@if $reactivity { 
+		transition: background-color motion.$duration-fast-01;
+		cursor: pointer;
+
+		&:hover {
+			background-color: themes.$layer-hover-02;
+		}
+	
+		&:active, &:focus {
+			background-color: themes.$layer-active-02;
+		}
+	}
+}
+
+@mixin box($hover:false, $sm:false) { // standard box with background elevation, margin and padding.
+	margin-bottom: layout.$spacing-06;
+	padding: layout.$spacing-05;
+	background-color: themes.$layer-01;
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,0.16); // todo: create css var
+
+	@if $sm {
+		margin-bottom: layout.$spacing-04;
+		padding: layout.$spacing-04 layout.$spacing-03;	
 	}
 
-	&:active, &:focus {
-		background-color: themes.$layer-active-02;
+	@if $hover {
+		cursor: pointer;
+		&:hover { background-color: themes.$layer-hover-01; }
+		&:active, &:focus {	background-color: themes.$layer-active-01; }
 	}
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonModule, IconModule, IconService } from 'carbon-components-angular';
+import { ButtonModule, GridModule, IconModule, IconService } from 'carbon-components-angular';
 import Add20 from '@carbon/icons/es/add/20'
 import { ActivatedRoute } from '@angular/router';
 import { BasicResponse } from 'src/app/models/basic-response.model';
@@ -14,7 +14,7 @@ import { PmInfoComponent } from "../pm-info/pm-info.component";
     standalone: true,
     templateUrl: './pm.component.html',
     styleUrls: ['./pm.component.scss'],
-    imports: [CommonModule, IconModule, ButtonModule, PostComponent, PostAuthorComponent, PmInfoComponent]
+    imports: [CommonModule, GridModule, IconModule, ButtonModule, PostComponent, PostAuthorComponent, PmInfoComponent]
 })
 export class PmComponent {
 

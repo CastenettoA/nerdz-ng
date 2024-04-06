@@ -1,0 +1,16 @@
+.inner-title, .innert-title--subtitle  {
+	padding: 0 layout.$spacing-05;
+}
+
+.innert-title--subtitle {
+	@include type.type-style("body-compact-01");
+	margin-top: -(layout.$spacing-03);
+}
+
+.inner-main-container {
+	padding: 0 layout.$spacing-05;
+}
+
+.title {
+    margin-bottom: layout.$spacing-04;   
+}

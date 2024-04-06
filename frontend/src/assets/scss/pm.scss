@@ -1,31 +1,37 @@
 .nng-pm {
 
 	&--inner-header {
+		@include box();
 
 		button {
 			margin-top: layout.$spacing-04;
 		}
 	}
 
-
-	.pm--info {
+	&__single-pm {
 		display: flex;
-		justify-content: flex-end;
-	
-		&__date {
-			@include little-info-box();
-			margin-left: layout.$spacing-03;
+		@include box($hover: true, $sm: true);
+
+		.post-author, .pm--info__date {
+			min-width: 160px;
+			justify-content: left;
+			margin-bottom: 0 !important;
 		}
 
-        &__date {
-            min-width: 160px;
-            justify-content: right;
-            padding-right: layout.$spacing-05;
-            cursor: default;
-
-			&:hover {
-                background-color: themes.$background;
-            }
-        }
+		.pm--info {
+			display: flex;
+			justify-content: flex-end;
+		
+			&__date {
+				@include box--info($justify: right, $reactivity: false);
+				margin-left: layout.$spacing-03;
+			}
+	
+			&__date {
+				min-width: 160px;
+				padding-right: layout.$spacing-05;
+			}
+		}
 	}
+
 }
