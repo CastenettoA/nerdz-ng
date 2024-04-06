@@ -1,12 +1,8 @@
 # Nerdz-Ng
 
-Nerdz-Ng is a simple social network based on the [Nerdz social network API](https://api.nerdz.eu/docs).
-
-Angular was chosen for the front-end and Python with the Flask module for the back-end to manage token recovery with the Oauth2 protocol.
-
-The project is divided into two folders, one for the front-end part of the application (Angular) and one for the back-end part (python proxy)
-
-At the moment the project has not yet been released and is only available locally.
+Nerdz-Ng is a simple social network based on the [Nerdz social network API](https://api.nerdz.eu/docs) developed with Angular and Python Flask.
+The project is divided into two folders, one for front-end and one for back-end.
+At the moment ==the project has not been released yet and is only available locally==.
 
 ## Front end
 The front-end is build with [Angular](https://angular.dev/). 
@@ -24,23 +20,27 @@ Nerdz Ng back-end best to know facts:
 
 ## How to start locally the project
 1. clone the entire repo to your local environment
-2. create trusted certificated with [mkcert](https://github.com/FiloSottile/mkcert) one for front-end (to put in path: frontend/cert) and one for bac-kend (to put in thepath: backend/cert)
-3. install python and angular dependencies (to install angular dependencies launch this on the shell: "npm install" on this path: frontend/)
+2. create trusted certificated with [mkcert](https://github.com/FiloSottile/mkcert) one for front-end (to put in path: `frontend/cert`) and one for bac-kend (to put in thepath: `backend/cert`)
+3. install python and angular dependencies (to install angular dependencies launch this on the shell: `npm install` on this path: `frontend/`)
 4. create your Nerdz application on www.nerdz.eu > settings > app (this is to get the clientId and the clientSecret key)
-5. create on the backend/ folder a file named "secret.py" and put in that file your client id and your Nerdz App secret key:
+5. create on the `backend/` folder a file named `secret.py` and put in that file your client id and your Nerdz App secret key:
 
     ```python
     SECRET_KEY="XXX..."
     CLIENT_ID="23"
     ```
 6. launch the server with this command:
-
-    ```cd backend; source ./bin/activate; flask --app app/app.py --debug run --cert='./cert/localhost.pem' --key='./cert/localhost-key.pem```
-7. launch the client with this command:
-
-    ```cd frontend; npm run start-ssl```
-
-8. (eventually for speed up development) create a .bashrc alias named "nerdz" to launch the previous two command simultanely like:
+    ```bash
+       cd backend; # enter in the back-end repo
+       source ./bin/activate; # activate the virtual env
+       flask --app app/app.py --debug run --cert='./cert/localhost.pem' --key='./cert/localhost-key.pem # launch app.py with flask
+    ```
+8. launch the client with this command:
+    ```bash
+       cd frontend;  # enter in the front-end repo
+       npm run start-ssl # launch angular app in live reloading
+    ```
+10. (eventually for speed up development) create a .bashrc alias named "nerdz" to launch the previous two command simultanely like:
 
     ```bash
     alias nerdz="cd nerdz-ng && fe & cd .. && be"
