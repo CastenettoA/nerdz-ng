@@ -28,15 +28,15 @@ Nerdz Ng back-end best to know facts:
     SECRET_KEY="XXX..."
     CLIENT_ID="23"
     ```
-6. launch the server with this command:
+6. launch the server with this commands:
     ```bash
-       cd backend; # enter in the back-end repo
-       source ./bin/activate; # activate the virtual env
+       cd backend # enter in the back-end repo
+       source ./bin/activate # activate the virtual env
        flask --app app/app.py --debug run --cert='./cert/localhost.pem' --key='./cert/localhost-key.pem # launch app.py with flask
     ```
-8. launch the client with this command:
+8. launch the client with this commands:
     ```bash
-       cd frontend;  # enter in the front-end repo
+       cd frontend  # enter in the front-end repo
        npm run start-ssl # launch angular app in live reloading
     ```
 10. (eventually for speed up your development flow) create a .bashrc alias named "nerdz" to launch the previous two command simultanely like:
