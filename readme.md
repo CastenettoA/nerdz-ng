@@ -5,7 +5,7 @@ The project is divided into two folders, one for front-end and one for back-end.
 
 At the moment **the project has not been released yet and is only available locally**.
 
-## Front end
+## Frontend
 The front-end is build with [Angular](https://angular.dev/). 
 Nerdz Ng front-end best to know facts:
 * [Carbon Design System](https://carbondesignsystem.com/) (abbreviation is: CDS) is the graphic and visual foundation of it. Nerdz Ng is available in black and white theme by default (thanks to CDS color tokens). The CDS Is used for theming, spacing, colors, font, grid, icons and more. It also come with the [BEM](https://getbem.com/) css metodologhy.
