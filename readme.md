@@ -3,7 +3,7 @@
 Nerdz-Ng is a simple social network based on the [Nerdz social network API](https://api.nerdz.eu/docs) developed with Angular and Python Flask.
 The project is divided into two folders, one for front-end and one for back-end.
 
-At the moment **the project has not been released yet and is only available locally**
+At the moment **the project has not been released yet and is only available locally**.
 
 ## Front end
 The front-end is build with [Angular](https://angular.dev/). 
@@ -39,7 +39,7 @@ Nerdz Ng back-end best to know facts:
        cd frontend;  # enter in the front-end repo
        npm run start-ssl # launch angular app in live reloading
     ```
-10. (eventually for speed up development) create a .bashrc alias named "nerdz" to launch the previous two command simultanely like:
+10. (eventually for speed up your development flow) create a .bashrc alias named "nerdz" to launch the previous two command simultanely like:
 
     ```bash
     alias nerdz="cd nerdz-ng && fe & cd .. && be"
