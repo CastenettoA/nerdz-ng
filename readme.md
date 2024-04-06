@@ -2,7 +2,7 @@
 
 Nerdz-Ng is a simple social network based on the [Nerdz social network API](https://api.nerdz.eu/docs) developed with Angular and Python Flask.
 The project is divided into two folders, one for front-end and one for back-end.
-At the moment ==the project has not been released yet and is only available locally==.
+ At the moment **the project has not been released yet and is only available locally**
 
 ## Front end
 The front-end is build with [Angular](https://angular.dev/). 
