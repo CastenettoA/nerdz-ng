@@ -18,7 +18,7 @@ Nerdz Ng back-end best to know facts:
 * Authenticate the user and get the access_token via the oauth2 protocol (update logic not working yet)
 
 ## How to start locally the project
-1. clone the entire repo to your local environment
+1. clone the repo locally
 2. create trusted certificated with [mkcert](https://github.com/FiloSottile/mkcert) one for front-end (to put in path: `frontend/cert`) and one for bac-kend (to put in thepath: `backend/cert`)
 3. install python and angular dependencies (to install angular dependencies launch this on the shell: `npm install` on this path: `frontend/`)
 4. create your Nerdz application on www.nerdz.eu > settings > app (this is to get the clientId and the clientSecret key)
