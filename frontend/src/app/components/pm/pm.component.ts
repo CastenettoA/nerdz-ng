@@ -27,8 +27,6 @@ export class PmComponent {
 
     this.activatedRoute.data.subscribe((res)=> {
       if(res['pms']) this.pms = res['pms']
-
-      console.log(res)
     })
   }
 }

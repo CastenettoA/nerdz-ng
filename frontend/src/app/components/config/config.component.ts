@@ -9,5 +9,4 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./config.component.scss']
 })
 export class ConfigComponent {
-
 }

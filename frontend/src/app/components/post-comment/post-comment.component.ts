@@ -36,10 +36,6 @@ export class PostCommentComponent {
   quoteRegex: RegExp = /\[commentquote/
 
   processMsg(): any {
-    // // const isQuotedMsg =  this.isQuotedMsg(msg)
-    // // if(!isQuotedMsg) return msg // return the msg if is a normal comment
-
-    // console.log('exec processMsg')
     return this.comment.message
   }
 
@@ -51,8 +47,6 @@ export class PostCommentComponent {
     if (res)
      { 
       
-    console.log(msg.length, res[0])
-    console.log('---------------')
       return true}
     else
       return false

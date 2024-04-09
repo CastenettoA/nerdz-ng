@@ -15,11 +15,13 @@
     </div>
     
     <p class="post__content" #postContent 
-       *ngIf="!single; else _single"
-       [innerHTML]="post.message | bbCode | nToBr | readMore"></p>
+       *ngIf="!open; else is_open">
+        <span [innerHTML]="post.message | bbCode | nToBr | readMore"></span>
+        <b class="continue-btn" (click)="open=true" *ngIf="post.message.length > 560">Continua &#8230;</b>
+    </p>
 
     <!-- used when is shown only a single post (e.g. in the /board/:id/:pid route) -->
-    <ng-template #_single>
+    <ng-template #is_open>
         <p class="post__content" #postContent 
         [innerHTML]="post.message | bbCode | nToBr"></p>
     </ng-template>

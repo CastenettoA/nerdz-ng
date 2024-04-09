@@ -2,6 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 /**
  * @description convert \n occurencies on a string to a <br /> html element
+ * @todo handle anso the hr tag
  */
 @Pipe({
     standalone: true,
@@ -16,7 +17,6 @@ export class NToBrPipe implements PipeTransform {
   transform(message: string): string {
     if(message) {
       message = message.replace(this.nRegex, '<br />')
-      console.log(message)
       return message
     } else {
       return message

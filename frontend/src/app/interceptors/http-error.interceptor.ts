@@ -20,10 +20,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   private handleHttpError(error: HttpErrorResponse) {
     if(error.status === 0) {
       // client-side or network error.
-      console.log(`CLINT-SIDE ERROR`, error)
     } else {
       // back-end error with unsucssfu response code (eg. 401)
-      console.log(`BACK-SIDE ERROR`, error)
     }
 
     return throwError(() => new Error('Something bad happened; please try again later.'))

@@ -21,7 +21,7 @@ import { ReadMorePipe } from "../../pipes/read-more.pipe";
 })
 export class PostComponent {
   @Input() post!:Post
-  @Input() single:boolean = false
+  @Input() open:boolean = false // if true the readMore pipe will be removed and the full post will be displayed
   // @ViewChild('postContent') postContent: ElementRef | undefined
   author!:PostAuthor
 
@@ -35,6 +35,10 @@ export class PostComponent {
         username: this.post.from.username
       }
     }
+  }
+
+  test() {
+    alert(1)
   }
 
   // ngAfterViewInit() {
