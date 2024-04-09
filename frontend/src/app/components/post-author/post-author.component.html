@@ -1,5 +1,5 @@
 <div class="post-author" *ngIf="author && scope == 'post'" 
-     [routerLink]="getBoardLink()" [ngClass]="{ scope, 'disable-reactivity': !reactivity}">
+     [routerLink]="getBoardLink()" [ngClass]="{ 'disable-reactivity': !reactivity, 'scope--post':true }">
 
     <div class="post-author__userImage">
         <img src="{{author.image}}" alt="the image of {{author.username}}" />
@@ -10,7 +10,7 @@
 </div>
 
 <div class="post-author" *ngIf="author && scope == 'board'" 
-    [routerLink]="boardLink" [ngClass]="{scope, 'disable-reactivity': !reactivity}">
+    [routerLink]="boardLink" [ngClass]="{'disable-reactivity': !reactivity, 'scope--board':true}">
     
     <div class="post-author__userImage">
         <img src="{{author.image}}" alt="the image of {{author.username}}" />
@@ -18,7 +18,7 @@
 </div>
 
 <div class="post-author" *ngIf="author && scope == 'comment'" 
-     [routerLink]="boardLink" [ngClass]="{scope, 'disable-reactivity': !reactivity}">
+     [routerLink]="boardLink" [ngClass]="{'disable-reactivity': !reactivity, 'scope--comment':true}">
 
     <div class="post-author__userImage">
         <img src="{{author.image}}" alt="the image of {{author.username}}" />

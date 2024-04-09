@@ -21,3 +21,10 @@ body { min-height: 100%; }
 	}
 }
 
+button {
+	@include type.type-style("body-compact-02")
+}
+
+img {
+	max-width: 100%;
+}

@@ -128,6 +128,14 @@ def users(id):
     resp.data = json.dumps(json.loads(req.text))
     return resp, 200
 
+def users_post(id, pid):
+    """[get] get a single user post by {pid}"""
+    access_token = get_access_token()
+    resp = make_response()
+    req = requests.get(f"{API_BASE_URL}/users/{id}/posts/{pid}?access_token={access_token}")
+    resp.data = json.dumps(json.loads(req.text))
+    return resp, 200
+
 def users_posts(id):
     """This will show the last posts on the user board by default. You can personalize the request via query string parameters"""
     access_token = get_access_token()
@@ -153,7 +161,16 @@ def users_posts_comments(id, pid):
 def new_user_post_vote(id, pid):
     access_token = get_access_token()
     resp = make_response()
-    req = requests.post(f"{API_BASE_URL}/users/{id}/posts/{pid}/votes?access_token={access_token}")
+
+    if request.method == "POST" and request.json:
+        vote = request.json.get("vote")
+    else: 
+        vote = 0
+
+    if not vote:
+        vote = 0
+
+    req = requests.post(f"{API_BASE_URL}/users/{id}/posts/{pid}/votes?access_token={access_token}", json={"vote": vote})
     resp.data = json.dumps(json.loads(req.text))
     return resp, 200
 

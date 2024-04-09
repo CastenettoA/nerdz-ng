@@ -1,5 +1,6 @@
 {
-    "data":         {
+    "data": {
+        "counter": 33521,
         "from": {
             "id": 243,
             "owner": null,
@@ -11,21 +12,21 @@
             "type": "user",
             "board": "evolution."
         },
-        "lastMessage": "si in effetti nel file dei test c&#039;\u00e8 la chiamata. Ok allora far\u00f2 una nuova verifica nei prossimi giorni grazie",
-        "time": "2024-04-03T15:11:57.532413Z",
-        "timestamp": 0,
+        "hpid": 125328,
+        "time": "2024-04-09T06:49:39.281049Z",
+        "timestamp": 1712645379,
         "to": {
-            "id": 1,
+            "id": 243,
             "owner": null,
-            "name": "Paolo",
-            "username": "nessuno",
+            "name": "Andrea",
+            "username": "evolution",
             "website": "",
-            "image": "https://www.gravatar.com/avatar/07d27f03cd98b59774911f8dea5ee00b",
+            "image": "https://www.gravatar.com/avatar/523af629e2e3b7cca7078bd53ba2ec6e",
             "closed": false,
             "type": "user",
-            "board": "nessuno."
+            "board": "evolution."
         },
-        "toRead": false
+        "vote": -1
     },
     "message": "success",
     "humanMessage": "success",

@@ -4,6 +4,10 @@
 
 .user-description {
     margin-bottom: layout.$spacing-05;
+
+    .username {
+        cursor: pointer;
+    }
 }
 
 .user-description--tags {

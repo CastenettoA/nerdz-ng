@@ -8,14 +8,23 @@
                 <post-authors [from]="post.from" [to]="post.to"></post-authors>
             </div>   
             
-        
         <div cdsCol [columnNumbers]="{sm: 4, md: 4, lg: 7}">
             <post-info [post]="post" [author]="author"></post-info>
         </div>   
     
     </div>
     
-    <p class="user-post__content" [innerHTML]="post.message | bbCode"></p>
+    <p class="post__content" #postContent 
+       *ngIf="!single; else _single"
+       [innerHTML]="post.message | bbCode | nToBr | readMore"></p>
+
+    <!-- used when is shown only a single post (e.g. in the /board/:id/:pid route) -->
+    <ng-template #_single>
+        <p class="post__content" #postContent 
+        [innerHTML]="post.message | bbCode | nToBr"></p>
+    </ng-template>
+
+
     <post-comments [post]="post" [author]="author"></post-comments>
 </div>
 

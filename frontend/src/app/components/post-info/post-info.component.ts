@@ -11,6 +11,8 @@ import Badge20 from '@carbon/icons/es/badge/20';
 import ThumbsDown16 from '@carbon/icons/es/thumbs-down/16';
 import ThumbsUp16 from '@carbon/icons/es/thumbs-up/16';
 import ID24 from '@carbon/icons/es/Q/iD/24';
+import { newVote } from 'src/app/models/vote.type';
+import { Vote } from 'src/app/models/vote.model';
 
 @Component({
   selector: 'post-info',
@@ -36,13 +38,11 @@ export class PostInfoComponent {
     return { green: rate > 0, red: rate < 0 }
   }
   
-  addVote(type:boolean): void {
-    if(type) {
-      this.userService.newUserPostVote(this.post.from.id, this.post.pid).subscribe((res:BasicResponse<any>) => {
+  addVote(vote:newVote): void {
+      this.userService.newUserPostVote(this.post.from.id, this.post.pid, vote).subscribe((res:BasicResponse<Vote>) => {
         if(res.success) {
-          // todo: udpate current post.rate value
+          // this.post = res.data  // udpate current rate value assign the returned post obj to the local one
         }
       })
-    }
   }
 }

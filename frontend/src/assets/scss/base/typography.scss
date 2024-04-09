@@ -20,10 +20,10 @@ p {
 	}
 }
 
-button {
-	@include type.type-style("body-compact-02")
+b {
+	font-weight: bold;
 }
 
-img {
-	max-width: 100%;
+i {
+	font-style: italic;
 }

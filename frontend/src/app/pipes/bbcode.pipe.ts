@@ -5,7 +5,6 @@ import { OembedServices } from '../services/oembed.service';
  * @description convert bbcode to html code
  * @returns a string that contain the html converted code
  */
-
 @Pipe({
     standalone: true,
     name: 'bbCode',

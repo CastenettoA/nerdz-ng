@@ -39,7 +39,7 @@ export class PostCommentComponent {
     // // const isQuotedMsg =  this.isQuotedMsg(msg)
     // // if(!isQuotedMsg) return msg // return the msg if is a normal comment
 
-    console.log('exec processMsg')
+    // console.log('exec processMsg')
     return this.comment.message
   }
 

@@ -30,4 +30,9 @@ export class PostAuthorComponent {
   getBoardLink() {
     return this.reactivity ? this.boardLink : null
   }
+
+  /** @description get css class name for the html element */
+  cssClassNames() {
+    return 'board'
+  }
 } 

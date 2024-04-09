@@ -11,15 +11,14 @@ registerLocaleData(it)
 
 // Components
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
 import { BreadcrumbMainComponent } from './components/breadcrumb-main/breadcrumb-main.component';
 import { HeaderTopComponent } from './components/header-top/header-top.component';
 import { registerLocaleData } from '@angular/common';
+import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 
 @NgModule({
 	declarations: [
 		AppComponent,
-		HeaderComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -34,6 +33,7 @@ import { registerLocaleData } from '@angular/common';
 		HeaderTopComponent,
 	],
 	providers: [
+		{ provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true  },
 		{ provide: LOCALE_ID, useValue: 'it'},
 	],
 	bootstrap: [AppComponent]

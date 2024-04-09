@@ -81,6 +81,7 @@ app.add_url_rule('/v1/me/posts/<int:pid>/comments/<int:n>', view_func=routes.me_
 app.add_url_rule('/v1/me/pms', view_func=routes.me_pms)
 
 app.add_url_rule('/v1/users/<int:id>', view_func=routes.users)
+app.add_url_rule('/v1/users/<int:id>/posts/<int:pid>', view_func=routes.users_post)
 app.add_url_rule('/v1/users/<int:id>/posts', view_func=routes.users_posts)
 app.add_url_rule('/v1/users/<int:id>/posts/<int:pid>/votes', view_func=routes.new_user_post_vote, methods=["POST"])
 app.add_url_rule('/v1/users/<int:id>/posts/<int:pid>/comments', view_func=routes.users_posts_comments)

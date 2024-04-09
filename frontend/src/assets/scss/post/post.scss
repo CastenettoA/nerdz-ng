@@ -17,7 +17,14 @@
 	}
 
     &__content {
-        @include type.type-style("body-compact-01")
+        @include type.type-style("body-compact-01");
+		max-height: 280px;
+		overflow: hidden;
+
+		.continue-btn {
+			text-decoration: underline;
+			cursor: pointer;
+		}
     }
 
 	.post--info {

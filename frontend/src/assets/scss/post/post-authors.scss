@@ -41,7 +41,7 @@
         @include type.type-style("label-01");
     }
 
-    &.board { // <post-author> style in the header of user board
+    &.scope--board { // <post-author> style in the header of user board
         padding: layout.$spacing-04;
 
         &:hover {
@@ -54,9 +54,13 @@
         }
     }
 
-    &.comment { // <post-author> style in post comments section
+    &.scope--comment { // <post-author> style in post comments section
         padding: layout.$spacing-03 layout.$spacing-03; // smaller than little-info-box() mixin
         border-radius: 50%;
+
+        &:hover, &:active, &:focus { // remove :hover bg change in the user img
+            background-color: themes.$background;
+        }
 
         .post-author__userImage img {
             border-radius: 50%;

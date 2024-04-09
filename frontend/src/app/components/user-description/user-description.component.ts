@@ -5,6 +5,7 @@ import { BasicResponse } from 'src/app/models/basic-response.model';
 import { TagModule } from 'carbon-components-angular';
 import { PostAuthor } from 'src/app/models/post/post-author.model';
 import { User } from 'src/app/models/user/user.model';
+import { RouterModule } from '@angular/router';
 
 type mergedUserData = {
     [key: string]: any
@@ -15,7 +16,7 @@ type mergedUserData = {
     standalone: true,
     templateUrl: './user-description.component.html',
     styleUrls: ['./user-description.component.scss'],
-    imports: [CommonModule, PostAuthorComponent, TagModule]
+    imports: [CommonModule, PostAuthorComponent, TagModule, RouterModule]
 })
 export class UserDescriptionComponent {
     @Input() user!:BasicResponse<User>

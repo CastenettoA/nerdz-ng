@@ -1,0 +1,10 @@
+.nng-config {
+
+	&__inner-header {
+		@include box();
+	}
+
+	&__element {
+		@include box();
+	}
+}

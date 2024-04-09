@@ -1,12 +1,11 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment as env } from '../../environments/environment';
 import { User } from '../models/user/user.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, throwError } from 'rxjs';
 import { BasicResponse } from '../models/basic-response.model';
 import { Post } from '../models/post/post.model';
 import { PostComment } from '../models/post/post-comments.model';
-import { uniqueId } from 'cypress/types/lodash';
 import { Pm } from '../models/pms.model';
 
 @Injectable({
@@ -19,12 +18,13 @@ export class MeService {
 
   /** @description Shows the basic informations for the specified user */
   me() {    
-    return this.http.get(`${env.baseurl}/me`, { withCredentials: true });
+    return this.http.get(`${env.baseurl}/me`, { withCredentials: true })
   }
 
   /** @description Shows the homepage of the current user, mixing projects and users posts */
   home() {    
-    return this.http.get(`${env.baseurl}/me/home`, { withCredentials: true });
+    return this.http.get(`${env.baseurl}/me/home`, { withCredentials: true })
+      // .pipe(catchError(this.handleError))
   }
 
   /** @description Shows the followers information for the specified user */
@@ -63,7 +63,6 @@ export class MeService {
   pms() {
     return this.http.get<BasicResponse<Pm[]>>(`${env.baseurl}/me/pms`, { withCredentials: true });
   }
-
-
-    // todo: remove 'get' before function name in all services (uniform)
 }
+
+// todo: remove 'get' before function name in all services (uniform)
