@@ -1,6 +1,6 @@
 from secret import SECRET_KEY, CLIENT_ID
 ALLOWED_CLIENT_ORIGIN="https://127.0.0.1:4200"
-ALLOWED_CLIENT_METHODS="GET, POST"
+ALLOWED_CLIENT_METHODS="GET, POST, DELETE"
 API_BASE_URL="https://api.nerdz.eu/v1"
 O2_TOKEN_ENPOINT_URL="https://api.nerdz.eu/v1/oauth2/token"
 O2_AUTHORIZE_URL="https://api.nerdz.eu/v1/oauth2/authorize"

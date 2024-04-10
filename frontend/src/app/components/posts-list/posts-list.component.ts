@@ -31,9 +31,17 @@ export class PostsListComponent{
     else
       this.loadPosts()
 
-    // init subs to newPost BehaviorSubject to check if there is a new post sto display on the <posts-list>
+    // listen to newPost subject to add new post to list
     this.postsList.newPost.subscribe((post => {
-      if(post) this.posts.data.unshift(post) // add the new user post to the list
+      if(post) this.posts.data.unshift(post) 
+    }))
+
+    // listen to removePost subject to remove deleted post from list
+    this.postsList.removePost.subscribe((post => {
+      if(post) {
+        // todo: before cancell the post from the array hide if we disappearing effects with css and elementRef
+        this.posts.data = this.posts.data.filter((p:Post) => p.pid !== post.pid)
+      } 
     }))
   }
 

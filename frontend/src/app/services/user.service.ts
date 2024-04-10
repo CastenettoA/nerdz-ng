@@ -36,7 +36,8 @@ export class UserServices {
     return this.http.get<BasicResponse<Post>>(`${env.baseurl}/users/${id}/posts/${pid}`, { withCredentials: true });
   }
 
-  /** @description Get the comments of a single post 
+  /** 
+   * @description Get the comments of a single post 
    * @id the user id
    * @pid the post id
    * @n the number of comment to be returned (aka limit), 20 by default
@@ -45,5 +46,23 @@ export class UserServices {
       const _n:string = n ? `n=${n}` : ''
       return this.http.get<BasicResponse<PostComment[]>>(`${env.baseurl}/users/${id}/posts/${pid}/comments?${_n}`, { withCredentials: true });
   
+    }
+
+  /** 
+   * @description add a lurks on the current post
+   * @id the user id
+   * @pid the post id
+   */
+  addPostLurks(id:number, pid:number) {
+    return this.http.post<BasicResponse<Post>>(`${env.baseurl}/users/${id}/posts/${pid}/lurks`, null, { withCredentials: true });
+  }
+
+  /** 
+   * @description remove a lurks from the current post
+   * @id the user id
+   * @pid the post id
+   */
+    deletePostLurks(id:number, pid:number) {
+      return this.http.delete<BasicResponse<Post>>(`${env.baseurl}/users/${id}/posts/${pid}/lurks`, { withCredentials: true });
     }
 }

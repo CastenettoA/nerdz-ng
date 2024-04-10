@@ -10,9 +10,9 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class PostsListServices {
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
-    // if user add a new post is emitted here. Useful to update the <posts-list> component
-    newPost = new BehaviorSubject<Post|undefined>(undefined);
+    newPost = new BehaviorSubject<Post|undefined>(undefined); // if user add a new post is emitted here. Useful to update the <posts-list> component
+    removePost = new BehaviorSubject<Post|undefined>(undefined); // subeject that emit when a post is deleted
 
 }

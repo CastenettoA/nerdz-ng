@@ -70,7 +70,8 @@ def me_followers():
 def me_posts(pid=None):
     """
     [GET] Get a specified post with pid me/posts/{pid}
-    [POST] Creates a new post on the specified user board"""
+    [POST] Creates a new post on the specified user board
+    [DELETE] delete the users post"""
 
     access_token = get_access_token()
     resp = make_response()
@@ -88,7 +89,7 @@ def me_posts(pid=None):
 
     # resp.data = json.dumps(json.loads(req.text))
 
-    if request.method == "GET":
+    if request.method == "GET" and pid:
         req = requests.get(f"{API_BASE_URL}/me/posts/{pid}?access_token={access_token}")
         resp.data = json.dumps(json.loads(req.text))
 
@@ -96,6 +97,9 @@ def me_posts(pid=None):
         data = request.json
         msg = data.get("message")
         req = requests.post(f"{API_BASE_URL}/me/posts?access_token={access_token}", json={ "message": msg })
+        resp.data = json.dumps(json.loads(req.text))
+    elif request.method == "DELETE" and pid:
+        req = requests.delete(f"{API_BASE_URL}/me/posts/{pid}?access_token={access_token}")
         resp.data = json.dumps(json.loads(req.text))
 
     return resp, 200
@@ -154,6 +158,23 @@ def users_posts_comments(id, pid):
         req = requests.get(f"{API_BASE_URL}/users/{id}/posts/{pid}/comments?access_token={access_token}&n={n}")
     else:
         req = requests.get(f"{API_BASE_URL}/users/{id}/posts/{pid}/comments?access_token={access_token}")
+    return req.text, 200
+
+def users_posts_lurks(id, pid):
+    """[POST] Adds a new lurk on the current post
+       [DELETE] deletes the lurk on the current post"""
+
+    access_token = get_access_token()
+
+    if request.method == "POST" and id and pid:
+        req = requests.post(f"{API_BASE_URL}/users/{id}/posts/{pid}/lurks?access_token={access_token}")
+
+    elif request.method == "DELETE" and id and pid:
+        req = requests.delete(f"{API_BASE_URL}/users/{id}/posts/{pid}/lurks?access_token={access_token}")
+
+    else:
+        return "Unsupported http method or missing parameters", 405
+
     return req.text, 200
 
 # https://api.nerdz.eu/v1/users/{id}/posts/{pid}/votes

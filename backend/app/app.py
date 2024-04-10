@@ -75,8 +75,8 @@ app.add_url_rule('/authorize', view_func=routes.authorize)
 app.add_url_rule('/v1/me', view_func=routes.me)
 app.add_url_rule('/v1/me/home', view_func=routes.me_home)
 app.add_url_rule('/v1/me/followers', view_func=routes.me_followers)
-app.add_url_rule('/v1/me/posts', view_func=routes.me_posts)
-app.add_url_rule('/v1/me/posts/<int:pid>', view_func=routes.me_posts, methods=["GET","POST"])
+app.add_url_rule('/v1/me/posts', view_func=routes.me_posts, methods=["GET","POST"])
+app.add_url_rule('/v1/me/posts/<int:pid>', view_func=routes.me_posts, methods=["GET","POST", "DELETE"])
 app.add_url_rule('/v1/me/posts/<int:pid>/comments/<int:n>', view_func=routes.me_posts_comments)
 app.add_url_rule('/v1/me/pms', view_func=routes.me_pms)
 
@@ -85,7 +85,11 @@ app.add_url_rule('/v1/users/<int:id>/posts/<int:pid>', view_func=routes.users_po
 app.add_url_rule('/v1/users/<int:id>/posts', view_func=routes.users_posts)
 app.add_url_rule('/v1/users/<int:id>/posts/<int:pid>/votes', view_func=routes.new_user_post_vote, methods=["POST"])
 app.add_url_rule('/v1/users/<int:id>/posts/<int:pid>/comments', view_func=routes.users_posts_comments)
+app.add_url_rule('/v1/users/<int:id>/posts/<int:pid>/lurks', view_func=routes.users_posts_lurks, methods=["POST", "DELETE"])
 
 app.add_url_rule('/v1/logout', view_func=routes.logout)
 app.add_url_rule('/v1/oembed/twitter', view_func=routes.oembed_twitter)
 app.add_url_rule('/notifications', view_func=routes.notifications)
+
+
+

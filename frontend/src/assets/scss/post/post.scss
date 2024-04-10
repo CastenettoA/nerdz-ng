@@ -25,7 +25,7 @@
 		}
     }
 
-	.post--info {
+	.post-info {
 		display: flex;
 		justify-content: flex-end;
 	
@@ -57,22 +57,23 @@
 				border-bottom: 4px solid colors.$red-40;
 			}
 				
-			.rate--normal-ui {
+			.rate-normal-ui {
 				display: flex;			
 				.cds--btn__icon {
 					margin-right: layout.$spacing-02;
 				}
 			}
 
-			.rate--hover-ui {
+			.rate-hover-ui {
 				display: none;
 				position: absolute;
 				top: 0;
 				left: 0;
 				width: 100%;
 				height: 100%;
+				background-color: themes.$background;
 
-				> div {
+				div.thumbs {
 					position: absolute;
 					top: 0;
 					left: 0;
@@ -99,8 +100,8 @@
 			}
 
 			&:hover {
-				.rate--normal-ui { display: none }
-				.rate--hover-ui { display: inline-flex;}
+				.rate-normal-ui { display: none }
+				.rate-hover-ui { display: inline-flex;}
 			}
 		}
 	
@@ -109,6 +110,17 @@
 			display: flex;
 			justify-content: center;
 			@include type.type-style("label-01");
+		}
+
+		&__menu {
+			margin-left: layout.$spacing-03;
+			button.cds--overflow-menu {
+				background-color: themes.$layer-02;
+
+				&:hover {
+					background-color: themes.$layer-hover-02;
+				}
+			}
 		}
 	}
 }

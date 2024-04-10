@@ -41,6 +41,11 @@ export class MeService {
   getPost(pid:number) {
     return this.http.get<BasicResponse<Post>>(`${env.baseurl}/me/posts/${pid}`, { withCredentials: true });
   }
+
+  /** @description delete a single post by pid */
+  deletePost(pid:number) {
+    return this.http.delete<BasicResponse<null>>(`${env.baseurl}/me/posts/${pid}`, { withCredentials: true });
+  }
   
   /** @description List posts on user board, filtered by some parameters.  */
   getPosts() {

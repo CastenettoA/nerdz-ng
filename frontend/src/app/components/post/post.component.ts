@@ -17,7 +17,8 @@ import { ReadMorePipe } from "../../pipes/read-more.pipe";
     templateUrl: './post.component.html',
     styleUrls: ['./post.component.scss'],
     imports: [CommonModule, PostAuthorComponent, GridModule, InputModule, ButtonModule, TagModule,
-        PostInfoComponent, PostAuthorsComponent, PostCommentsComponent, CodeSnippetModule, BBCodePipe, AsyncTestPipe, NToBrPipe, ReadMorePipe]
+        PostInfoComponent, PostAuthorsComponent, PostCommentsComponent, CodeSnippetModule, BBCodePipe, 
+        AsyncTestPipe, NToBrPipe, ReadMorePipe]
 })
 export class PostComponent {
   @Input() post!:Post

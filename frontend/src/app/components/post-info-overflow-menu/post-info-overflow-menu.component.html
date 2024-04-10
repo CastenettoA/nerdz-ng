@@ -1,0 +1,21 @@
+<div class="post-info__menu">
+    <cds-overflow-menu>
+        <cds-overflow-menu-option *ngIf="post.canEdit" (click)="editPost()">Modifica</cds-overflow-menu-option>
+        <cds-overflow-menu-option (click)="lurksPost()">Nascondi</cds-overflow-menu-option>
+        <cds-overflow-menu-option *ngIf="post.canDelete" type="danger" (click)="openDeletePostModal()">Cancella</cds-overflow-menu-option>
+        <!-- <cds-overflow-menu-option *ngIf="!post.closed" (click)="closePost()">Chiudi post</cds-overflow-menu-option> -->
+    </cds-overflow-menu>
+</div>
+
+<cds-modal 
+    size="md" theme="danger" [open]="modalOpen" (close)="modalOpen = false">
+    <cds-modal-header (closeSelect)="modalOpen = false">
+        <p class="cds--modal-header__heading cds--type-beta">Sei sicuro di voler cancellare il post con id  #{{post.pid}}?</p></cds-modal-header>
+        <div class="cds--modal-content">
+            <p>L'operazione non può essere annullata.</p>
+            <br /><br /><br />
+        </div>
+    <cds-modal-footer><button cdsButton (click)="modalOpen = false">Chiudi</button>
+    <button cdsButton="danger" (click)="deletePost()">Cancella il post</button></cds-modal-footer>
+</cds-modal>
+<cds-placeholder></cds-placeholder>

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Post } from 'src/app/models/post/post.model';
-import { IconModule, IconService } from 'carbon-components-angular';
+import { IconModule, IconService, NotificationService } from 'carbon-components-angular';
 import { UserServices } from 'src/app/services/user.service';
 import { RouterModule } from '@angular/router';
 import { PrettyDatePipe } from 'src/app/pipes/pretty-date.pipe';
@@ -13,22 +13,24 @@ import ThumbsUp16 from '@carbon/icons/es/thumbs-up/16';
 import ID24 from '@carbon/icons/es/Q/iD/24';
 import { newVote } from 'src/app/models/vote.type';
 import { Vote } from 'src/app/models/vote.model';
+import { MeService } from 'src/app/services/me.service';
+import { PostInfoOverflowMenuComponent } from "../post-info-overflow-menu/post-info-overflow-menu.component";
 
 @Component({
-  selector: 'post-info',
-  standalone: true,
-  imports: [CommonModule, RouterModule, PrettyDatePipe, IconModule],
-  templateUrl: './post-info.component.html',
-  styleUrls: ['./post-info.component.scss']
+    selector: 'post-info',
+    standalone: true,
+    templateUrl: './post-info.component.html',
+    styleUrls: ['./post-info.component.scss'],
+    imports: [CommonModule, RouterModule, PrettyDatePipe, IconModule, PostInfoOverflowMenuComponent]
 })
 export class PostInfoComponent {
   @Input() post!:Post
   @Input() author!:PostAuthor
+  modalOpen = false
 
   constructor(
     protected iconService: IconService,
-    private userService: UserServices
-  ) {}
+    private userService: UserServices) {}
 
   ngOnInit() {
     this.iconService.registerAll([ThumbsUp16, ThumbsDown16, Badge20, ID24])
@@ -36,8 +38,9 @@ export class PostInfoComponent {
 
   ngClass_postRate(rate:number) {
     return { green: rate > 0, red: rate < 0 }
-  }
+  } 
   
+  // todo: see bug issue on the github repo
   addVote(vote:newVote): void {
       this.userService.newUserPostVote(this.post.from.id, this.post.pid, vote).subscribe((res:BasicResponse<Vote>) => {
         if(res.success) {
