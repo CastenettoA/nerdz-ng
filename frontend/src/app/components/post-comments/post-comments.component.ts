@@ -67,9 +67,16 @@ export class PostCommentsComponent {
 
   /** @description add/remove a comment from the list */
   refreshCommentsList(comment: PostComment, action:'new'|'remove') {
-    console.log('comment obj: ', comment)
-  if(comment && action === 'new') this.comments.push(comment) // add the comment to comments list
-  if(comment && action === 'remove') this.comments = this.comments.filter((c:PostComment) => c.hcid !== comment.hcid) // remove the comment from the comment lists
+    if(comment && action === 'new') {
+      this.post.comments++;
+      this.comments.push(comment) // add the comment to comments list
+    }
+
+    if(comment && action === 'remove') {
+      this.post.comments--; 
+      this.comments = this.comments.filter(
+        (current:PostComment) => current.hcid !== comment.hcid) // remove the comment from the comment lists if the hcid match
+    }
   }
 
   /** @description edit the selected comment */
