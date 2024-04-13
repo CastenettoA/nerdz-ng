@@ -2,7 +2,7 @@
 
 ### General
 1. Follow your best programming standard
-2. Be sure to follow the pattern that you see on this repository, to not reinvent the well and where possibile to improve things.
+2. Be sure to follow the pattern that you see on this repository, do not reinvent the well and where possibile to improve things.
 
 ### Front-end
 1. Generally make sure to apply the IBM Carbon Design System guidelines for the front-end part. For example use for colors the colors token and for spacing the spacing token. 
