@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { IconModule, ThemeModule, UIShellModule } from 'carbon-components-angular'; // carbon-components-angular default imports
+import { IconModule, PlaceholderModule, ThemeModule, UIShellModule } from 'carbon-components-angular'; // carbon-components-angular default imports
 
 import it from '@angular/common/locales/it'
 registerLocaleData(it)
@@ -31,6 +31,7 @@ import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 		HttpClientModule, 
 		BreadcrumbMainComponent,
 		HeaderTopComponent,
+		PlaceholderModule
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true  },

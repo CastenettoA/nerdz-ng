@@ -13,7 +13,6 @@ import ThumbsUp16 from '@carbon/icons/es/thumbs-up/16';
 import ID24 from '@carbon/icons/es/Q/iD/24';
 import { newVote } from 'src/app/models/vote.type';
 import { Vote } from 'src/app/models/vote.model';
-import { MeService } from 'src/app/services/me.service';
 import { PostInfoOverflowMenuComponent } from "../post-info-overflow-menu/post-info-overflow-menu.component";
 
 @Component({

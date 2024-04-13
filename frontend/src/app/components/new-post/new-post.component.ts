@@ -8,10 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { BasicResponse } from 'src/app/models/basic-response.model';
 import { PostsListServices } from 'src/app/services/posts-list.service';
 import { PostAuthor } from 'src/app/models/post/post-author.model';
-
-interface newPostForm {
-  message: string|undefined
-}
+import { NewPostForm } from 'src/app/models/forms/new-post.model';
 
 const _newPost = {
   "bookmarkers": 0,
@@ -68,7 +65,7 @@ const _newPost = {
 export class NewPostComponent {
   textareaOpen:boolean = false
   currentUser!:PostAuthor
-  form:newPostForm = { message: undefined }
+  form:NewPostForm = { message: undefined }
 
   constructor(private meService:MeService,
     private postsList:PostsListServices) {}

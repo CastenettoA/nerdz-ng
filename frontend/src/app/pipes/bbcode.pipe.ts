@@ -24,6 +24,8 @@ export class BBCodePipe implements PipeTransform {
           case "u":
           case "small":
             return `<${BBCodeTag}>${BBCodeTagContent}</${BBCodeTag}>`
+          case "cur":
+            return `<i>${BBCodeTagContent}</i>`
           case "url":
             if (BBCodeTagArg) {
               return `<a href="${BBCodeTagArg}">${BBCodeTagContent}</a>`;

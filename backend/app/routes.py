@@ -148,16 +148,39 @@ def users_posts(id):
     resp.data = json.dumps(json.loads(req.text))
     return resp, 200
 
-def users_posts_comments(id, pid):
-    """List comments on specified post, filtered by some parameters.
-        'id' is the user id, 'pid' is the post id. 'n' is a query param for limiting the comments returned"""
+def users_posts_comments(id, pid, cid=None):
+    """
+      'id' is the user id, 'pid' is the post id, cid is the comment id, 'n' is a query param for limiting the comments returned
+      [GET] List comments on specified post, filtered by some parameters.
+      [POST] Creates a new post comment on the specified user board
+      [PUT] Update the speficied comment on the specified users post
+      [DELETE] Delete the specified comment on the speficied users post"""
 
     access_token = get_access_token()
-    n = request.args.get('n')
-    if n:
-        req = requests.get(f"{API_BASE_URL}/users/{id}/posts/{pid}/comments?access_token={access_token}&n={n}")
-    else:
-        req = requests.get(f"{API_BASE_URL}/users/{id}/posts/{pid}/comments?access_token={access_token}")
+
+    match request.method:
+        case "GET": # get comment request
+            n = request.args.get('n')
+            if n:
+                req = requests.get(f"{API_BASE_URL}/users/{id}/posts/{pid}/comments?access_token={access_token}&n={n}")
+            else:
+                req = requests.get(f"{API_BASE_URL}/users/{id}/posts/{pid}/comments?access_token={access_token}")
+        case "POST": # new comment request
+            msg = request.json.get("message")
+            if msg and id and pid:
+                req = requests.post(f"{API_BASE_URL}/users/{id}/posts/{pid}/comments?access_token={access_token}", json={"message":msg})
+            else: 
+                return "some of required field is/are not present, please add it and retry. Fields: message body, user id, post id", 400
+        case "PUT": # edit comment request
+            msg = request.json.get("message")
+            if msg and id and pid and  cid:
+                req = requests.put(f"{API_BASE_URL}/users/{id}/posts/{pid}/comments/{cid}?access_token={access_token}", json={"message":msg})
+            else: 
+                return "some of required field is/are not present, please add it and retry. Fields: message body, user id, post id, comment id", 400
+        case "DELETE":
+            req = requests.delete(f"{API_BASE_URL}/users/{id}/posts/{pid}/comments/{cid}?access_token={access_token}")
+        case _: # default case
+            return "bad request or method not supported", 400
     return req.text, 200
 
 def users_posts_lurks(id, pid):

@@ -1,11 +1,50 @@
 <div class="post-comments--comment" *ngIf="comment">
     <post-author [author]="author" scope="comment" *ngIf="comment.from"></post-author>
     <div class="comment__content">
-        <p class="content__author-info">
+        <div class="content__author-info">
             <span class="info__name" [routerLink]="['/board', comment.from.id]">{{ comment.from.username }}</span>
             <span class="info__icon">•</span>
             <span class="info__date">{{ comment.time | prettyDate }}</span>
-        </p>
-        <p class="content__msg">{{ processMsg() }}</p>
+            
+            <span class="info__icon">•</span>
+            <span class="info__rate">
+                <svg class="cds--btn__icon" cdsIcon="badge" size="16"></svg>
+                <span class="rate-value">0</span>
+            </span>
+            
+            <!-- todo/create the: <post-comment-actions> component -->
+            <div class="info__actions">
+                <div class="actions-item">
+                    <svg class="cds--btn__icon" cdsIcon="reply" size="16"></svg>
+                    <span class="info__date">rispondi</span>
+                </div>
+    
+                <span class="info__icon" *ngIf="comment.canEdit">•</span>
+                <div class="actions-item" *ngIf="comment.canEdit" (click)="editComment(comment)">                    
+                    <svg class="cds--btn__icon" cdsIcon="edit" size="16"></svg>
+                    <span class="info__date">modifica</span>
+                </div>
+                
+                <span class="info__icon" *ngIf="comment.canDelete">•</span>
+                <div class="actions-item" *ngIf="comment.canDelete" (click)="openModal()">
+                    <svg class="cds--btn__icon" cdsIcon="trash-can" size="16"></svg>
+                    <span class="info__date">cancella</span>
+                </div>
+            </div>
+
+        </div>
+        <p class="content__msg" [innerHTML]="comment.message | bbCode | nToBr"></p>
     </div>
 </div>
+
+<cds-modal 
+    size="md" theme="danger" [open]="modalOpen" (close)="closeModal()">
+    <cds-modal-header (closeSelect)="closeModal()">
+        <p class="cds--modal-header__heading cds--type-beta">Sei sicuro di voler cancellare il commento <span *ngIf="comment && comment.hcid">con id  #{{comment.hcid}}</span>?</p></cds-modal-header>
+        <div class="cds--modal-content">
+            <p>L'operazione non può essere annullata.</p>
+            <br /><br /><br />
+        </div>
+    <cds-modal-footer><button cdsButton (click)="closeModal()">Chiudi</button>
+    <button cdsButton="danger" (click)="deleteComment(comment)">Cancella il commento</button></cds-modal-footer>
+</cds-modal>

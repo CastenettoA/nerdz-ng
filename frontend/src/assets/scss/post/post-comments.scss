@@ -19,11 +19,57 @@
 		display: flex;
 		align-items: center;
 
+		&.new-comment {
+			background-color: themes.$layer-02;
+			display: inline-flex;
+			border-radius: 1rem;
+			padding: 0px .6rem 0 0px;
+
+			transition: background-color motion.$duration-fast-01;
+			cursor: pointer;
+
+			&:hover, &:hover .post-author {
+				background-color: themes.$layer-hover-02;
+			}
+
+			&:active, &:focus, &:active .post-author, &:focus .post-author {
+				background-color: themes.$layer-active-02;
+			}
+
+			&--edit-mode {
+				cursor: inherit;
+				&:hover, &:hover .post-author {
+					background-color: themes.$layer-02;
+				}
+	
+				&:active, &:focus, &:active .post-author, &:focus .post-author {
+					background-color: themes.$layer-02;
+				}
+			}
+
+			.post-author {
+				margin-bottom: 0;
+				background-color: themes.$layer-02;
+			}
+
+			.new-comment__invite {
+				margin-left: layout.$spacing-03;
+				margin-top: 0;
+				@include type.type-style("body-compact-01");
+			}
+		}
+
 		.content__author-info {
+			display: inline-flex;
 			margin-left: layout.$spacing-03;
 			margin-bottom: 0;
 			opacity: 0.8;
 			@include type.type-style("body-compact-01");
+
+			.info__name, .info__icon, .info__date, .info__rate { // vertical align items
+				display: inline-flex;
+				align-items: center;
+			}
 			
 			.info__name {
 				font-weight: bold;
@@ -37,12 +83,68 @@
 			.info__date {
 				@include type.type-style("label-01");
 			}
+
+			.info__rate {
+				display: inline-flex;
+    			align-items: center;
+			}
+
+			.info__actions {
+				display: none;
+				align-items: center;
+				margin: 0 1rem;
+				// padding: .1rem .5rem;
+				// border-radius: 1rem;
+				background-color: themes.$layer-accent-03;
+				border-radius: 1rem;
+
+				.actions-item {
+					padding: 0 layout.$spacing-03;
+					display: inline-flex;
+    				align-items: center;
+
+					svg {
+						margin-right: layout.$spacing-02;
+					}
+
+					&:first-of-type {
+						border-top-left-radius: 1rem;
+						border-bottom-left-radius: 1rem;
+					}
+
+					&:last-of-type {
+						border-top-right-radius: 1rem;
+						border-bottom-right-radius: 1rem;
+					}
+
+					&:hover {
+				      background-color: themes.$layer-accent-hover-03;
+					  cursor: pointer;
+					}
+
+					&:active, &:focus {
+						background-color: themes.$layer-accent-active-03;
+						cursor: pointer;
+					}
+				}
+
+				span.info__icon {
+					padding: 0 .2rem;
+					display: inline-block;
+				}
+			}
 		}
 
 		.content__msg {
 			margin-left: layout.$spacing-03;
 			margin-top: 0;
 			@include type.type-style("body-compact-01");
+		}
+
+		&:hover {
+			.content__author-info .info__actions {
+				display: inline-flex;
+			}
 		}
 	}
 }

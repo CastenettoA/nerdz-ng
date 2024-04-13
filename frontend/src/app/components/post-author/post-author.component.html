@@ -24,3 +24,11 @@
         <img src="{{author.image}}" alt="the image of {{author.username}}" />
     </div>
 </div>
+
+<div class="post-author" *ngIf="author && scope == 'new-comment'" 
+     [ngClass]="{'disable-reactivity': !reactivity, 'scope--comment':true}">
+
+    <div class="post-author__userImage">
+        <img src="{{author.image}}" alt="the image of {{author.username}}" />
+    </div>
+</div>

@@ -1,5 +1,9 @@
 <ng-container *ngIf="posts">
-    <post [post]="postItem" *ngFor="let postItem of posts.data"></post>
+
+    <ng-container *ngFor="let post of posts.data">
+      <post [post]="post" *ngIf="post.lurkers === 0"></post>
+    </ng-container>
+
     <!-- <cds-pagination-nav [model]="model" (selectPage)="selectPage($event)"></cds-pagination-nav> -->
 </ng-container>
 

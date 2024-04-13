@@ -14,7 +14,7 @@ import { PostAuthor } from 'src/app/models/post/post-author.model';
 export class PostAuthorComponent {
   @Input() author!: PostAuthor
   @Input() reactivity:boolean = true
-  @Input() scope:'post'|'comment'|'board' = 'post' // different scopes have different change in term of sizes and functionalities
+  @Input() scope:'post'|'comment'|'new-comment'|'board' = 'post' // different scopes have different change in term of sizes and functionalities
   boardLink:string = '/board'
 
   constructor() {
@@ -29,10 +29,5 @@ export class PostAuthorComponent {
   /** @description return the board link in we are in the reactivity mode altrought return null to block routing */
   getBoardLink() {
     return this.reactivity ? this.boardLink : null
-  }
-
-  /** @description get css class name for the html element */
-  cssClassNames() {
-    return 'board'
   }
 } 

@@ -4,14 +4,29 @@
     </div>
 
     <div class="post-comments--container" *ngIf="comments && !commentsLoading">
-        
+
         <!-- the comments preview -->
-        <post-comment *ngIf="!commentsOpen; else elseBlock" [comment]="comments[0]"></post-comment>
+        <post-comment 
+            *ngIf="!commentsOpen; else elseBlock" 
+            [comment]="comments[0]" [post]="post"
+            (remove)="refreshCommentsList($event, 'remove')"
+            (edit)="editComment($event)"></post-comment>
         
         <!-- list of all comments -->
         <ng-template #elseBlock>     
-                <p class="container__title">Commenti</p>
-                <post-comment *ngFor="let comment of comments" [comment]="comment"></post-comment>
+                <p class="container__title" *ngIf="comments.length > 0">Commenti</p>
+                <p class="container__title" *ngIf="comments.length <= 0">Nessun commento</p>
+
+                <post-comment *ngFor="let comment of comments" [post]="post"
+                    [comment]="comment" 
+                    (remove)="refreshCommentsList($event, 'remove')" 
+                    (edit)="editComment($event)"></post-comment>
+
+                <!-- transform in <compose-comment> -->
+                <new-comment 
+                    [post]="post" (new)="refreshCommentsList($event, 'new')"
+                    [commentToEdit]="commentToEdit"
+                ></new-comment>
         </ng-template>
         
     </div>

@@ -26,40 +26,38 @@ export class PostsListComponent{
     private postsList:PostsListServices) { }
 
   ngOnInit() {
-    if(this.userId)
-      this.loadUserPosts()
-    else
-      this.loadPosts()
-
-    // listen to newPost subject to add new post to list
-    this.postsList.newPost.subscribe((post => {
-      if(post) this.posts.data.unshift(post) 
-    }))
-
-    // listen to removePost subject to remove deleted post from list
-    this.postsList.removePost.subscribe((post => {
-      if(post) {
-        // todo: before cancell the post from the array hide if we disappearing effects with css and elementRef
-        this.posts.data = this.posts.data.filter((p:Post) => p.pid !== post.pid)
-      } 
-    }))
+    this.initPostsList()
+    // listen for new post add or remove event  
+    this.postsList.newPost.subscribe((post => { if(post) this.addPost(post) }))
+    this.postsList.removePost.subscribe((post => { if(post) { this.removePost(post) } }))
   }
 
-  // load the user home last posts
-  loadPosts() {
-    // this.me.home().subscribe((res:any)=> {
-    //   if(res.data) this.posts = res
-    // })
+  /** @description check if we are in a /board/{userId} on in the front page */
+  initPostsList() {
+    this.userId ? this.loadUserPosts() : this.loadPosts()
+  }
 
+  /** @description load the user home posts */
+  loadPosts() {
     this.me.home().subscribe((res:any)=> {
       if(res.data) this.posts = res
     })
   }
 
-  // load the current user last posts
+  /** @description load the current user last posts */
   loadUserPosts() { // todo: handle if user have no posts
     this.userService.user_post(this.userId).subscribe((res:BasicResponse<Post[]>)=> {
       if(res) this.posts = res
     })
+  }
+
+  /** @description add a post at the beginning of the postList array */
+  addPost(post:Post) {
+    this.posts.data.unshift(post)
+  }
+
+  /** @description remove a post from the postList array */
+  removePost(post:Post) {
+    this.posts.data = this.posts.data.filter((p:Post) => p.pid !== post.pid)
   }
 }

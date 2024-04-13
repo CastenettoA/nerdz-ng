@@ -1,0 +1,31 @@
+<ng-container *ngIf="currentUser">
+    <div class="post-comments--comment new-comment" 
+        (click)="toggleTextarea()" [ngClass]="{ 'new-comment--edit-mode': editMode}"
+    >
+        <post-author [author]="currentUser" [reactivity]="false" scope="new-comment"></post-author>
+        <span class="new-comment__invite" *ngIf="editMode === false">Commenta come <b>{{currentUser.username}}</b></span>
+        <span class="new-comment__invite" *ngIf="editMode">Modifica il tuo commento</span>
+    </div>
+
+    <div class="new-comment-form">
+        <form #newPostForm="ngForm" (ngSubmit)="addComment()">
+            <ng-container *ngIf="textareaOpen">
+                <cds-textarea-label>
+                    <textarea 
+                      cdsTextArea 
+                      class="textarea-field"
+                      placeholder="Scrivi qui il tuo commento"
+                      cols="100"
+                      rows="3"
+                      theme="light"
+                      [(ngModel)]="form.message"
+                      name="message"
+                      ></textarea>
+                </cds-textarea-label>
+    
+                <button cdsButton size="sm" [disabled]="!form.message || (form.message && form.message.trim() == '')" type="submit">Salva la modifica</button>
+                <button cdsButton="danger--tertiary" size="sm" *ngIf="editMode" (click)="resetEditMode()">Annulla</button>
+            </ng-container>
+        </form>
+    </div>
+</ng-container>

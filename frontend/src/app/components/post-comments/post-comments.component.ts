@@ -9,11 +9,12 @@ import { MeService } from 'src/app/services/me.service';
 import { PostCommentComponent } from '../post-comment/post-comment.component';
 import { SkeletonModule } from 'carbon-components-angular';
 import { UserServices } from 'src/app/services/user.service';
+import { NewCommentComponent } from '../new-comment/new-comment.component';
 
 @Component({
   selector: 'post-comments',
   standalone: true,
-  imports: [CommonModule, PostAuthorComponent, RouterModule, PostCommentComponent, SkeletonModule],
+  imports: [CommonModule, PostAuthorComponent, RouterModule, PostCommentComponent, NewCommentComponent, SkeletonModule],
   templateUrl: './post-comments.component.html',
   styleUrls: ['./post-comments.component.scss']
 })
@@ -23,6 +24,7 @@ export class PostCommentsComponent {
   @Input() author!:PostAuthor
   commentsOpen = false
   commentsLoading = false
+  commentToEdit:PostComment | undefined = undefined
 
   constructor(private meService: MeService, private userService: UserServices) {}
 
@@ -33,8 +35,6 @@ export class PostCommentsComponent {
 
   /** @description load post comment if there are any */
   loadComments() {
-    if(this.post.comments <= 0) return // return if there aren't comment on the post
-
     if(this.commentsOpen) {
       // close the open comments section
       this.commentsOpen = false
@@ -51,17 +51,29 @@ export class PostCommentsComponent {
   }
 
   
-   /** @description load the last post comment if the post have one and save the post comments */
-   loadLastComment() {
-    if(this.post.comments <= 0 || ![7371, 359, 182, 909].includes(this.post.pid)) {
-      // if the post have no comments we return back and not load comments
+  /** @description load the last post comment if the post have one and save the post comments */
+  loadLastComment() {
+  if(this.post.comments <= 0 || ![1, 8712].includes(this.post.pid)) {
+    // if the post have no comments we return back and not load comments
+    this.commentsLoading = false
+    return
+  } else {
+    this.userService.getPostComments(this.author.id, this.post.pid, 1).subscribe((res) => {
+      if(res.data) this.comments = res.data
       this.commentsLoading = false
-      return
-    } else {
-      this.userService.getPostComments(this.author.id, this.post.pid, 1).subscribe((res) => {
-        if(res.data) this.comments = res.data
-        this.commentsLoading = false
-      })
-    }
-   }
+    })
+  }
+  }
+
+  /** @description add/remove a comment from the list */
+  refreshCommentsList(comment: PostComment, action:'new'|'remove') {
+    console.log('comment obj: ', comment)
+  if(comment && action === 'new') this.comments.push(comment) // add the comment to comments list
+  if(comment && action === 'remove') this.comments = this.comments.filter((c:PostComment) => c.hcid !== comment.hcid) // remove the comment from the comment lists
+  }
+
+  /** @description edit the selected comment */
+  editComment(comment:PostComment) {
+    this.commentToEdit = comment
+  }
 }

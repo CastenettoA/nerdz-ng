@@ -11,7 +11,7 @@ import { PostsListServices } from 'src/app/services/posts-list.service';
   selector: 'post-info-overflow-menu',
   standalone: true,
   providers: [NotificationService],
-  imports: [CommonModule, PlaceholderModule, ButtonModule, ModalModule, DialogModule],
+  imports: [CommonModule, ButtonModule, ModalModule, DialogModule],
   templateUrl: './post-info-overflow-menu.component.html',
   styleUrls: ['./post-info-overflow-menu.component.scss']
 })

@@ -14,5 +14,4 @@ export class PostsListServices {
 
     newPost = new BehaviorSubject<Post|undefined>(undefined); // if user add a new post is emitted here. Useful to update the <posts-list> component
     removePost = new BehaviorSubject<Post|undefined>(undefined); // subeject that emit when a post is deleted
-
 }
