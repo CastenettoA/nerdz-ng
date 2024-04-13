@@ -48,4 +48,4 @@ Nerdz Ng back-end best to know facts:
     ```
 
 ## Guidelines for contributors
-1. Make sure to apply the Carbon Design System guidelines for the front-end part. For example use for colors the colors token and for spacing the spacing token. 
+Please carefully read the CONTRIBUTING.me file on this folder.
