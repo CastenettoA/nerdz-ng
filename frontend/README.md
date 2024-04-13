@@ -1,5 +1,5 @@
 # Installation
-For installation see the readme.md on the parent folder.
+For installation tutorial see the readme.md on the parent folder.
 
 # General Infos
 This is a web application written in Angular (see package.json for know the Angular version).
