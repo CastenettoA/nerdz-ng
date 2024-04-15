@@ -63,7 +63,6 @@
 			display: inline-flex;
 			margin-left: layout.$spacing-03;
 			margin-bottom: 0;
-			opacity: 0.8;
 			@include type.type-style("body-compact-01");
 
 			.info__name, .info__icon, .info__date, .info__rate { // vertical align items

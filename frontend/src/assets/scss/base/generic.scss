@@ -1,6 +1,7 @@
 html { height: 100%; }
 body { min-height: 100%; }
 
+
 .code-highlight {
 	background-color: themes.$layer-02;
 	margin: layout.$spacing-03;
@@ -27,4 +28,20 @@ button {
 
 img {
 	max-width: 100%;
+}
+
+/* logic for auto-change the color of cds icons when the csdTheme css class change.
+   for react to theme change the icon need to have the cds-icon--theme class on the <svg> element */
+main {
+	&.cds--white {
+		svg.cds-icon--theme { // white theme
+			fill: black;
+		}
+	}
+
+	&.cds--g100 { 
+		svg.cds-icon--theme { // g100 theme
+			fill: white;
+		 }
+	}
 }

@@ -67,9 +67,18 @@ def add_basic_headers(response):
 
     return response
 
+
+# uncomment this to serve the SPA with Flask
+# app = Flask(__name__, static_folder='app', static_url_path='/app')
+# @app.route('/', defaults={'path': ''})
+# @app.route('/<path:path>')
+# def catch_all(path):
+#     return app.send_static_file("index.html")
+
 # define application routes (see routes.py)
 app.add_url_rule('/', view_func=routes.homepage)
 app.add_url_rule('/homepage', view_func=routes.homepage)
+app.add_url_rule('/heartbeat', view_func=routes.heartbeat)
 app.add_url_rule('/login', view_func=routes.login)
 app.add_url_rule('/authorize', view_func=routes.authorize)
 

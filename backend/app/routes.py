@@ -42,6 +42,9 @@ def logout():
 def homepage():
     return render_template("home.html", routes=app_routes)
 
+def heartbeat():
+    return jsonify({"status":"healthy"})
+
 def me():
     """return info about the current logged-in user"""
     access_token = get_access_token()

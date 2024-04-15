@@ -2,17 +2,17 @@
     <div class="post-info__date">{{ post.time | prettyDate }}</div>
     <div class="post-info__rate" [ngClass]="ngClass_postRate(post.rate)">
         <div class="rate-normal-ui">
-            <svg class="cds--btn__icon" cdsIcon="badge" size="20"></svg>
+            <svg class="cds--btn__icon cds-icon--theme" cdsIcon="badge" size="20" fill="red"></svg>
             <span class="post-info__rate-number">{{post.rate}}</span>
         </div>
 
         <div class="rate-hover-ui">
-            <div class="thumbs" (click)="addVote(1)"><svg class="cds--btn__icon" cdsIcon="thumbs-up" size="16"></svg></div>
-            <div class="thumbs" (click)="addVote(-1)"><svg class="cds--btn__icon" cdsIcon="thumbs-down" size="16"></svg></div>
+            <div class="thumbs" (click)="addVote(1)"><svg class="cds--btn__icon cds-icon--theme" cdsIcon="thumbs-up" size="16"></svg></div>
+            <div class="thumbs" (click)="addVote(-1)"><svg class="cds--btn__icon cds-icon--theme" cdsIcon="thumbs-down" size="16"></svg></div>
         </div>
     </div>
     <div class="post-info__pid" [routerLink]="['/board', author.id, post.pid]">
-        <svg cdsIcon="iD" size="24"></svg>
+        <svg class="cds-icon--theme" cdsIcon="iD" size="24"></svg>
         <span>{{post.pid}}</span>
     </div>
 
