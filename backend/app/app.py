@@ -37,7 +37,7 @@ def handle_error(error):
 @app.before_request
 def before_request_handler():
     """check jwt validity on certain routes"""
-    skip_endpoints = ["homepage", "login", "authorize", "logout", "notifications"] # endpoints that do not need a valid access token
+    skip_endpoints = ["heartbeat","homepage", "login", "authorize", "logout", "notifications"] # endpoints that do not need a valid access token
 
     if request.endpoint in skip_endpoints or request.method == "OPTIONS":
         logging.info("bypass jwt validation")
