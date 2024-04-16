@@ -20,6 +20,9 @@ export class PrettyDatePipe implements PipeTransform {
         const oneMinuteAgo:Date = new Date()
         oneMinuteAgo.setMinutes(oneMinuteAgo.getMinutes() - 1) // calc now -1 minute
 
+        const someMinuteAgo = new Date()
+        someMinuteAgo.setMinutes(someMinuteAgo.getMinutes() - 4) // calc now -4 minute
+
         const today:Date = new Date() // the today date at midnight
         today.setHours(0,0,0,0) // set midnight
 
@@ -33,6 +36,7 @@ export class PrettyDatePipe implements PipeTransform {
         treeDayAgo.setDate(treeDayAgo.getDate()-3)
 
         const isJustNow = _postDate >= oneMinuteAgo ? true : false
+        const isSomeMinuteAgo = _postDate >= someMinuteAgo ? true : false
         const isToday = _postDate >= today ? true : false // check if date of the post is today or not
         const isYesterday = (_postDate < today && _postDate >= yesterday) ? true : false 
         const istwoDayAgo = (_postDate < yesterday && _postDate >= twoDayAgo) ? true : false 
@@ -44,6 +48,8 @@ export class PrettyDatePipe implements PipeTransform {
         let date = ''
         if(isJustNow)
           return date = `Proprio ora, ${formatDate(postDate, 'mediumTime', 'it')}`  // is like "Proprio ora, 14:59:01 AM"
+        else if(isSomeMinuteAgo)
+          return date = `Qualche minuta fa, ${formatDate(postDate, 'mediumTime', 'it')}`  
         else if(isToday)
           return date = `Oggi, ${formatDate(postDate, 'mediumTime', 'it')}`  // is like "Oggi, 9:03:01 AM"
         else if(isYesterday)
