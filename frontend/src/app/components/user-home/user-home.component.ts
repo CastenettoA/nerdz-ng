@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { PostsListComponent } from "../posts-list/posts-list.component";
+import { NewPostComponent } from "../new-post/new-post.component";
+import { GridModule } from 'carbon-components-angular';
 import { BasicResponse } from 'src/app/models/basic-response.model';
 import { Post } from 'src/app/models/post/post.model';
 import { User } from 'src/app/models/user/user.model';
@@ -7,23 +11,19 @@ import { Oauth2Service } from 'src/app/services/oauth2.service';
 import { UserServices } from 'src/app/services/user.service';
 type PostListContext = 'home'|'board';
 
-
 @Component({
-	selector: 'app-starter-home',
-	templateUrl: './starter-home.component.html',
-	styleUrls: ['./starter-home.component.scss']
+    selector: 'user-home',
+    standalone: true,
+    templateUrl: './user-home.component.html',
+    styleUrls: ['./user-home.component.scss'],
+    imports: [CommonModule, PostsListComponent, NewPostComponent, GridModule]
 })
-export class StarterHomeComponent {
-	expanded($event: MouseEvent) {
-		throw new Error('Method not implemented.');
-	}
-	active: boolean = false;
-	userLoggedIn: boolean = false;
-	hasHamburger: boolean = true;
-	context: PostListContext = 'home'
+export class UserHomeComponent {
+  userLoggedIn: boolean = false;
+  context: PostListContext = 'home'
 	posts!:BasicResponse<Post[]>
 
-	constructor(
+  constructor(
 		private oauth2Service: Oauth2Service, 
 		private meService: MeService,
     	private userService:UserServices) { }
@@ -68,11 +68,4 @@ export class StarterHomeComponent {
 		  if(res.data) this.posts = res
 		})
 	  }
-	
-	//   /** @description load the current user last posts */
-	//   loadUserPosts() { // todo: handle if user have no posts
-	// 	this.userService.getPosts(this.userId).subscribe((res:BasicResponse<Post[]>)=> {
-	// 	  if(res) this.posts = res
-	// 	})
-	//   }
 }
