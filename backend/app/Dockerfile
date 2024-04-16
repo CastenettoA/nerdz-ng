@@ -1,5 +1,5 @@
 FROM python:3.8-slim
-WORKDIR /
+WORKDIR /backend/app
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 EXPOSE 8080

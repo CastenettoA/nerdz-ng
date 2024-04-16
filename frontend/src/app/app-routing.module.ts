@@ -4,6 +4,7 @@ import { UserResolver } from './resolvers/user.resolver';
 import { isLoggedIn } from './guard/is-logged-in.guard';
 import { PostResolver } from './resolvers/post.resolver';
 import { PmsResolver } from './resolvers/pms.resolver';
+import { PostsResolver } from './resolvers/posts.resolver';
 
 const _starterHomeModule = import('./starter-home/starter-home.module').then(m => m.StarterHomeModule)
 const _wellcomeComponent = import('./components/wellcome/wellcome.component').then(c => c.WellcomeComponent)
@@ -21,7 +22,7 @@ const routes: Routes = [
 	{ path: 'home', title: 'Nz / Home', loadChildren: () => _starterHomeModule, canActivate: [isLoggedIn] },
 	{ path: 'settings', title: 'Nz / Settings', loadComponent: () => _configComponent, canActivate: [isLoggedIn] },
 	{ path: 'board/:id/:pid', title: revolveBoardPostTitle, resolve: { user: UserResolver, post: PostResolver }, loadComponent: () => _boardComponent, canActivate: [isLoggedIn] },
-	{ path: 'board/:id', title: resolveBoardTitle, resolve: { user: UserResolver }, loadComponent: () => _boardComponent, canActivate: [isLoggedIn] },
+	{ path: 'board/:id', title: resolveBoardTitle, resolve: { user: UserResolver, posts: PostsResolver }, loadComponent: () => _boardComponent, canActivate: [isLoggedIn] },
 	{ path: 'pm', title: resolvePmTitle, resolve: { pms: PmsResolver }, loadComponent: () => _pmComponent, canActivate: [isLoggedIn] },
 	{ path: '**', title: 'Nz / Pagina non trovata', loadComponent: () => _pageNotFoundComponent }
 ];

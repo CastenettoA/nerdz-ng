@@ -4,8 +4,9 @@
 
     <!-- full post list on /board/:id -->
     <posts-list 
+        [posts]="posts"
         [userId]="user.data.info.id" 
-        *ngIf="showingPostsList; else elseBlock"> 
+        *ngIf="context === 'posts_list'; else elseBlock"> 
     </posts-list>
     
     <!-- single post component on /board/:id/:pid -->

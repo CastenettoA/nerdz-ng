@@ -21,11 +21,6 @@ export class UserServices {
     return this.http.get<BasicResponse<User>>(`${env.baseurl}/users/${id}`, { withCredentials: true });
   }
 
-  /** @description get last user's posts */
-  user_post(id: number) {    
-    return this.http.get<BasicResponse<Post[]>>(`${env.baseurl}/users/${id}/posts`, { withCredentials: true });
-  }
-
   /** @description Adds a new vote on the current post */
   newUserPostVote(id: number, pid: number, vote: newVote) {    
     return this.http.post<BasicResponse<Vote>>(`${env.baseurl}/users/${id}/posts/${pid}/votes`, { vote },  { withCredentials: true });
@@ -34,6 +29,11 @@ export class UserServices {
   /** @description get a single post by pid */
   getPost(id: number, pid: number) {
     return this.http.get<BasicResponse<Post>>(`${env.baseurl}/users/${id}/posts/${pid}`, { withCredentials: true });
+  }
+
+  /** @description get last user's posts */
+  getPosts(id: number) {    
+    return this.http.get<BasicResponse<Post[]>>(`${env.baseurl}/users/${id}/posts`, { withCredentials: true });
   }
 
   /** 
