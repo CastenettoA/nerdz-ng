@@ -1,5 +1,5 @@
 # bearer token security concers summary: https://datatracker.ietf.org/doc/html/rfc6750#section-5.3
-import logging, json
+import logging, json, os
 from flask import Flask, request, make_response, render_template
 from authlib.integrations.flask_client import OAuth, OAuthError
 from services.route import create_route_names 
@@ -67,14 +67,6 @@ def add_basic_headers(response):
 
     return response
 
-
-# uncomment this to serve the SPA with Flask
-# app = Flask(__name__, static_folder='app', static_url_path='/app')
-# @app.route('/', defaults={'path': ''})
-# @app.route('/<path:path>')
-# def catch_all(path):
-#     return app.send_static_file("index.html")
-
 # define application routes (see routes.py)
 app.add_url_rule('/', view_func=routes.homepage)
 app.add_url_rule('/homepage', view_func=routes.homepage)
@@ -102,5 +94,9 @@ app.add_url_rule('/v1/logout', view_func=routes.logout)
 app.add_url_rule('/v1/oembed/twitter', view_func=routes.oembed_twitter)
 app.add_url_rule('/notifications', view_func=routes.notifications)
 
+"""La gestione del traffico HTTP viene eseguita da un 
+server web Gunicorn nel container Google Cloud Run. """
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
 
 
