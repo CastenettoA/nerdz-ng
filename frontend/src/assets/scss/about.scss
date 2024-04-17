@@ -1,0 +1,14 @@
+.nng-about {
+	
+	.inner-header {
+		@include box();
+
+		// button {
+		// 	margin-top: layout.$spacing-04;
+		// }
+	}
+
+	.inner-main-container {
+		max-width: 740px;
+	}
+} 

@@ -8,7 +8,7 @@ import { Post } from 'src/app/models/post/post.model';
 import { User } from 'src/app/models/user/user.model';
 import { MeService } from 'src/app/services/me.service';
 import { Oauth2Service } from 'src/app/services/oauth2.service';
-import { UserServices } from 'src/app/services/user.service';
+import { ActivatedRoute, Data } from '@angular/router';
 type PostListContext = 'home'|'board';
 
 @Component({
@@ -21,16 +21,15 @@ type PostListContext = 'home'|'board';
 export class UserHomeComponent {
   userLoggedIn: boolean = false;
   context: PostListContext = 'home'
-	posts!:BasicResponse<Post[]>
+  posts: BasicResponse<Post[]> | undefined = undefined
 
   constructor(
+	 	private activatedRoute: ActivatedRoute,
 		private oauth2Service: Oauth2Service, 
-		private meService: MeService,
-    	private userService:UserServices) { }
+		private meService: MeService) { }
 		
 	ngOnInit() {
 		this.initSubs()
-		this.initPostsList(this.context)
 	}
 
 	/**
@@ -47,6 +46,11 @@ export class UserHomeComponent {
 			const user = res as BasicResponse<User>
 			this.meService._me.next(user)
 		})
+
+		this.activatedRoute.data.subscribe((res:Data) => {
+			console.log(res)
+			if(res['posts']) this.posts = res['posts']
+		})
 	}
 
 	login() {
@@ -56,16 +60,4 @@ export class UserHomeComponent {
 	logout() {
 		this.oauth2Service.logout()
 	}
-
-	  /** @description load user or home posts based on userId value */
-	  initPostsList(context: PostListContext): void {
-		context === 'home' ? this.loadPosts() : null
-	  }
-	
-	  /** @description load the user home posts */
-	  loadPosts() {
-		this.meService.home().subscribe((res:any)=> {
-		  if(res.data) this.posts = res
-		})
-	  }
 }

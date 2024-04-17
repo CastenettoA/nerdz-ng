@@ -23,8 +23,7 @@ export class MeService {
 
   /** @description Shows the homepage of the current user, mixing projects and users posts */
   home() {    
-    return this.http.get(`${env.baseurl}/me/home`, { withCredentials: true })
-      // .pipe(catchError(this.handleError))
+    return this.http.get<BasicResponse<Post[]>>(`${env.baseurl}/me/home`, { withCredentials: true })
   }
 
   /** @description Shows the followers information for the specified user */
@@ -47,10 +46,10 @@ export class MeService {
     return this.http.delete<BasicResponse<null>>(`${env.baseurl}/me/posts/${pid}`, { withCredentials: true });
   }
   
-  /** @description List posts on user board, filtered by some parameters.  */
-  getPosts() {
-    return this.http.get<BasicResponse<Post[]>>(`${env.baseurl}/me/posts`, { withCredentials: true });
-  }
+  // /** @description List posts on user board, filtered by some parameters.  */
+  // getPosts() {
+  //   return this.http.get<BasicResponse<Post[]>>(`${env.baseurl}/me/posts`, { withCredentials: true });
+  // }
 
   /** @description Get the comments of a single post 
    * @pid the post id

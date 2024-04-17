@@ -4,7 +4,7 @@
 	[fullWidth]="true">
 	<div cdsCol [columnNumbers]="{sm: 4, md: 6, lg: 10}" [ngStyle]="{ margin: 0 }">
 		<new-post></new-post>
-		<posts-list [posts]="posts"></posts-list>		
+		<posts-list [posts]="posts" *ngIf="posts"></posts-list>		
 	</div>
 	<div cdsCol [columnNumbers]="{sm: 0, md: 2, lg: 6}"  [ngStyle]="{ backgroundColor: 'lightgray'}">
 		<p>• donation for nerdz</p>
@@ -14,3 +14,8 @@
 		<p>• hided posts</p>
 	</div>
 </div>
+
+
+Tutti i post possono venire nascosti. I post nascosti hanno la proprietà
+"lurks" valorizzata a 1. Quali altre api lurks ci sono?
+Voglio ricontrollare le priorità.

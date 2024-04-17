@@ -13,6 +13,7 @@
         <cds-header-navigation *ngIf="userLoggedIn">
           <cds-header-item [routerLink]="'/pm'">Pm <cds-tag size="sm" type="cool-gray">0</cds-tag></cds-header-item>
           <cds-header-item [routerLink]="'/settings'">Settings</cds-header-item>
+          <cds-header-item [routerLink]="'/about'">About Nerdz Ng</cds-header-item>
           <cds-header-item (click)="logout()">Logout</cds-header-item>
           <cds-header-item (click)="searchOpened = true">
             <cds-search
