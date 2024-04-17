@@ -1,3 +1,5 @@
+import { newVote } from "./vote.type";
+
 export interface Vote {
   counter: number;
   from: {
@@ -25,5 +27,5 @@ export interface Vote {
     type: string;
     board: string;
   },
-  vote: number;
+  vote: newVote;
 }

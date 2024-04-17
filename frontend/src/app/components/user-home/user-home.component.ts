@@ -41,12 +41,6 @@ export class UserHomeComponent {
 			isLoggedIn ? this.userLoggedIn = true : this.userLoggedIn = false
 		})
 
-		// emit the current user property in the _me BeaviorSubject
-		this.meService.me().subscribe((res:any)=> {
-			const user = res as BasicResponse<User>
-			this.meService._me.next(user)
-		})
-
 		this.activatedRoute.data.subscribe((res:Data) => {
 			console.log(res)
 			if(res['posts']) this.posts = res['posts']

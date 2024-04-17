@@ -85,7 +85,7 @@ app.add_url_rule('/v1/me/pms', view_func=routes.me_pms)
 app.add_url_rule('/v1/users/<int:id>', view_func=routes.users)
 app.add_url_rule('/v1/users/<int:id>/posts/<int:pid>', view_func=routes.users_post)
 app.add_url_rule('/v1/users/<int:id>/posts', view_func=routes.users_posts)
-app.add_url_rule('/v1/users/<int:id>/posts/<int:pid>/votes', view_func=routes.new_user_post_vote, methods=["POST"])
+app.add_url_rule('/v1/users/<int:id>/posts/<int:pid>/votes', view_func=routes.users_post_vote, methods=["GET", "POST"])
 app.add_url_rule('/v1/users/<int:id>/posts/<int:pid>/comments', view_func=routes.users_posts_comments, methods=["GET", "POST"])
 app.add_url_rule('/v1/users/<int:id>/posts/<int:pid>/comments/<int:cid>', view_func=routes.users_posts_comments, methods=["PUT","DELETE"])
 app.add_url_rule('/v1/users/<int:id>/posts/<int:pid>/lurks', view_func=routes.users_posts_lurks, methods=["POST", "DELETE"])
@@ -94,8 +94,8 @@ app.add_url_rule('/v1/logout', view_func=routes.logout)
 app.add_url_rule('/v1/oembed/twitter', view_func=routes.oembed_twitter)
 app.add_url_rule('/notifications', view_func=routes.notifications)
 
-"""La gestione del traffico HTTP viene eseguita da un 
-server web Gunicorn nel container Google Cloud Run. """
+"""HTTP traffic is handled by a Gunicorn web server
+in a Google Cloud Run container. """
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
 

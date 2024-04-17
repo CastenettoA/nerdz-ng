@@ -203,22 +203,28 @@ def users_posts_lurks(id, pid):
 
     return req.text, 200
 
-# https://api.nerdz.eu/v1/users/{id}/posts/{pid}/votes
-# NewUserPostVote
-def new_user_post_vote(id, pid):
+def users_post_vote(id, pid):
+    """[GET] get user post votes
+       [POST] add or remove a post vote
+       vote value:  [1, 0, -1]"""
     access_token = get_access_token()
     resp = make_response()
 
-    if request.method == "POST" and request.json:
-        vote = request.json.get("vote")
-    else: 
-        vote = 0
+    if request.method == "GET":
+        req = requests.get(f"{API_BASE_URL}/users/{id}/posts/{pid}/votes?access_token={access_token}")
+        resp.data = json.dumps(json.loads(req.text))
 
-    if not vote:
-        vote = 0
+    elif request.method == "POST":
+        if request.method == "POST" and request.json:
+            vote = request.json.get("vote")
+        else: 
+            vote = 0
 
-    req = requests.post(f"{API_BASE_URL}/users/{id}/posts/{pid}/votes?access_token={access_token}", json={"vote": vote})
-    resp.data = json.dumps(json.loads(req.text))
+        if not vote:
+            vote = 0
+
+        req = requests.post(f"{API_BASE_URL}/users/{id}/posts/{pid}/votes?access_token={access_token}", json={"vote": vote})
+        resp.data = json.dumps(json.loads(req.text))
     return resp, 200
 
 def oembed_twitter():

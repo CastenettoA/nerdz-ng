@@ -12,9 +12,12 @@ import { Pm } from '../models/pms.model';
   providedIn: 'root'
 })
 export class MeService {
-  _me:BehaviorSubject<BasicResponse<User> | undefined> = new BehaviorSubject<BasicResponse<User> | undefined>(undefined);
+  user$:BehaviorSubject<BasicResponse<User> | undefined> = new BehaviorSubject<BasicResponse<User> | undefined>(undefined);
+  // user!: User
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    // this.user$.subscribe((res) => { if(res) this.user = res.data })
+  }
 
   /** @description Shows the basic informations for the specified user */
   me() {    

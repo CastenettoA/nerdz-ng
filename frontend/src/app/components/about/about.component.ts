@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { UserServices } from 'src/app/services/user.service';
 
 @Component({
   selector: 'about',
@@ -9,5 +10,13 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent {
+
+  constructor(private userService: UserServices) {}
+
+  launch() {
+    this.userService.getPostVotes(243, 910).subscribe((res)=> {
+      console.log(res)
+    })
+  }
 
 }

@@ -14,24 +14,43 @@ import { Vote } from '../models/vote.model';
 export class UserServices {
   constructor(private http: HttpClient) { }
 
-  /** @description get basic informations for the specified user id */
+  /** @description get basic informations for the specified user id
+   *  @id the user id
+   */
   user(id: number) {    
     /* no need to unsubscribe from the observale, the HttpClient class verbs are cold by design.
        Remember that HttpClient do not return the full response but only the response body; if full response needed (headers, status code) it can be requested with ", { observe: 'response'}" */
     return this.http.get<BasicResponse<User>>(`${env.baseurl}/users/${id}`, { withCredentials: true });
   }
 
-  /** @description Adds a new vote on the current post */
-  newUserPostVote(id: number, pid: number, vote: newVote) {    
+  /** @description get user post votes
+   *  @id the user id
+   *  @pid the post id
+   */
+    getPostVotes(id: number, pid: number) {    
+      return this.http.get<BasicResponse<Vote[]>>(`${env.baseurl}/users/${id}/posts/${pid}/votes`,  { withCredentials: true });
+    }
+
+  /** @description Adds a new vote on the current post
+   *  @id the user id
+   *  @pid the post id
+   *  @vote the vote value [1, 0, -1]
+   */
+  newPostVote(id: number, pid: number, vote: newVote) {    
     return this.http.post<BasicResponse<Vote>>(`${env.baseurl}/users/${id}/posts/${pid}/votes`, { vote },  { withCredentials: true });
   }
 
-  /** @description get a single post by pid */
+  /** @description get a single post by pid 
+   * @id the user id
+   * @pid the post id
+  */
   getPost(id: number, pid: number) {
     return this.http.get<BasicResponse<Post>>(`${env.baseurl}/users/${id}/posts/${pid}`, { withCredentials: true });
   }
 
-  /** @description get last user's posts */
+  /** @description get last user's posts
+   *  @id the user id
+   */
   getPosts(id: number) {    
     return this.http.get<BasicResponse<Post[]>>(`${env.baseurl}/users/${id}/posts`, { withCredentials: true });
   }

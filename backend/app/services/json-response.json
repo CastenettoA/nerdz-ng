@@ -1,35 +1,29 @@
 {
-    "data": {
-        "counter": 33561,
-        "from": {
-            "id": 243,
-            "owner": null,
-            "name": "Andrea",
-            "username": "evolution",
-            "website": "",
-            "image": "https://www.gravatar.com/avatar/523af629e2e3b7cca7078bd53ba2ec6e",
-            "closed": false,
-            "type": "user",
-            "board": "evolution."
-        },
-        "hpid": 125329,
-        "time": "2024-04-17T07:34:30.289435Z",
-        "timestamp": 1713339270,
-        "to": {
-            "id": 243,
-            "owner": null,
-            "name": "Andrea",
-            "username": "evolution",
-            "website": "",
-            "image": "https://www.gravatar.com/avatar/523af629e2e3b7cca7078bd53ba2ec6e",
-            "closed": false,
-            "type": "user",
-            "board": "evolution."
-        },
-        "vote": 1
+    "counter": 33507,
+    "from": {
+        "id": 594,
+        "owner": null,
+        "name": "jack",
+        "username": "jackdharma",
+        "website": "",
+        "image": "https://www.gravatar.com/avatar/991addc963b031b4c091697e756750d3",
+        "closed": false,
+        "type": "user",
+        "board": "jackdharma."
     },
-    "message": "success",
-    "humanMessage": "success",
-    "status": 200,
-    "success": true
+    "hpid": 125344,
+    "time": "2024-04-08T09:04:29.815686Z",
+    "timestamp": 1712567069,
+    "to": {
+        "id": 243,
+        "owner": null,
+        "name": "Andrea",
+        "username": "evolution",
+        "website": "",
+        "image": "https://www.gravatar.com/avatar/523af629e2e3b7cca7078bd53ba2ec6e",
+        "closed": false,
+        "type": "user",
+        "board": "evolution."
+    },
+    "vote": 1
 }

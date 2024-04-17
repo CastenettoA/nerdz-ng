@@ -71,7 +71,7 @@ export class NewPostComponent {
     private postsList:PostsListServices) {}
 
   ngOnInit() {
-    this.meService._me.subscribe((res) => { // todo: subas only 1 time. not usefult stay to listn 
+    this.meService.user$.subscribe((res) => { // todo: subas only 1 time. not usefult stay to listn 
       if(res) {
         this.currentUser = {
           username: res.data.info.username,
