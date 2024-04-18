@@ -17,7 +17,7 @@
 
 	&--comment {
 		display: flex;
-		align-items: center;
+		align-items: flex-start;
 
 		&.new-comment {
 			background-color: themes.$layer-02;

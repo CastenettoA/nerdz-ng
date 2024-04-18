@@ -27,7 +27,7 @@
     "@carbon/styles": "^1.40.0",
     "carbon-components-angular": "^5.15.0",
     "core-js": "^3.9.1",
-    "rxjs": "^6.5.3",
+    "rxjs": "^7.4.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.13.3"
   },

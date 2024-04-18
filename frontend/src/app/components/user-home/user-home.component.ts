@@ -25,8 +25,7 @@ export class UserHomeComponent {
 
   constructor(
 	 	private activatedRoute: ActivatedRoute,
-		private oauth2Service: Oauth2Service, 
-		private meService: MeService) { }
+		private oauth2Service: Oauth2Service) { }
 		
 	ngOnInit() {
 		this.initSubs()

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Post } from 'src/app/models/post/post.model';
-import { IconModule, IconService, NotificationService } from 'carbon-components-angular';
+import { IconModule, IconService } from 'carbon-components-angular';
 import { UserServices } from 'src/app/services/user.service';
 import { RouterModule } from '@angular/router';
 import { PrettyDatePipe } from 'src/app/pipes/pretty-date.pipe';
@@ -14,10 +14,9 @@ import ID24 from '@carbon/icons/es/Q/iD/24';
 import { newVote } from 'src/app/models/vote.type';
 import { Vote } from 'src/app/models/vote.model';
 import { PostInfoOverflowMenuComponent } from "../post-info-overflow-menu/post-info-overflow-menu.component";
-import { Oauth2Service } from 'src/app/services/oauth2.service';
 import { MeService } from 'src/app/services/me.service';
-import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/models/user/user.model';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
     selector: 'post-info',
@@ -39,8 +38,8 @@ export class PostInfoComponent {
     private userService: UserServices) {}
 
   ngOnInit() {
-    this.meService.user$.subscribe((res) => { if(res) this.user = res.data })
     this.iconService.registerAll([ThumbsUp16, ThumbsDown16, Badge20, ID24])
+    this.meService.user$.subscribe((res) => { if(res) this.user = res.data })
   }
 
   ngClass_postRate(rate:number) {
@@ -49,15 +48,16 @@ export class PostInfoComponent {
   
   /** @description check what vote to add to the post based on post votes  */
   async prepareSendVote(vote:newVote): Promise<void> {
-    await this.getPostVotes()
 
-    let oldVote = this.userHasVoted()
-    if(oldVote !== null) {
+    this.postVotes = (await firstValueFrom(this.userService.getPostVotes(this.author.id, this.post.pid))).data
+    let userPrevVote = this.getUserPrevVote()
+
+    if(userPrevVote !== null) {
       // the user already voted: check what value send on back-end 
-      if(oldVote === 1) {
+      if(userPrevVote === 1) {
         if(vote === 1) this.sendVote(0)
         if(vote === -1) this.sendVote(-1)
-      } else if (oldVote === -1) {
+      } else if (userPrevVote === -1) {
         if(vote === 1) this.sendVote(1)
         if(vote === -1) this.sendVote(0)
       }
@@ -72,33 +72,26 @@ export class PostInfoComponent {
   }
 
   /** 
-   * @description get Votes array of the current post
-   * @todo: this will get the last 20 votes, not all votes. It not prod-ready.
-  */
-  async getPostVotes() {
-    this.userService.getPostVotes(this.author.id, this.post.pid).subscribe((res) => {
-       if(res.data) this.postVotes = res.data
-    })
-  }
-
-  /** 
    * @description check if the user has already voted or not based on postVotes array
    *  */
-  userHasVoted(): 1|-1|null {
-    if(!this.postVotes) return null
+  getUserPrevVote(): 1|-1|null {
+    if(!this.postVotes) return null // there are not votes on the post, can skip the find loop
 
-    let userHasVoted: Vote|undefined = this.postVotes.find( // check if the user has voted already
+    let userVote: Vote|undefined = this.postVotes.find( // check if the user has voted already
       (value: Vote) => value.from.id === this.user.info.id)
 
-    if(userHasVoted) return userHasVoted.vote as 1|-1 // cast value because in postVotes there isn't a '0' value 
+    if(userVote) return userVote.vote as 1|-1 // cast value because in postVotes there isn't a '0' value 
     else return null
   }
 
-  /** @description add a vote to the current post and upate the post.rate value  */
+  /** @description add a vote to the current post and update the post.rate value  */
   sendVote(vote:newVote) {
     this.userService.newPostVote(this.user.info.id, this.post.pid, vote).subscribe((res:BasicResponse<Vote>) => {
       if(res.success) {
-        this.post.rate += vote
+        // todo: avoid 1 http call and do the math calculation of the vote instead
+        this.userService.getPost(this.post.from.id, this.post.pid).subscribe((res) => {
+          if(res.data) this.post.rate = res.data.rate
+        })
       }
     })
   }
