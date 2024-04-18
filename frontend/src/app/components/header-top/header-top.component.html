@@ -11,7 +11,7 @@
 
       <!-- for .active state use [isCurrentPage] boolean props -->
         <cds-header-navigation *ngIf="userLoggedIn">
-          <cds-header-item [routerLink]="'/pm'">Pm <cds-tag size="sm" type="cool-gray">0</cds-tag></cds-header-item>
+          <cds-header-item [routerLink]="'/pm'">Pm <cds-tag size="sm" type="cool-gray" [routerLink]="'/pm'">0</cds-tag></cds-header-item>
           <cds-header-item [routerLink]="'/settings'">Settings</cds-header-item>
           <cds-header-item [routerLink]="'/about'">About Nerdz Ng</cds-header-item>
           <cds-header-item (click)="logout()">Logout</cds-header-item>

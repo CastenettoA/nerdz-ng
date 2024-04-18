@@ -98,6 +98,15 @@ export class UserServices {
   }
 
   /** 
+   * @description get the lurkers list of a user post 
+   * @id the user id that published the postw
+   * @pid the post id
+   */
+    getPostLurks(id: number, pid: number) {
+      return this.http.get<BasicResponse<Post>>(`${env.baseurl}/users/${id}/posts/${pid}/lurks`, { withCredentials: true });
+    }
+
+  /** 
    * @description add a lurks on the current post
    * @id the user id
    * @pid the post id
@@ -111,7 +120,7 @@ export class UserServices {
    * @id the user id
    * @pid the post id
    */
-    deletePostLurks(id:number, pid:number) {
-      return this.http.delete<BasicResponse<null>>(`${env.baseurl}/users/${id}/posts/${pid}/lurks`, { withCredentials: true });
-    }
+  deletePostLurks(id:number, pid:number) {
+    return this.http.delete<BasicResponse<null>>(`${env.baseurl}/users/${id}/posts/${pid}/lurks`, { withCredentials: true });
+  }
 }

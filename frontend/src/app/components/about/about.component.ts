@@ -13,10 +13,4 @@ export class AboutComponent {
 
   constructor(private userService: UserServices) {}
 
-  launch() {
-    this.userService.getPostVotes(243, 910).subscribe((res)=> {
-      console.log(res)
-    })
-  }
-
 }

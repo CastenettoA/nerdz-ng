@@ -187,12 +187,16 @@ def users_posts_comments(id, pid, cid=None):
     return req.text, 200
 
 def users_posts_lurks(id, pid):
-    """[POST] Adds a new lurk on the current post
+    """[GET] get the lurkers list of a user post 
+       [POST] Adds a new lurk on the current post
        [DELETE] deletes the lurk on the current post"""
-
+    
     access_token = get_access_token()
 
-    if request.method == "POST" and id and pid:
+    if request.method == "GET" and id and pid:
+        req = requests.get(f"{API_BASE_URL}/users/{id}/posts/{pid}/lurks?access_token={access_token}")
+
+    elif request.method == "POST" and id and pid:
         req = requests.post(f"{API_BASE_URL}/users/{id}/posts/{pid}/lurks?access_token={access_token}")
 
     elif request.method == "DELETE" and id and pid:

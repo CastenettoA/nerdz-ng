@@ -9,6 +9,8 @@ import { User } from 'src/app/models/user/user.model';
 import { MeService } from 'src/app/services/me.service';
 import { Oauth2Service } from 'src/app/services/oauth2.service';
 import { ActivatedRoute, Data } from '@angular/router';
+import { UserServices } from 'src/app/services/user.service';
+import { firstValueFrom } from 'rxjs';
 type PostListContext = 'home'|'board';
 
 @Component({
@@ -22,13 +24,19 @@ export class UserHomeComponent {
   userLoggedIn: boolean = false;
   context: PostListContext = 'home'
   posts: BasicResponse<Post[]> | undefined = undefined
+  posts_lurked: BasicResponse<Post[]> | undefined = undefined
+  user!: User
+
 
   constructor(
 	 	private activatedRoute: ActivatedRoute,
-		private oauth2Service: Oauth2Service) { }
+		private oauth2Service: Oauth2Service,
+		private meService: MeService,
+		private userService: UserServices) { }
 		
 	ngOnInit() {
 		this.initSubs()
+		this.meService.user$.subscribe((res) => { if(res) this.user = res.data })
 	}
 
 	/**
@@ -41,9 +49,33 @@ export class UserHomeComponent {
 		})
 
 		this.activatedRoute.data.subscribe((res:Data) => {
-			console.log(res)
-			if(res['posts']) this.posts = res['posts']
+			if(res['posts']) {
+				this.posts = res['posts']
+				this.getPostLurks()
+			}
 		})
+	}
+
+	/** @description check current user post lurks  */
+	async getPostLurks() {
+		// find current used lurked post
+		const userLurkedPost = await this.findLurkedPost()
+		console.log(userLurkedPost)
+	}
+
+	/** @description function that return all post-lurks on lurked posts */
+	postIsLurked = async (post:Post): Promise<Boolean> => {
+		if(post.lurkers && post.canLurk) {
+			let res = await firstValueFrom(this.userService.getPostLurks(
+				post.from.id, 
+				post.pid))
+
+				console.log(`post #${post.pid} from @${post.from.username} is lurked by: `, res)
+			return true
+		} else return false
+	}
+	async findLurkedPost() {
+		return this.posts?.data.filter(this.postIsLurked)
 	}
 
 	login() {
