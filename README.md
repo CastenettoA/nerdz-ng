@@ -5,6 +5,10 @@ The project is divided into two folders, one for front-end and one for back-end.
 
 At the moment **the project has not been released yet and is only available locally**.
 
+Video of Nerdz Ng in actions:
+
+![Alt Text](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNWthdjBxaWFhdzZnbTF5bnNzbnR4NGE0c2lkeXgzM3E4cDhlYm5tNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Q6zy0F8FAVIe9E88Cs/giphy.gif)
+
 ## Frontend
 The front-end is build with [Angular](https://angular.dev/). 
 Nerdz Ng front-end best to know facts:
