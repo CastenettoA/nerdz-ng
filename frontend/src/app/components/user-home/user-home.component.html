@@ -8,11 +8,11 @@
 	</div>
 	<div cdsCol [columnNumbers]="{sm: 0, md: 2, lg: 6}"  [ngStyle]="{ backgroundColor: 'lightgray'}">
 		<p>• online users</p>
-		<p>• hided posts</p>
+		<p>Lurked posts</p>
+		<pre *ngIf="postsLurkedByUser">
+			<code>
+				<li *ngFor="let lurked of postsLurkedByUser">#{{ lurked.pid }} of {{ '@'+lurked.from.username }}</li>
+			</code>
+		</pre>
 	</div>
 </div>
-
-
-Tutti i post possono venire nascosti. I post nascosti hanno la proprietà
-"lurks" valorizzata a 1. Quali altre api lurks ci sono?
-Voglio ricontrollare le priorità.

@@ -7,6 +7,7 @@ import { User } from '../models/user/user.model';
 import { PostComment } from '../models/post/post-comments.model';
 import { newVote } from '../models/vote.type';
 import { Vote } from '../models/vote.model';
+import { Lurk } from '../models/lurk.model';
 
 @Injectable({
   providedIn: 'root'
@@ -99,11 +100,11 @@ export class UserServices {
 
   /** 
    * @description get the lurkers list of a user post 
-   * @id the user id that published the postw
+   * @id the user id that published the post
    * @pid the post id
    */
     getPostLurks(id: number, pid: number) {
-      return this.http.get<BasicResponse<Post>>(`${env.baseurl}/users/${id}/posts/${pid}/lurks`, { withCredentials: true });
+      return this.http.get<BasicResponse<Lurk[]>>(`${env.baseurl}/users/${id}/posts/${pid}/lurks`, { withCredentials: true });
     }
 
   /** 

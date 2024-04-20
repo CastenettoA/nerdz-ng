@@ -49,7 +49,7 @@ export class PrettyDatePipe implements PipeTransform {
         if(isJustNow)
           return date = `Proprio ora, ${formatDate(postDate, 'mediumTime', 'it')}`  // is like "Proprio ora, 14:59:01 AM"
         else if(isSomeMinuteAgo)
-          return date = `Qualche minuta fa, ${formatDate(postDate, 'mediumTime', 'it')}`  
+          return date = `Qualche minuto fa, ${formatDate(postDate, 'mediumTime', 'it')}`  
         else if(isToday)
           return date = `Oggi, ${formatDate(postDate, 'mediumTime', 'it')}`  // is like "Oggi, 9:03:01 AM"
         else if(isYesterday)
