@@ -7,12 +7,14 @@
 		<posts-list [posts]="posts" *ngIf="posts"></posts-list>		
 	</div>
 	<div cdsCol [columnNumbers]="{sm: 0, md: 2, lg: 6}"  [ngStyle]="{ backgroundColor: 'lightgray'}">
-		<p>• online users</p>
-		<p>Lurked posts</p>
-		<pre *ngIf="postsLurkedByUser">
-			<code>
+		<p>Online Followers</p>
+		<span *ngIf="online_followers.length">
+				<li *ngFor="let user of online_followers">{{ '@'+user.info.username }}</li>
+		</span>
+		
+		<p>Lurked Posts</p>
+		<span *ngIf="postsLurkedByUser">
 				<li *ngFor="let lurked of postsLurkedByUser">#{{ lurked.pid }} of {{ '@'+lurked.from.username }}</li>
-			</code>
-		</pre>
+		</span>
 	</div>
 </div>

@@ -70,6 +70,13 @@ def me_followers():
     resp.data = json.dumps(json.loads(req.text))
     return resp, 200
 
+def me_following():
+    """Shows the following information for the specified user"""
+    access_token = get_access_token()
+
+    req = requests.get(f"{API_BASE_URL}/me/following/users?access_token={access_token}")
+    return req.text, 200
+
 def me_posts(pid=None):
     """
     [GET] Get a specified post with pid me/posts/{pid}

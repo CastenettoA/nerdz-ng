@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment as env } from '../../environments/environment';
 import { User } from '../models/user/user.model';
-import { BehaviorSubject, throwError } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, pipe, throwError } from 'rxjs';
 import { BasicResponse } from '../models/basic-response.model';
 import { Post } from '../models/post/post.model';
 import { PostComment } from '../models/post/post-comments.model';
@@ -32,6 +32,21 @@ export class MeService {
   /** @description Shows the followers information for the specified user */
   followers() {    
     return this.http.get(`${env.baseurl}/me/followers`, { withCredentials: true });
+  }
+
+  /** @description Shows the following information for the specified user */
+  following() {    
+    return this.http.get<BasicResponse<User[]>>(`${env.baseurl}/me/following/users`, { withCredentials: true });
+  }
+
+  /** @description Shows the online following users for the specified user */
+  async following_online() {
+    
+    // get user followers
+    const followers = await firstValueFrom(this.following())
+
+    // get user online followers and return it
+    return followers.data.filter((follower) => follower.personal.online)
   }
 
   /** @description Adds a new vote on the current post */

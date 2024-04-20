@@ -26,6 +26,7 @@ export class UserHomeComponent {
   posts: BasicResponse<Post[]> | undefined = undefined
   postsLurkedByUser: Post[] = []
   user!: User
+  online_followers: User[] = []
 
   constructor(
 	 	private activatedRoute: ActivatedRoute,
@@ -33,9 +34,15 @@ export class UserHomeComponent {
 		private meService: MeService,
 		private userService: UserServices) { }
 
-	ngOnInit() {
+	async ngOnInit() {
 		this.initSubs()
+
+		// get actual logged-user infos
 		this.meService.user$.subscribe((res) => { if(res) this.user = res.data })
+
+		// get user online followers
+		this.online_followers = await this.meService.following_online()
+		console.log(this.online_followers, this.online_followers.length)
 	}
 
 	/**
@@ -54,7 +61,7 @@ export class UserHomeComponent {
 				const _res = res['posts']
 
 				// iterate post[]
-				for(const post of _res.data) {
+				for(let post of _res.data) {
 
 					// skip if the post have not lurk
 					if(post.lurkers <= 0) continue
