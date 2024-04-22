@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PostsListComponent } from "../posts-list/posts-list.component";
 import { NewPostComponent } from "../new-post/new-post.component";
-import { GridModule } from 'carbon-components-angular';
+import { GridModule, TagModule } from 'carbon-components-angular';
 import { BasicResponse } from 'src/app/models/basic-response.model';
 import { Post } from 'src/app/models/post/post.model';
 import { User } from 'src/app/models/user/user.model';
@@ -18,7 +18,7 @@ type PostListContext = 'home'|'board';
     standalone: true,
     templateUrl: './user-home.component.html',
     styleUrls: ['./user-home.component.scss'],
-    imports: [CommonModule, PostsListComponent, NewPostComponent, GridModule]
+    imports: [CommonModule, PostsListComponent, NewPostComponent, GridModule, TagModule]
 })
 export class UserHomeComponent {
   userLoggedIn: boolean = false;
@@ -42,7 +42,6 @@ export class UserHomeComponent {
 
 		// get user online followers
 		this.online_followers = await this.meService.following_online()
-		console.log(this.online_followers, this.online_followers.length)
 	}
 
 	/**

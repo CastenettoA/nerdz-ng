@@ -6,15 +6,29 @@
 		<new-post></new-post>
 		<posts-list [posts]="posts" *ngIf="posts"></posts-list>		
 	</div>
-	<div cdsCol [columnNumbers]="{sm: 0, md: 2, lg: 6}"  [ngStyle]="{ backgroundColor: 'lightgray'}">
-		<p>Online Followers</p>
-		<span *ngIf="online_followers.length">
-				<li *ngFor="let user of online_followers">{{ '@'+user.info.username }}</li>
-		</span>
+	<div cdsCol [columnNumbers]="{sm: 0, md: 2, lg: 6}">
 		
-		<p>Lurked Posts</p>
-		<span *ngIf="postsLurkedByUser">
-				<li *ngFor="let lurked of postsLurkedByUser">#{{ lurked.pid }} of {{ '@'+lurked.from.username }}</li>
-		</span>
+		<div class="online-followers">
+			<p>Gli utenti online che segui</p>
+			<div *ngIf="online_followers.length > 0; else nobody_online">
+				<li class="helper-text-02" *ngFor="let user of online_followers">{{ '@'+user.info.username }}</li>
+			</div>
+
+			<ng-template #nobody_online>
+				<p  class="helper-text-02">Nessuno dei tuoi followers è online al momento.</p>
+			</ng-template>
+		</div>
+		
+
+		<div class="lurked-posts"> 
+			<p>I tuoi post nascosti <cds-tag type="gray" size="sm" *ngIf="postsLurkedByUser.length > 0">{{postsLurkedByUser.length}}</cds-tag> </p>
+			<div *ngIf="postsLurkedByUser.length > 0; else no_lurked_posts">
+					<li class="helper-text-02" *ngFor="let lurked of postsLurkedByUser">#{{ lurked.pid }} of {{ '@'+lurked.from.username }}</li>
+			</div>
+
+			<ng-template #no_lurked_posts>
+				<p  class="helper-text-02">Nessun post nascosco da mostrare qui.</p>
+		</ng-template>
+		</div>
 	</div>
 </div>

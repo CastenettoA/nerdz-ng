@@ -11,11 +11,11 @@ p {
 		margin: layout.$spacing-03 0; 
 	 }
 
-	&.helper-text-01{
+	&.helper-text-01 { // small text
 		@include type.type-style("helper-text-01");
 	}
 
-	&.helper-text-02{
+	&.helper-text-02 { // less smaller text
 		@include type.type-style("helper-text-02");
 	}
 }

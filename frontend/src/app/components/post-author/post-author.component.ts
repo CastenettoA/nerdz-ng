@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TooltipModule } from 'carbon-components-angular';
 import { RouterModule } from '@angular/router';
 import { PostAuthor } from 'src/app/models/post/post-author.model';
+type Scope = 'post'|'comment'|'new-comment'|'board'
 
 @Component({
   selector: 'post-author',
@@ -12,9 +13,9 @@ import { PostAuthor } from 'src/app/models/post/post-author.model';
   styleUrls: ['./post-author.component.scss']
 })
 export class PostAuthorComponent {
-  @Input() author!: PostAuthor
+  @Input() author!: PostAuthor // todo: hanlde the case of author is undefined
   @Input() reactivity:boolean = true
-  @Input() scope:'post'|'comment'|'new-comment'|'board' = 'post' // different scopes have different change in term of sizes and functionalities
+  @Input() scope:Scope = 'post' // different scopes have different change in term of sizes and functionalities
   boardLink:string = '/board'
 
   constructor() {
@@ -30,4 +31,26 @@ export class PostAuthorComponent {
   getBoardLink() {
     return this.reactivity ? this.boardLink : null
   }
+
+  getClasses() {
+
+    // set reactivity class
+    let classes:any = { 'disable-reactivity': !this.reactivity }
+
+    // dynamically set the scope class
+    classes[this.getScopeClass()] = true;
+    return classes
+  }
+
+  getScopeClass() { // todo...
+    return 'scope--post'
+  }
 } 
+
+
+// <!-- 
+//     'scope--post':true 
+//     'scope--board':true
+//     'scope--comment':true
+//     'scope--comment':true
+// -->

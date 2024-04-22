@@ -1,18 +1,24 @@
+/** IMPORT CARBON DESIGN SYSTEM */
 @use "@carbon/styles/scss/config" with (
 	// Use flexbox for grid - stick to CSS Grid or Flexbox
 	// CSS Grid has become the default grid system in v11
 	$use-flexbox-grid: true
+);
+// configure grid to use 16 columns instead default 12
+$feature-flags: (
+	grid-column-16: true
 );
 @use "@carbon/styles";
 @use "@carbon/colors";
 @use "@carbon/layout";
 @use "@carbon/type";
 @use "@carbon/themes";
-
 @use '@carbon/motion';
 @include type.reset();
 @include type.default-type();
 @include type.type-classes();
+
+/** IMPORT THE NERDZ NG SCSS FILES */
 @import "./assets/scss/mixins/mixins.scss";
 @import "./assets/scss/base/reusables.scss";
 @import "./assets/scss/base/typography.scss";
@@ -24,7 +30,6 @@
 @import "./assets/scss/about.scss";
 @import "./assets/scss/config.scss";
 
-// configure grid to use 16 columns instead default 12
-$feature-flags: (
-	grid-column-16: true
-);
+.online-followers, .lurked-posts {
+	@include box($hover: false);
+}
