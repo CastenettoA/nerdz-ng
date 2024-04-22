@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TooltipModule } from 'carbon-components-angular';
 import { RouterModule } from '@angular/router';
 import { Author } from 'src/app/models/post/author.model';
-type Scope = 'post'|'comment'|'new-comment'|'board'
+type Scope = 'post'|'comment'|'new-comment'|'board'|'list'
 
 @Component({
   selector: 'author',
@@ -32,8 +32,8 @@ export class AuthorComponent {
     return this.reactivity ? this.boardLink : null
   }
 
+  /** @description get the classes of the html element */
   getClasses() {
-
     // set reactivity class
     let classes:any = { 'disable-reactivity': !this.reactivity }
 
@@ -42,8 +42,9 @@ export class AuthorComponent {
     return classes
   }
 
-  getScopeClass() { // todo...
-    return 'scope--post'
+  /** @description create one CSS class based on current component scope */
+  getScopeClass() {
+    return `scope--${this.scope}`
   }
 } 
 

@@ -96,26 +96,13 @@ export class UserHomeComponent {
 		})
 	}
 
-	// /** @description check current user post lurks  */
-	// checkUserPostLurks() {
-	// 	// find lurked post of the current user
-	// 	const lurkedPost = this.posts?.data.filter(this.lurkedPost)
-	// 	const currentUser_lurkedPost = lurkedPost?.filter(this.lurkedPost_byCurrentUser)
-
-	// 	if(lurkedPost) console.log(lurkedPost)
-	// 	if(currentUser_lurkedPost) console.log(currentUser_lurkedPost)
-	// }
-
-	// // find lurked post from a Post[]
-	// lurkedPost = (post:Post): Boolean => { return (post.lurkers && !post.closed) ? true : false }
-
-	// // find current user lurked post from a Post[]
-	// lurkedPost_byCurrentUser = async (post:Post): Promise<Boolean> => {
-	// 	const service = this.userService.getPostLurks(post.from.id, post.pid)
-	// 	const postLurkers = await firstValueFrom(service)
-	// 	const isFromCurrentUser = (element:Lurk) => element.from.id === this.user.info.id
-	// 	return postLurkers.data.find(isFromCurrentUser) ? true : false
-	// }
+	getAuthor(user:User) {
+		return {
+			username: user.info.username,
+			image: user.info.image,
+			id: user.info.id
+		}
+	}
 
 	login() {
 		this.oauth2Service.login()

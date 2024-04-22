@@ -1,6 +1,6 @@
 <ng-container *ngIf="author">
     <div class="post-author" *ngIf="scope == 'post'" 
-    [routerLink]="getBoardLink()" [ngClass]="getClasses()">
+          [routerLink]="getBoardLink()" [ngClass]="getClasses()">
     <!-- [routerLink]="getBoardLink()" [ngClass]="{ 'disable-reactivity': !reactivity, 'scope--post':true }"> -->
     
         <div class="post-author__userImage">
@@ -11,24 +11,21 @@
         </div>
     </div>
     
-    <div class="post-author" *ngIf="scope == 'board'" 
-        [routerLink]="boardLink" [ngClass]="{'disable-reactivity': !reactivity, 'scope--board':true}">
+    <div class="post-author" *ngIf="scope == 'board'"  [routerLink]="boardLink" [ngClass]="getClasses()">
         
         <div class="post-author__userImage">
             <img src="{{author.image}}" alt="the image of {{author.username}}" />
         </div>
     </div>
     
-    <div class="post-author" *ngIf="scope == 'comment'" 
-         [routerLink]="boardLink" [ngClass]="{'disable-reactivity': !reactivity, 'scope--comment':true}">
+    <div class="post-author" *ngIf="scope == 'comment'" [routerLink]="boardLink" [ngClass]="getClasses()">
     
         <div class="post-author__userImage">
             <img src="{{author.image}}" alt="the image of {{author.username}}" />
         </div>
     </div>
     
-    <div class="post-author" *ngIf="scope == 'new-comment'" 
-         [ngClass]="{'disable-reactivity': !reactivity, 'scope--comment':true}">
+    <div class="post-author" *ngIf="scope == 'new-comment'"  [ngClass]="getClasses()">
     
         <div class="post-author__userImage">
             <img src="{{author.image}}" alt="the image of {{author.username}}" />
