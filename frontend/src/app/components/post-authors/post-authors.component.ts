@@ -1,15 +1,15 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserInfo } from 'src/app/models/user/user-info.model';
-import { PostAuthor } from 'src/app/models/post/post-author.model';
-import { PostAuthorComponent } from '../post-author/post-author.component';
+import { Author } from 'src/app/models/post/author.model';
+import { AuthorComponent } from '../author/author.component';
 import { IconModule, IconService } from 'carbon-components-angular';
 import Calls20 from '@carbon/icons/es/calls/20';
 
 @Component({
   selector: 'post-authors',
   standalone: true,
-  imports: [CommonModule, PostAuthorComponent, IconModule],
+  imports: [CommonModule, AuthorComponent, IconModule],
   templateUrl: './post-authors.component.html',
   styleUrls: ['./post-authors.component.scss']
 })
@@ -19,8 +19,8 @@ export class PostAuthorsComponent {
   @Input() scope:'post'|'comment'|'board' = 'post'
   
   showSingleAuthor = true
-  authorFrom!:PostAuthor
-  authorTo!:PostAuthor
+  authorFrom!:Author
+  authorTo!:Author
 
   constructor(protected iconService: IconService) {}
 

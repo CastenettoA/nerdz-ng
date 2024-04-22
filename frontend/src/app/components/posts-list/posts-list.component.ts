@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { PostAuthorComponent } from '../post-author/post-author.component';
+import { AuthorComponent } from '../author/author.component';
 import { PostComponent } from '../post/post.component';
 import { BasicResponse } from 'src/app/models/basic-response.model';
 import { Post } from 'src/app/models/post/post.model';
@@ -15,7 +15,7 @@ import { MeService } from 'src/app/services/me.service';
 @Component({
   selector: 'posts-list',
   standalone: true,
-  imports: [CommonModule, PostComponent, PostAuthorComponent, SkeletonModule, PaginationModule],
+  imports: [CommonModule, PostComponent, AuthorComponent, SkeletonModule, PaginationModule],
   templateUrl: './posts-list.component.html',
   styleUrls: ['./posts-list.component.scss']
 })

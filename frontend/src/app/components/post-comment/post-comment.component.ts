@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PostAuthor } from 'src/app/models/post/post-author.model';
+import { Author } from 'src/app/models/post/author.model';
 import { PostComment } from 'src/app/models/post/post-comments.model';
 import { RouterModule } from '@angular/router';
-import { PostAuthorComponent } from '../post-author/post-author.component';
+import { AuthorComponent } from '../author/author.component';
 import { PrettyDatePipe } from 'src/app/pipes/pretty-date.pipe';
 import { Post } from 'src/app/models/post/post.model';
 import { BBCodePipe } from "../../pipes/bbcode.pipe";
@@ -17,12 +17,12 @@ import Badge16 from '@carbon/icons/es/badge/16';
     standalone: true,
     templateUrl: './post-comment.component.html',
     styleUrls: ['./post-comment.component.scss'],
-    imports: [CommonModule, RouterModule, IconModule, PostAuthorComponent, PrettyDatePipe, ButtonModule, BBCodePipe, NToBrPipe, PostCommentActionsComponent]
+    imports: [CommonModule, RouterModule, IconModule, AuthorComponent, PrettyDatePipe, ButtonModule, BBCodePipe, NToBrPipe, PostCommentActionsComponent]
 })
 export class PostCommentComponent {
   @Input() post!:Post
   @Input() comment!:PostComment
-  @Input() author!:PostAuthor
+  @Input() author!:Author
 
   @Output() remove:EventEmitter<PostComment> = new EventEmitter()
   @Output() edit:EventEmitter<PostComment> = new EventEmitter()

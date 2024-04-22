@@ -11,6 +11,7 @@
 		<div class="online-followers">
 			<p>Gli utenti online che segui</p>
 			<div *ngIf="online_followers.length > 0; else nobody_online">
+				<!-- <author [author]=""></author> -->
 				<li class="helper-text-02" *ngFor="let user of online_followers">{{ '@'+user.info.username }}</li>
 			</div>
 

@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Post } from 'src/app/models/post/post.model';
 import { PostComment } from 'src/app/models/post/post-comments.model';
-import { PostAuthor } from 'src/app/models/post/post-author.model';
-import { PostAuthorComponent } from '../post-author/post-author.component';
+import { Author } from 'src/app/models/post/author.model';
+import { AuthorComponent } from '../author/author.component';
 import { RouterModule } from '@angular/router';
 import { MeService } from 'src/app/services/me.service';
 import { PostCommentComponent } from '../post-comment/post-comment.component';
@@ -14,14 +14,14 @@ import { NewCommentComponent } from '../new-comment/new-comment.component';
 @Component({
   selector: 'post-comments',
   standalone: true,
-  imports: [CommonModule, PostAuthorComponent, RouterModule, PostCommentComponent, NewCommentComponent, SkeletonModule],
+  imports: [CommonModule, AuthorComponent, RouterModule, PostCommentComponent, NewCommentComponent, SkeletonModule],
   templateUrl: './post-comments.component.html',
   styleUrls: ['./post-comments.component.scss']
 })
 export class PostCommentsComponent {
   @Input() post!:Post
   @Input() comments!:PostComment[]
-  @Input() author!:PostAuthor
+  @Input() author!:Author
   commentsOpen = false
   commentsLoading = false
   commentToEdit:PostComment | undefined = undefined

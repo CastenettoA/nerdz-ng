@@ -1,5 +1,5 @@
 <div class="post post--new">
-    <post-author *ngIf="currentUser" [author]="currentUser"></post-author>
+    <author *ngIf="currentUser" [author]="currentUser"></author> 
     <div>
         <button cdsButton="tertiary" size="sm" (click)="textareaOpen = !textareaOpen">Condividi i tuoi pensieri su Nerdz</button>
     </div>

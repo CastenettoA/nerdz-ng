@@ -11,6 +11,7 @@ import { Oauth2Service } from 'src/app/services/oauth2.service';
 import { ActivatedRoute, Data } from '@angular/router';
 import { UserServices } from 'src/app/services/user.service';
 import { firstValueFrom } from 'rxjs';
+import { AuthorComponent } from "../author/author.component";
 type PostListContext = 'home'|'board';
 
 @Component({
@@ -18,7 +19,7 @@ type PostListContext = 'home'|'board';
     standalone: true,
     templateUrl: './user-home.component.html',
     styleUrls: ['./user-home.component.scss'],
-    imports: [CommonModule, PostsListComponent, NewPostComponent, GridModule, TagModule]
+    imports: [CommonModule, PostsListComponent, NewPostComponent, GridModule, TagModule, AuthorComponent]
 })
 export class UserHomeComponent {
   userLoggedIn: boolean = false;

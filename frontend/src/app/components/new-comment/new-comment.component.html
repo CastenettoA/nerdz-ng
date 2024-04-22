@@ -2,7 +2,7 @@
     <div class="post-comments--comment new-comment" 
         (click)="toggleTextarea()" [ngClass]="{ 'new-comment--edit-mode': editMode}"
     >
-        <post-author [author]="currentUser" [reactivity]="false" scope="new-comment"></post-author>
+        <author [author]="currentUser" [reactivity]="false" scope="new-comment"></author> 
         <span class="new-comment__invite" *ngIf="editMode === false">Commenta come <b>{{currentUser.username}}</b></span>
         <span class="new-comment__invite" *ngIf="editMode">Modifica il tuo commento</span>
     </div>

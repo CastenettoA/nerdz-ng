@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BasicResponse } from 'src/app/models/basic-response.model';
 import { Pm } from 'src/app/models/pms.model';
 import { PostComponent } from "../post/post.component";
-import { PostAuthorComponent } from "../post-author/post-author.component";
+import { AuthorComponent } from "../author/author.component";
 import { PmInfoComponent } from "../pm-info/pm-info.component";
 
 @Component({
@@ -14,7 +14,7 @@ import { PmInfoComponent } from "../pm-info/pm-info.component";
     standalone: true,
     templateUrl: './pm.component.html',
     styleUrls: ['./pm.component.scss'],
-    imports: [CommonModule, GridModule, IconModule, ButtonModule, PostComponent, PostAuthorComponent, PmInfoComponent]
+    imports: [CommonModule, GridModule, IconModule, ButtonModule, PostComponent, AuthorComponent, PmInfoComponent]
 })
 export class PmComponent {
 

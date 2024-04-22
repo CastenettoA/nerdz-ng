@@ -16,7 +16,7 @@
         <div class="nng-pm__single-pm"
              *ngFor="let pm of pms.data" 
              (click)="null">
-            <post-author [author]="{ username: pm.to.username, image: pm.to.image, id: pm.to.id }" [reactivity]="false"></post-author>
+            <author [author]="{ username: pm.to.username, image: pm.to.image, id: pm.to.id }" [reactivity]="false"></author> 
             <pm-info [pm]="pm"></pm-info>
         </div>
     </div>

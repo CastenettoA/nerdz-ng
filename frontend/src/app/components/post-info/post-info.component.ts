@@ -5,7 +5,7 @@ import { IconModule, IconService } from 'carbon-components-angular';
 import { UserServices } from 'src/app/services/user.service';
 import { RouterModule } from '@angular/router';
 import { PrettyDatePipe } from 'src/app/pipes/pretty-date.pipe';
-import { PostAuthor } from 'src/app/models/post/post-author.model';
+import { Author } from 'src/app/models/post/author.model';
 import { BasicResponse } from 'src/app/models/basic-response.model';
 import Badge20 from '@carbon/icons/es/badge/20';
 import ThumbsDown16 from '@carbon/icons/es/thumbs-down/16';
@@ -27,7 +27,7 @@ import { firstValueFrom } from 'rxjs';
 })
 export class PostInfoComponent {
   @Input() post!:Post
-  @Input() author!:PostAuthor
+  @Input() author!:Author
   modalOpen = false
   postVotes: Vote[]|undefined = undefined
   user!: User

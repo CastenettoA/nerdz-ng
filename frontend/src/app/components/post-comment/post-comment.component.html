@@ -1,5 +1,5 @@
 <div class="post-comments--comment" *ngIf="comment">
-    <post-author [author]="author" scope="comment" *ngIf="comment.from"></post-author>
+    <author [author]="author" scope="comment" *ngIf="comment.from"></author> 
     <div class="comment__content">
         <div class="content__author-info">
             <span class="info__name" [routerLink]="['/board', comment.from.id]">{{ comment.from.username }}</span>

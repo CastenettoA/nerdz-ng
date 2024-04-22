@@ -1,10 +1,10 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PostAuthorComponent } from '../post-author/post-author.component';
+import { AuthorComponent } from '../author/author.component';
 import { ButtonModule, CodeSnippetModule, GridModule, InputModule, TagModule } from 'carbon-components-angular';
 import { Post } from 'src/app/models/post/post.model';
 import { PostAuthorsComponent } from "../post-authors/post-authors.component";
-import { PostAuthor } from 'src/app/models/post/post-author.model';
+import { Author } from 'src/app/models/post/author.model';
 import { PostInfoComponent } from '../post-info/post-info.component';
 import { PostCommentsComponent } from '../post-comments/post-comments.component';
 import { BBCodePipe } from 'src/app/pipes/bbcode.pipe';
@@ -16,7 +16,7 @@ import { ReadMorePipe } from "../../pipes/read-more.pipe";
     standalone: true,
     templateUrl: './post.component.html',
     styleUrls: ['./post.component.scss'],
-    imports: [CommonModule, PostAuthorComponent, GridModule, InputModule, ButtonModule, TagModule,
+    imports: [CommonModule, AuthorComponent, GridModule, InputModule, ButtonModule, TagModule,
         PostInfoComponent, PostAuthorsComponent, PostCommentsComponent, CodeSnippetModule, BBCodePipe, 
         AsyncTestPipe, NToBrPipe, ReadMorePipe]
 })
@@ -24,7 +24,7 @@ export class PostComponent {
   @Input() post!:Post
   @Input() open:boolean = false // if true the readMore pipe will be removed and the full post will be displayed
   // @ViewChild('postContent') postContent: ElementRef | undefined
-  author!:PostAuthor
+  author!:Author
 
   constructor() {}
 

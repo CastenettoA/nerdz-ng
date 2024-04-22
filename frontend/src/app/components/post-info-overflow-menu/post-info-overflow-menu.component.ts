@@ -4,7 +4,7 @@ import { ButtonModule, DialogModule, ModalModule, NotificationService, Placehold
 import { Post } from 'src/app/models/post/post.model';
 import { MeService } from 'src/app/services/me.service';
 import { UserServices } from 'src/app/services/user.service';
-import { PostAuthor } from 'src/app/models/post/post-author.model';
+import { Author } from 'src/app/models/post/author.model';
 import { PostsListServices } from 'src/app/services/posts-list.service';
 
 @Component({
@@ -17,7 +17,7 @@ import { PostsListServices } from 'src/app/services/posts-list.service';
 })
 export class PostInfoOverflowMenuComponent {
   @Input() post!:Post
-  @Input() author!:PostAuthor
+  @Input() author!:Author
   modalOpen = false
 
   constructor(

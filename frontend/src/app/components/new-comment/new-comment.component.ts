@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PostAuthor } from 'src/app/models/post/post-author.model';
+import { Author } from 'src/app/models/post/author.model';
 import { Post } from 'src/app/models/post/post.model';
-import { PostAuthorComponent } from '../post-author/post-author.component';
 import { RouterModule } from '@angular/router';
 import { MeService } from 'src/app/services/me.service';
 import { FormsModule } from '@angular/forms';
@@ -10,20 +9,20 @@ import { InputModule, ButtonModule } from 'carbon-components-angular';
 import { BasicResponse } from 'src/app/models/basic-response.model';
 import { NewCommentForm } from 'src/app/models/forms/new-comment.model';
 import { UserServices } from 'src/app/services/user.service';
-import { PostsListServices } from 'src/app/services/posts-list.service';
 import { PostComment } from 'src/app/models/post/post-comments.model';
+import { AuthorComponent } from "../author/author.component";
 
 @Component({
-  selector: 'new-comment',
-  standalone: true,
-  imports: [CommonModule, PostAuthorComponent, RouterModule, InputModule, ButtonModule, FormsModule],
-  templateUrl: './new-comment.component.html',
-  styleUrls: ['./new-comment.component.scss']
+    selector: 'new-comment',
+    standalone: true,
+    templateUrl: './new-comment.component.html',
+    styleUrls: ['./new-comment.component.scss'],
+    imports: [CommonModule, RouterModule, InputModule, ButtonModule, FormsModule, AuthorComponent]
 })
 export class NewCommentComponent {
   @Output() new: EventEmitter<PostComment> = new EventEmitter()
   @Input() post!:Post
-  currentUser!:PostAuthor
+  currentUser!:Author
   textareaOpen:boolean = false
   form:NewCommentForm = { message: undefined }
   

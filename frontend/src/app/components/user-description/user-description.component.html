@@ -1,5 +1,5 @@
 <div class="user-description post">
-    <post-author [author]="author" *ngIf="author" scope="board"></post-author>
+    <author [author]="author" *ngIf="author" scope="board"></author>  
     <p>Bevenuto nella board di <b class="username" [routerLink]="['/board', user.data.info.id]">{{user.data.info.username}}</b>. Le sue informazioni e contatti:</p>
     <div class="user-description--tags" *ngIf="tags">
             <cds-tag 

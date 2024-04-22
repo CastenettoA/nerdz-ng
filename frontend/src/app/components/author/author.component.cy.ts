@@ -1,4 +1,4 @@
-import { AuthorComponent } from './post-author.component'
+import { AuthorComponent } from './author.component'
 
 describe('AuthorComponent', () => {
   it('should mount', () => {

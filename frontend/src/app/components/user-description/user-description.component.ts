@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PostAuthorComponent } from "../post-author/post-author.component";
+import { AuthorComponent } from "../author/author.component";
 import { BasicResponse } from 'src/app/models/basic-response.model';
 import { TagModule } from 'carbon-components-angular';
-import { PostAuthor } from 'src/app/models/post/post-author.model';
+import { Author } from 'src/app/models/post/author.model';
 import { User } from 'src/app/models/user/user.model';
 import { RouterModule } from '@angular/router';
 
@@ -16,11 +16,11 @@ type mergedUserData = {
     standalone: true,
     templateUrl: './user-description.component.html',
     styleUrls: ['./user-description.component.scss'],
-    imports: [CommonModule, PostAuthorComponent, TagModule, RouterModule]
+    imports: [CommonModule, AuthorComponent, TagModule, RouterModule]
 })
 export class UserDescriptionComponent {
     @Input() user!:BasicResponse<User>
-    author!: PostAuthor
+    author!: Author
     tags!:string[]
 
     constructor() {}

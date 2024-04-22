@@ -6,11 +6,11 @@ import { Author } from 'src/app/models/post/author.model';
 type Scope = 'post'|'comment'|'new-comment'|'board'
 
 @Component({
-  selector: 'post-author',
+  selector: 'author',
   standalone: true,
   imports: [CommonModule, RouterModule, TooltipModule],
-  templateUrl: './post-author.component.html',
-  styleUrls: ['./post-author.component.scss']
+  templateUrl: './author.component.html',
+  styleUrls: ['./author.component.scss']
 })
 export class AuthorComponent {
   @Input() author!: Author // todo: hanlde the case of author is undefined

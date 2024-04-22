@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PostAuthorComponent } from '../post-author/post-author.component';
+import { AuthorComponent } from '../author/author.component';
 import { Post } from 'src/app/models/post/post.model';
 import { ButtonModule, InputModule } from 'carbon-components-angular';
 import { MeService } from 'src/app/services/me.service';
 import { FormsModule } from '@angular/forms';
 import { BasicResponse } from 'src/app/models/basic-response.model';
 import { PostsListServices } from 'src/app/services/posts-list.service';
-import { PostAuthor } from 'src/app/models/post/post-author.model';
+import { Author } from 'src/app/models/post/author.model';
 import { NewPostForm } from 'src/app/models/forms/new-post.model';
 
 const _newPost = {
@@ -58,13 +58,13 @@ const _newPost = {
 @Component({
   selector: 'new-post',
   standalone: true,
-  imports: [CommonModule, FormsModule, PostAuthorComponent, InputModule, ButtonModule],
+  imports: [CommonModule, FormsModule, AuthorComponent, InputModule, ButtonModule],
   templateUrl: './new-post.component.html',
   styleUrls: ['./new-post.component.scss']
 })
 export class NewPostComponent {
   textareaOpen:boolean = false
-  currentUser!:PostAuthor
+  currentUser!:Author
   form:NewPostForm = { message: undefined }
 
   constructor(private meService:MeService,
