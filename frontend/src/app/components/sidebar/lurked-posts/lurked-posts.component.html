@@ -1,0 +1,19 @@
+<div class="lurked-posts"> 
+    <p>I tuoi post nascosti 
+        <cds-tag 
+            type="gray" size="sm" 
+            *ngIf="lurked.length > 0">{{lurked.length}}</cds-tag></p>
+    <p class="helper-text-02">Clicca su di un singolo post per rimuoverlo dai tuoi <b>post nascosti</b></p>
+
+
+    <div class="lurked-posts__list" *ngIf="lurked.length > 0; else no_lurked_posts">
+            <author 
+                *ngFor="let lurkedPost of lurked"
+                (click)="unLurkPost(lurkedPost)"
+                [author]="getAuthorFromPost(lurkedPost)" [pid]="lurkedPost.pid" [reactivity]="false" scope="list"></author>
+        </div>
+
+    <ng-template #no_lurked_posts>
+        <p class="helper-text-02">Nessun post nascosco da mostrare qui.</p>
+</ng-template>
+</div>

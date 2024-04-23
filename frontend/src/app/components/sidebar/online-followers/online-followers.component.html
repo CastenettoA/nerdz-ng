@@ -1,0 +1,15 @@
+<div class="online-followers">
+    <p>Gli utenti online che segui
+        <cds-tag 
+            type="gray" size="sm" 
+            *ngIf="online_followers.length > 0">{{online_followers.length}}
+        </cds-tag>
+    </p>
+    <div class="online-followers__list" *ngIf="online_followers.length > 0; else nobody_online">
+        <author [author]="getAuthorFromUser(user)" scope="list" *ngFor="let user of online_followers"></author>
+    </div>
+
+    <ng-template #nobody_online>
+        <p  class="helper-text-02">Nessuno dei tuoi followers è online al momento.</p>
+    </ng-template>
+</div>

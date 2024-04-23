@@ -14,6 +14,8 @@ import { firstValueFrom } from 'rxjs';
 import { AuthorComponent } from "../author/author.component";
 import { Author } from 'src/app/models/post/author.model';
 import { SkeletonComponent } from "../skeleton/skeleton.component";
+import { OnlineFollowersComponent } from "../sidebar/online-followers/online-followers.component";
+import { LurkedPostsComponent } from "../sidebar/lurked-posts/lurked-posts.component";
 type PostListContext = 'home'|'board';
 
 @Component({
@@ -21,7 +23,7 @@ type PostListContext = 'home'|'board';
     standalone: true,
     templateUrl: './user-home.component.html',
     styleUrls: ['./user-home.component.scss'],
-    imports: [CommonModule, PostsListComponent, NewPostComponent, GridModule, TagModule, AuthorComponent, SkeletonComponent]
+    imports: [CommonModule, PostsListComponent, NewPostComponent, GridModule, TagModule, AuthorComponent, SkeletonComponent, OnlineFollowersComponent, LurkedPostsComponent]
 })
 export class UserHomeComponent {
   userLoggedIn: boolean = false;
@@ -29,7 +31,6 @@ export class UserHomeComponent {
   posts: BasicResponse<Post[]> | undefined = undefined
   postsLurkedByUser: Post[] = []
   user!: User
-  online_followers: User[] = []
 
   constructor(
 	 	private activatedRoute: ActivatedRoute,
@@ -37,14 +38,11 @@ export class UserHomeComponent {
 		private meService: MeService,
 		private userService: UserServices) { }
 
-	async ngOnInit() {
+	ngOnInit() {
 		this.initSubs()
 
 		// get actual logged-user infos
 		this.meService.user$.subscribe((res) => { if(res) this.user = res.data })
-
-		// get user online followers
-		this.online_followers = await this.meService.following_online()
 	}
 
 	/**
@@ -96,29 +94,6 @@ export class UserHomeComponent {
 				this.posts = _res
 			}
 		})
-	}
-
-	getAuthorFromUser(user:User): Author {
-		return {
-			username: user.info.username,
-			image: user.info.image,
-			id: user.info.id,
-			online: user.personal.online
-		}
-	}
-
-	getAuthorFromPost(post:Post): Author {
-		return {
-			username: post.from.username,
-			image: post.from.image,
-			id: post.from.id,
-			online: undefined
-		}
-	}
-
-	/** @description unlurk the selected post  */
-	unLurkPost(post: Post) {
-		throw new Error('Method not implemented.');
 	}
 
 	login() {
