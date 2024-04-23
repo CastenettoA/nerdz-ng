@@ -5,13 +5,19 @@
 	<div cdsCol [columnNumbers]="{sm: 4, md: 6, lg: 10}" [ngStyle]="{ margin: 0 }">
 		<new-post></new-post>
 		<posts-list [posts]="posts" *ngIf="posts"></posts-list>		
+		<skeleton type="posts-list"></skeleton>
 	</div>
 	<div cdsCol [columnNumbers]="{sm: 0, md: 2, lg: 6}">
 		
 		<div class="online-followers">
-			<p>Gli utenti online che segui</p>
-			<div *ngIf="online_followers.length > 0; else nobody_online">
-				<author [author]="getAuthor(user)" scope="list" *ngFor="let user of online_followers"></author>
+			<p>Gli utenti online che segui
+				<cds-tag 
+					type="gray" size="sm" 
+					*ngIf="online_followers.length > 0">{{online_followers.length}}
+				</cds-tag>
+			</p>
+			<div class="online-followers__list" *ngIf="online_followers.length > 0; else nobody_online">
+				<author [author]="getAuthorFromUser(user)" scope="list" *ngFor="let user of online_followers"></author>
 			</div>
 
 			<ng-template #nobody_online>
@@ -21,13 +27,22 @@
 		
 
 		<div class="lurked-posts"> 
-			<p>I tuoi post nascosti <cds-tag type="gray" size="sm" *ngIf="postsLurkedByUser.length > 0">{{postsLurkedByUser.length}}</cds-tag> </p>
-			<div *ngIf="postsLurkedByUser.length > 0; else no_lurked_posts">
-					<li class="helper-text-02" *ngFor="let lurked of postsLurkedByUser">#{{ lurked.pid }} of {{ '@'+lurked.from.username }}</li>
-			</div>
+			<p>I tuoi post nascosti 
+				<cds-tag 
+					type="gray" size="sm" 
+					*ngIf="postsLurkedByUser.length > 0">{{postsLurkedByUser.length}}</cds-tag></p>
+			<p class="helper-text-02">Clicca su di un singolo post per rimuoverlo dai tuoi <b>post nascosti</b></p>
+
+
+			<div class="lurked-posts__list" *ngIf="postsLurkedByUser.length > 0; else no_lurked_posts">
+					<author 
+						*ngFor="let lurkedPost of postsLurkedByUser"
+						(click)="unLurkPost(lurkedPost)"
+						[author]="getAuthorFromPost(lurkedPost)" [pid]="lurkedPost.pid" [reactivity]="false" scope="list"></author>
+				</div>
 
 			<ng-template #no_lurked_posts>
-				<p  class="helper-text-02">Nessun post nascosco da mostrare qui.</p>
+				<p class="helper-text-02">Nessun post nascosco da mostrare qui.</p>
 		</ng-template>
 		</div>
 	</div>

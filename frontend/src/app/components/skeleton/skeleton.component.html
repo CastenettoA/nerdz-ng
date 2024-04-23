@@ -1,0 +1,9 @@
+<ng-container *ngIf="type === 'posts-list'">
+
+    <!-- we use the <post> component only to get the SCSS styling -->
+    <post *ngFor="let i of [0,1,2,3,4]">
+        <cds-skeleton-text [lines]="1" [minLineWidth]="60" [maxLineWidth]="60"></cds-skeleton-text> <!-- <post-authors /> -->
+        <cds-skeleton-text [lines]="3" [minLineWidth]="150" [maxLineWidth]="320"></cds-skeleton-text> <!-- <post-content /> -->
+    </post>
+
+</ng-container> 

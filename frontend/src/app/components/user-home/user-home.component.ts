@@ -12,6 +12,8 @@ import { ActivatedRoute, Data } from '@angular/router';
 import { UserServices } from 'src/app/services/user.service';
 import { firstValueFrom } from 'rxjs';
 import { AuthorComponent } from "../author/author.component";
+import { Author } from 'src/app/models/post/author.model';
+import { SkeletonComponent } from "../skeleton/skeleton.component";
 type PostListContext = 'home'|'board';
 
 @Component({
@@ -19,7 +21,7 @@ type PostListContext = 'home'|'board';
     standalone: true,
     templateUrl: './user-home.component.html',
     styleUrls: ['./user-home.component.scss'],
-    imports: [CommonModule, PostsListComponent, NewPostComponent, GridModule, TagModule, AuthorComponent]
+    imports: [CommonModule, PostsListComponent, NewPostComponent, GridModule, TagModule, AuthorComponent, SkeletonComponent]
 })
 export class UserHomeComponent {
   userLoggedIn: boolean = false;
@@ -96,12 +98,27 @@ export class UserHomeComponent {
 		})
 	}
 
-	getAuthor(user:User) {
+	getAuthorFromUser(user:User): Author {
 		return {
 			username: user.info.username,
 			image: user.info.image,
-			id: user.info.id
+			id: user.info.id,
+			online: user.personal.online
 		}
+	}
+
+	getAuthorFromPost(post:Post): Author {
+		return {
+			username: post.from.username,
+			image: post.from.image,
+			id: post.from.id,
+			online: undefined
+		}
+	}
+
+	/** @description unlurk the selected post  */
+	unLurkPost(post: Post) {
+		throw new Error('Method not implemented.');
 	}
 
 	login() {
