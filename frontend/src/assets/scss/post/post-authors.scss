@@ -41,6 +41,10 @@
         @include type.type-style("label-01");
     }
 
+    &__online-badge {
+        color: colors.$green-30;
+    }
+
     &.scope--board { // <post-author> style in the header of user board
         padding: layout.$spacing-04;
 
@@ -54,7 +58,7 @@
         }
     }
 
-    &.scope--comment { // <post-author> style in post comments section
+    &.scope--comment, &.scope--new-comment { // <post-author> style in post comments section
         padding: layout.$spacing-03 layout.$spacing-03; // smaller than little-info-box() mixin
         border-radius: 50%;
 

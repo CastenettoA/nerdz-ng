@@ -6,18 +6,3 @@
 
     <!-- <cds-pagination-nav [model]="model" (selectPage)="selectPage($event)"></cds-pagination-nav> -->
 </ng-container>
-
-<ng-container *ngIf="!posts">
-    <post *ngFor="let item of [0,1,2,3,4]"> 
-        <cds-skeleton-text
-        [lines]="1"
-        [minLineWidth]="60"
-        [maxLineWidth]="60"
-      ></cds-skeleton-text>
-        <cds-skeleton-text
-        [lines]="3"
-        [minLineWidth]="150"
-        [maxLineWidth]="320"
-      ></cds-skeleton-text>
-    </post>
-</ng-container> 

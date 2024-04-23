@@ -14,6 +14,7 @@ type Scope = 'post'|'comment'|'new-comment'|'board'|'list'
 })
 export class AuthorComponent {
   @Input() author!: Author // todo: hanlde the case of author is undefined
+  @Input() pid!: number // if present the pid (post id) is showed in the template
   @Input() reactivity:boolean = true
   @Input() scope:Scope = 'post' // different scopes have different change in term of sizes and functionalities
   boardLink:string = '/board'
@@ -46,12 +47,4 @@ export class AuthorComponent {
   getScopeClass() {
     return `scope--${this.scope}`
   }
-} 
-
-
-// <!-- 
-//     'scope--post':true 
-//     'scope--board':true
-//     'scope--comment':true
-//     'scope--comment':true
-// -->
+}

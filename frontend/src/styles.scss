@@ -33,3 +33,18 @@ $feature-flags: (
 .online-followers, .lurked-posts {
 	@include box($hover: false);
 }
+
+.online-followers {
+
+    &__list {
+
+        .post-author {
+			border-radius: 1rem;
+            margin-right: layout.$spacing-02;
+
+			&__userImage img {
+				border-radius: 1rem;
+			}
+        }
+    }
+}

@@ -72,6 +72,7 @@ export class UserDescriptionComponent {
             username: this.user.data.info.username,
             image: this.user.data.info.image,
             id: this.user.data.info.id,
+            online: this.user.data.personal.online
         }
     }
 }

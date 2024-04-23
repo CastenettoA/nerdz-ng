@@ -37,7 +37,8 @@ export class PostCommentComponent {
       this.author = {
         id: from.id,
         username: from.username,
-        image: from.image
+        image: from.image,
+        online: undefined
       }
     }
 

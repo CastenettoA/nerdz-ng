@@ -18,6 +18,7 @@
 
     &__content {
         @include type.type-style("body-compact-01");
+		line-height: 1.5; // todo: use token and not raw value
 
 		.continue-btn {
 			text-decoration: underline;

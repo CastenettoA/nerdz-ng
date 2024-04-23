@@ -13,6 +13,7 @@
 	padding: layout.$spacing-03 layout.$spacing-04;
 	margin-bottom: layout.$spacing-03;
 	cursor: default;
+	border-radius: layout.$spacing-01;
 
 	@if $reactivity { 
 		transition: background-color motion.$duration-fast-01;

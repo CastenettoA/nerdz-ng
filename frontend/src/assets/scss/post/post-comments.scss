@@ -19,11 +19,15 @@
 		display: flex;
 		align-items: flex-start;
 
+		
+
 		&.new-comment {
 			background-color: themes.$layer-02;
 			display: inline-flex;
 			border-radius: 1rem;
 			padding: 0px .6rem 0 0px;
+			align-items: center;
+
 
 			transition: background-color motion.$duration-fast-01;
 			cursor: pointer;

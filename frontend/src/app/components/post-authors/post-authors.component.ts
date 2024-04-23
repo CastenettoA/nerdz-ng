@@ -14,8 +14,8 @@ import Calls20 from '@carbon/icons/es/calls/20';
   styleUrls: ['./post-authors.component.scss']
 })
 export class PostAuthorsComponent {
-  @Input() from!:UserInfo
-  @Input() to!:UserInfo
+  @Input() from!:Author
+  @Input() to!:Author
   @Input() scope:'post'|'comment'|'board' = 'post'
   
   showSingleAuthor = true
@@ -42,14 +42,16 @@ export class PostAuthorsComponent {
     this.authorFrom = {
       image: this.from.image,
       id: this.from.id,
-      username: this.from.username
+      username: this.from.username,
+      online: undefined
     }
 
     if(!this.showSingleAuthor) {
       this.authorTo = {
         image: this.to.image,
         id: this.to.id,
-        username: this.to.username
+        username: this.to.username,
+        online: undefined
       }
     }
   }

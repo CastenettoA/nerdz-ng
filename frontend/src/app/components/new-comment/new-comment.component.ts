@@ -38,7 +38,9 @@ export class NewCommentComponent {
         this.currentUser = {
           username: res.data.info.username,
           image: res.data.info.image,
-          id: res.data.info.id }
+          id: res.data.info.id,
+          online: res.data.personal.online
+        }
       }
     });
   }

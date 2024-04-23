@@ -45,3 +45,7 @@ main {
 		 }
 	}
 }
+
+textarea, button, .cds--btn, .cds--skeleton__text, .cds--skeleton__text::before {
+	border-radius: layout.$spacing-01;
+}

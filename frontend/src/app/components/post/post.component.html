@@ -5,7 +5,7 @@
 
             <!-- component that is responsible of show the author or the "authors" of the current post. "Authors" stand 
                 for a user that publish a post in a board of other user -->
-                <post-authors [from]="post.from" [to]="post.to"></post-authors>
+                <post-authors [from]="getFrom()" [to]="getTo()"></post-authors>
             </div>   
             
         <div cdsCol [columnNumbers]="{sm: 4, md: 4, lg: 7}">

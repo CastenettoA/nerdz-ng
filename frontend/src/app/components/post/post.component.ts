@@ -33,7 +33,8 @@ export class PostComponent {
       this.author = {
         image: this.post.from.image,
         id: this.post.from.id,
-        username: this.post.from.username
+        username: this.post.from.username,
+        online: undefined
       }
     }
   }
@@ -42,9 +43,22 @@ export class PostComponent {
     alert(1)
   }
 
-  // ngAfterViewInit() {
-  //   if(this.post.pid === 910)
-  //     alert(this.postContent?.nativeElement.clientHeight)
-  // }
+  getFrom(): Author {
+    return {
+      id: this.post.from.id,
+      image: this.post.from.image,
+      username: this.post.from.username,
+      online: undefined
+    }
+  }
+
+  getTo(): Author {
+    return {
+      id: this.post.to.id,
+      image: this.post.to.image,
+      username: this.post.to.username,
+      online: undefined
+    }
+  }
   
 }
