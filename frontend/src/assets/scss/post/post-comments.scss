@@ -22,7 +22,7 @@
 		
 
 		&.new-comment {
-			background-color: themes.$layer-02;
+			background-color: themes.$layer-03;
 			display: inline-flex;
 			border-radius: 1rem;
 			padding: 0px .6rem 0 0px;
@@ -33,11 +33,11 @@
 			cursor: pointer;
 
 			&:hover, &:hover .post-author {
-				background-color: themes.$layer-hover-02;
+				background-color: themes.$layer-hover-03;
 			}
 
 			&:active, &:focus, &:active .post-author, &:focus .post-author {
-				background-color: themes.$layer-active-02;
+				background-color: themes.$layer-active-03;
 			}
 
 			&--edit-mode {

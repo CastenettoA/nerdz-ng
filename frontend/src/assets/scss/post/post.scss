@@ -3,7 +3,7 @@
     word-wrap: break-word;
     margin-bottom: layout.$spacing-04;
     padding: layout.$spacing-05;
-    background-color: themes.$layer-01;
+    background-color: themes.$layer-02;
 	box-shadow: 0 1px 3px 0 rgba(0,0,0,0.16); // todo: create css var
 
     &--new {
@@ -42,7 +42,7 @@
             cursor: default;
 
 			&:hover {
-                background-color: themes.$background;
+				background-color: themes.$layer-03;
             }
         }
 	
@@ -85,17 +85,18 @@
 					justify-content: center;
 					align-items: center;
 					transition: background-color motion.$duration-fast-01;
+					background-color: themes.$layer-03;
 
 					&:last-of-type {
 						left: 50%;
 					}
 
 					&:hover {
-						background-color: themes.$layer-hover-02;
+						background-color: themes.$layer-hover-03;
 					}
 
 					&:active, &:focus {
-						background-color: themes.$layer-active-02;
+						background-color: themes.$layer-active-03;
 					}
 				}
 			}
@@ -116,10 +117,10 @@
 		&__menu {
 			margin-left: layout.$spacing-03;
 			button.cds--overflow-menu {
-				background-color: themes.$layer-02;
+				background-color: themes.$layer-03;
 
 				&:hover {
-					background-color: themes.$layer-hover-02;
+					background-color: themes.$layer-hover-03;
 				}
 			}
 		}

@@ -9,7 +9,7 @@
 	display: inline-flex;
     justify-content: $justify; /* Centra il contenuto orizzontalmente */
     align-items: center; /* Centra il contenuto verticalmente */
-	background-color: themes.$layer-02;
+	background-color: themes.$layer-03;
 	padding: layout.$spacing-03 layout.$spacing-04;
 	margin-bottom: layout.$spacing-03;
 	cursor: default;
@@ -20,11 +20,11 @@
 		cursor: pointer;
 
 		&:hover {
-			background-color: themes.$layer-hover-02;
+			background-color: themes.$layer-hover-03;
 		}
 	
 		&:active, &:focus {
-			background-color: themes.$layer-active-02;
+			background-color: themes.$layer-active-03;
 		}
 	}
 }
@@ -32,7 +32,7 @@
 @mixin box($hover:false, $sm:false) { // standard box with background elevation, margin and padding.
 	margin-bottom: layout.$spacing-06;
 	padding: layout.$spacing-05;
-	background-color: themes.$layer-01;
+	background-color: themes.$layer-02;
 	box-shadow: 0 1px 3px 0 rgba(0,0,0,0.16); // todo: create css var
 
 	@if $sm {
@@ -42,7 +42,7 @@
 
 	@if $hover {
 		cursor: pointer;
-		&:hover { background-color: themes.$layer-hover-01; }
-		&:active, &:focus {	background-color: themes.$layer-active-01; }
+		&:hover { background-color: themes.$layer-hover-02; }
+		&:active, &:focus {	background-color: themes.$layer-active-02; }
 	}
 }

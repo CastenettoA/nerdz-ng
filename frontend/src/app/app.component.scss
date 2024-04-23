@@ -1,8 +1,0 @@
-@use '@carbon/layout';
-@use '@carbon/themes';
-
-main {
-    padding: layout.$spacing-07;
-    padding-top: layout.$spacing-11;
-    background-color: themes.$background;
-}
