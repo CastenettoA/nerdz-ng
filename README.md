@@ -32,7 +32,7 @@ Nerdz Ng back-end best to know facts:
     ```bash
        cd backend # enter in the back-end repo
        source ./bin/activate # activate the virtual env
-       flask --app app/app.py --debug run --cert='./cert/localhost.pem' --key='./cert/localhost-key.pem # launch app.py with flask
+       flask --app app/main.py --debug run --cert='./cert/localhost.pem' --key='./cert/localhost-key.pem # launch main.py with flask
     ```
 8. launch the client with this commands:
     ```bash
@@ -44,7 +44,7 @@ Nerdz Ng back-end best to know facts:
     ```bash
     alias nerdz="cd nerdz-ng && fe & cd .. && be"
     alias fe="cd frontend; npm run start-ssl"
-    alias be="cd backend; source ./bin/activate; flask --app app/app.py --debug run --cert='./cert/localhost.pem' --key='./cert/localhost-key.pem"
+    alias be="cd backend; source ./bin/activate; flask --app app/main.py --debug run --cert='./cert/localhost.pem' --key='./cert/localhost-key.pem"
     ```
 
 ## Guidelines for contributors

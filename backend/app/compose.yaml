@@ -1,0 +1,13 @@
+name: nerdz-ng
+
+services:
+  backend: # the service name
+    build: #specify the build conf. for creating a container image from source
+      dockerfile: dev.Dockerfile
+      target: builder
+    ports:
+      - "8000:8000"
+      - "443:443"
+
+    # frontend:
+    #   ...

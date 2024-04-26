@@ -12,7 +12,7 @@ def get_function_names_from_file(file_path):
     return function_names
 
 # def open_server_in_webbrowser_tab(context):
-#     """simply open the server (app.py) in a browser tab on app start up
+#     """simply open the server (main.py) in a browser tab on app start up
 #        edit: this not work on WSL2."""
 #     logging.info(f"the name is: {context}")
     

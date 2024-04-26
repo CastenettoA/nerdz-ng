@@ -96,9 +96,13 @@ app.add_url_rule('/v1/logout', view_func=routes.logout)
 app.add_url_rule('/v1/oembed/twitter', view_func=routes.oembed_twitter)
 app.add_url_rule('/notifications', view_func=routes.notifications)
 
-"""HTTP traffic is handled by a Gunicorn web server
-in a Google Cloud Run container. """
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
+    app.run(host='0.0.0.0', port=8000, debug=True, ssl_context=('./cert/localhost.pem', './cert/localhost-key.pem'))
+
+# """HTTP traffic is handled by a Gunicorn web server
+# in a Google Cloud Run container. """
+# if __name__ == "__main__":
+#     app.run(debug=True, host="127.0.0.0", port=int(os.environ.get("PORT", 8080)))
+#     # app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
 
 
