@@ -1,10 +1,10 @@
 # docker build -t nerdz-ng-fe-dev/0.1 -f DockerfileDev . 
 
-FROM node:16-alpine AS build
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-COPY . .
+COPY ../ .
 
 RUN npm install
 
@@ -18,4 +18,4 @@ FROM nginx:alpine
 
 COPY --from=build /app/dist/ /usr/share/nginx/html
 
-EXPOSE 80
+EXPOSE 4200

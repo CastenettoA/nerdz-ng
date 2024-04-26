@@ -1,0 +1,20 @@
+name: nerdz-ng
+
+services:
+  backend:
+    build:
+      context: backend/app/
+      dockerfile: dev.Dockerfile
+      target: builder
+    ports:
+      - "8400:8400"
+      - "443:443"
+
+  frontend:
+    build:
+      context: frontend/
+      dockerfile: docker/dev.Dockerfile 
+      target: builder
+    ports:
+      - "4200:4200"
+      - "443:443"

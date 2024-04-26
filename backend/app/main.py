@@ -97,7 +97,7 @@ app.add_url_rule('/v1/oembed/twitter', view_func=routes.oembed_twitter)
 app.add_url_rule('/notifications', view_func=routes.notifications)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8000, debug=True, ssl_context=('./cert/localhost.pem', './cert/localhost-key.pem'))
+    app.run(host='0.0.0.0', port=8400, debug=True, ssl_context=('./cert/localhost.pem', './cert/localhost-key.pem'))
 
 # """HTTP traffic is handled by a Gunicorn web server
 # in a Google Cloud Run container. """

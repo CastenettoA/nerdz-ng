@@ -4,8 +4,8 @@
   "license": "",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "start-ssl": "ng serve --ssl true --ssl-cert ./cert/localhost+1.pem --ssl-key ./cert/localhost+1-key.pem --open",
+    "start": "ng serve --port 4200",
+    "start-ssl": "ng serve --port 4200 --ssl true --ssl-cert ./cert/localhost+1.pem --ssl-key ./cert/localhost+1-key.pem --open",
     "build": "ng build",
     "test": "jest",
     "test:once": "jest --watch",
