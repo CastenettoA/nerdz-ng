@@ -18,7 +18,7 @@ export class Oauth2Service {
    * @description start the authorization process
    */
   login() {
-    window.location.href = 'https://127.0.0.1:5000/login'
+    window.location.href = 'https://127.0.0.1:8000/login'
   }
 
   /**

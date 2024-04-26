@@ -13,6 +13,7 @@ RUN pip install -r requirements.txt
 
 # Copy local code to the container image.
 ENV APP_HOME /app
+ENV PORT 8080
 WORKDIR $APP_HOME
 COPY . ./
 
