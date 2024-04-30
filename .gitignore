@@ -62,3 +62,6 @@ backend/app/__pycache__/routes.cpython-310.pyc
 
 backend/app/cert/localhost-key.pem
 backend/app/cert/localhost.pem
+backend/app/app_secret.yaml
+backend/app/app_config.py
+backend/app/app_secret.py

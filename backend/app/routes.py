@@ -1,14 +1,14 @@
-import asyncio
 import json, jwt, requests
 import logging
 from flask import current_app, make_response, redirect, render_template, session, request, jsonify, url_for
 from services.route import app_routes
 from services.jwt import create_jwt, check_jwt, get_access_token
 # from services.notifications import wsconnect
-from config import *
 from models import AuthorizeToken
 from datetime import datetime
-
+import imp
+app_config = imp.load_source("app_config", "/app_config")
+app_secret = imp.load_source("app_secret", "/run/secrets/app_secret")
 
 def login():
     """init grant flow: (1) redirect usr to authorize_url (2) user get autenticated
@@ -49,7 +49,7 @@ def me():
     """return info about the current logged-in user"""
     access_token = get_access_token()
     resp = make_response()
-    req = requests.get(f"{API_BASE_URL}/me?access_token={access_token}")
+    req = requests.get(f"{app_config.API_BASE_URL}/me?access_token={access_token}")
     resp.data = json.dumps(json.loads(req.text))
     return resp, 200
 
@@ -58,7 +58,7 @@ def me_home():
     access_token = get_access_token()
     resp = make_response()
 
-    req = requests.get(f"{API_BASE_URL}/me/home?access_token={access_token}")
+    req = requests.get(f"{app_config.API_BASE_URL}/me/home?access_token={access_token}")
     resp.data = json.dumps(json.loads(req.text))
     return resp, 200
 
@@ -66,7 +66,7 @@ def me_followers():
     """Shows the followers information for the specified user"""
     access_token = get_access_token()
     resp = make_response()
-    req = requests.get(f"{API_BASE_URL}/me/followers?access_token={access_token}")
+    req = requests.get(f"{app_config.API_BASE_URL}/me/followers?access_token={access_token}")
     resp.data = json.dumps(json.loads(req.text))
     return resp, 200
 
@@ -74,7 +74,7 @@ def me_following():
     """Shows the following information for the specified user"""
     access_token = get_access_token()
 
-    req = requests.get(f"{API_BASE_URL}/me/following/users?access_token={access_token}")
+    req = requests.get(f"{app_config.API_BASE_URL}/me/following/users?access_token={access_token}")
     return req.text, 200
 
 def me_posts(pid=None):
@@ -87,8 +87,8 @@ def me_posts(pid=None):
     resp = make_response()
 
     # # if request.method == "GET" and pid is None:
-    # req = requests.get(f"{API_BASE_URL}/me/home?access_token={access_token}&older=18522")
-    # # req = requests.get(f"{API_BASE_URL}/me/posts&access_token={access_token}&language=it&n=2&older=125291")
+    # req = requests.get(f"{app_config.API_BASE_URL}/me/home?access_token={access_token}&older=18522")
+    # # req = requests.get(f"{app_config.API_BASE_URL}/me/posts&access_token={access_token}&language=it&n=2&older=125291")
     # logging.warning("-----------")
     # logging.warning("-----------")
     # logging.warning("-----------")
@@ -100,16 +100,16 @@ def me_posts(pid=None):
     # resp.data = json.dumps(json.loads(req.text))
 
     if request.method == "GET" and pid:
-        req = requests.get(f"{API_BASE_URL}/me/posts/{pid}?access_token={access_token}")
+        req = requests.get(f"{app_config.API_BASE_URL}/me/posts/{pid}?access_token={access_token}")
         resp.data = json.dumps(json.loads(req.text))
 
     elif request.method == "POST":
         data = request.json
         msg = data.get("message")
-        req = requests.post(f"{API_BASE_URL}/me/posts?access_token={access_token}", json={ "message": msg })
+        req = requests.post(f"{app_config.API_BASE_URL}/me/posts?access_token={access_token}", json={ "message": msg })
         resp.data = json.dumps(json.loads(req.text))
     elif request.method == "DELETE" and pid:
-        req = requests.delete(f"{API_BASE_URL}/me/posts/{pid}?access_token={access_token}")
+        req = requests.delete(f"{app_config.API_BASE_URL}/me/posts/{pid}?access_token={access_token}")
         resp.data = json.dumps(json.loads(req.text))
 
     return resp, 200
@@ -121,7 +121,7 @@ def me_posts_comments(pid, n):
     access_token = get_access_token()
     # resp = make_response()
 
-    req = requests.get(f"{API_BASE_URL}/me/posts/{pid}/comments?access_token={access_token}&n={n}")
+    req = requests.get(f"{app_config.API_BASE_URL}/me/posts/{pid}/comments?access_token={access_token}&n={n}")
     # resp.data = json.dumps(json.loads(req.text))
     return req.text, 200
 
@@ -129,7 +129,7 @@ def me_pms():
     """Shows the list of the private conversation of the current user"""
     access_token = get_access_token()
     resp = make_response()
-    req = requests.get(f"{API_BASE_URL}/me/pms?access_token={access_token}")
+    req = requests.get(f"{app_config.API_BASE_URL}/me/pms?access_token={access_token}")
     resp.data = json.dumps(json.loads(req.text))
     return resp, 200
 
@@ -138,7 +138,7 @@ def users(id):
     access_token = get_access_token() # externalize the access_token verify logic
     resp = make_response()
     
-    req = requests.get(f"{API_BASE_URL}/users/{id}?access_token={access_token}")
+    req = requests.get(f"{app_config.API_BASE_URL}/users/{id}?access_token={access_token}")
     resp.data = json.dumps(json.loads(req.text))
     return resp, 200
 
@@ -146,7 +146,7 @@ def users_post(id, pid):
     """[get] get a single user post by {pid}"""
     access_token = get_access_token()
     resp = make_response()
-    req = requests.get(f"{API_BASE_URL}/users/{id}/posts/{pid}?access_token={access_token}")
+    req = requests.get(f"{app_config.API_BASE_URL}/users/{id}/posts/{pid}?access_token={access_token}")
     resp.data = json.dumps(json.loads(req.text))
     return resp, 200
 
@@ -154,7 +154,7 @@ def users_posts(id):
     """This will show the last posts on the user board by default. You can personalize the request via query string parameters"""
     access_token = get_access_token()
     resp = make_response()
-    req = requests.get(f"{API_BASE_URL}/users/{id}/posts?access_token={access_token}")
+    req = requests.get(f"{app_config.API_BASE_URL}/users/{id}/posts?access_token={access_token}")
     resp.data = json.dumps(json.loads(req.text))
     return resp, 200
 
@@ -172,23 +172,23 @@ def users_posts_comments(id, pid, cid=None):
         case "GET": # get comment request
             n = request.args.get('n')
             if n:
-                req = requests.get(f"{API_BASE_URL}/users/{id}/posts/{pid}/comments?access_token={access_token}&n={n}")
+                req = requests.get(f"{app_config.API_BASE_URL}/users/{id}/posts/{pid}/comments?access_token={access_token}&n={n}")
             else:
-                req = requests.get(f"{API_BASE_URL}/users/{id}/posts/{pid}/comments?access_token={access_token}")
+                req = requests.get(f"{app_config.API_BASE_URL}/users/{id}/posts/{pid}/comments?access_token={access_token}")
         case "POST": # new comment request
             msg = request.json.get("message")
             if msg and id and pid:
-                req = requests.post(f"{API_BASE_URL}/users/{id}/posts/{pid}/comments?access_token={access_token}", json={"message":msg})
+                req = requests.post(f"{app_config.API_BASE_URL}/users/{id}/posts/{pid}/comments?access_token={access_token}", json={"message":msg})
             else: 
                 return "some of required field is/are not present, please add it and retry. Fields: message body, user id, post id", 400
         case "PUT": # edit comment request
             msg = request.json.get("message")
             if msg and id and pid and  cid:
-                req = requests.put(f"{API_BASE_URL}/users/{id}/posts/{pid}/comments/{cid}?access_token={access_token}", json={"message":msg})
+                req = requests.put(f"{app_config.API_BASE_URL}/users/{id}/posts/{pid}/comments/{cid}?access_token={access_token}", json={"message":msg})
             else: 
                 return "some of required field is/are not present, please add it and retry. Fields: message body, user id, post id, comment id", 400
         case "DELETE":
-            req = requests.delete(f"{API_BASE_URL}/users/{id}/posts/{pid}/comments/{cid}?access_token={access_token}")
+            req = requests.delete(f"{app_config.API_BASE_URL}/users/{id}/posts/{pid}/comments/{cid}?access_token={access_token}")
         case _: # default case
             return "bad request or method not supported", 400
     return req.text, 200
@@ -201,13 +201,13 @@ def users_posts_lurks(id, pid):
     access_token = get_access_token()
 
     if request.method == "GET" and id and pid:
-        req = requests.get(f"{API_BASE_URL}/users/{id}/posts/{pid}/lurks?access_token={access_token}")
+        req = requests.get(f"{app_config.API_BASE_URL}/users/{id}/posts/{pid}/lurks?access_token={access_token}")
 
     elif request.method == "POST" and id and pid:
-        req = requests.post(f"{API_BASE_URL}/users/{id}/posts/{pid}/lurks?access_token={access_token}")
+        req = requests.post(f"{app_config.API_BASE_URL}/users/{id}/posts/{pid}/lurks?access_token={access_token}")
 
     elif request.method == "DELETE" and id and pid:
-        req = requests.delete(f"{API_BASE_URL}/users/{id}/posts/{pid}/lurks?access_token={access_token}")
+        req = requests.delete(f"{app_config.API_BASE_URL}/users/{id}/posts/{pid}/lurks?access_token={access_token}")
 
     else:
         return "Unsupported http method or missing parameters", 405
@@ -222,7 +222,7 @@ def users_post_vote(id, pid):
     resp = make_response()
 
     if request.method == "GET":
-        req = requests.get(f"{API_BASE_URL}/users/{id}/posts/{pid}/votes?access_token={access_token}")
+        req = requests.get(f"{app_config.API_BASE_URL}/users/{id}/posts/{pid}/votes?access_token={access_token}")
         resp.data = json.dumps(json.loads(req.text))
 
     elif request.method == "POST":
@@ -234,7 +234,7 @@ def users_post_vote(id, pid):
         if not vote:
             vote = 0
 
-        req = requests.post(f"{API_BASE_URL}/users/{id}/posts/{pid}/votes?access_token={access_token}", json={"vote": vote})
+        req = requests.post(f"{app_config.API_BASE_URL}/users/{id}/posts/{pid}/votes?access_token={access_token}", json={"vote": vote})
         resp.data = json.dumps(json.loads(req.text))
     return resp, 200
 

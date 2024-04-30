@@ -1,5 +1,4 @@
 """handle the logic for connect to the /notification webSocket endpoint"""
-from config import *
 import asyncio
 import websockets
 import socketio # try why this seems simpler

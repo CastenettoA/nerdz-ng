@@ -9,16 +9,18 @@ WORKDIR /app
 
 # Copy application dependency manifests to the container image.
 # Copying this separately prevents re-running pip install on every code change.
-COPY requirements.txt .
+COPY ../requirements.txt .
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the entire application code
-COPY . .
+COPY ../. .
 
 ENTRYPOINT [ "python3" ]
 CMD [ "main.py" ]
+
+EXPOSE 80
 
 # # Run the web service on container startup.
 # # Use gunicorn webserver with one worker process and 8 threads.

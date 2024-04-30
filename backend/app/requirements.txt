@@ -45,4 +45,3 @@ websockets==12.0
 Werkzeug==3.0.1
 wsproto==1.2.0
 yarl==1.9.4
-gunicorn==20.1.0

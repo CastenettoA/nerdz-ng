@@ -1,13 +1,15 @@
 # bearer token security concers summary: https://datatracker.ietf.org/doc/html/rfc6750#section-5.3
-import logging, json, os
+import logging, json
 from flask import Flask, request, make_response, render_template
 from authlib.integrations.flask_client import OAuth, OAuthError
 from services.route import create_route_names 
 from services.oauth2 import update_token 
 import routes # import application routes
 from services.jwt import check_jwt
-from config import *
-
+import imp
+app_config = imp.load_source("app_config", "/app_config")
+app_secret = imp.load_source("app_secret", "/run/secrets/app_secret")
+logging.info(app_config.ALLOWED_CLIENT_ORIGIN)
 logging.basicConfig(level=logging.DEBUG) # activate debug level logs
 # _logger = logging.getLogger("client") # get a logger instance
 # _authlib_logger = logging.getLogger("authlib")
@@ -16,16 +18,26 @@ logging.basicConfig(level=logging.DEBUG) # activate debug level logs
 
 # enable verbose HTTP logging
 import http
-import requests
 http.client.HTTPConnection.debuglevel = 1
+
 
 # init flask app
 app = Flask(__name__)
-app.secret_key = SECRET_KEY
+app.secret_key = app_secret.SECRET_KEY
 
 #register nerdz oauth2 client
 app.oauth = OAuth(app, update_token=update_token)
-app.oauth.register(**OAUTH_APPLICATION_CONFIG)
+app.oauth.register(
+    'nerdz',
+    client_id =    app_secret.CLIENT_ID,
+    client_secret =    app_secret.SECRET_KEY,
+    client_kwargs = app_config.SCOPES,
+    access_token_url = app_config.O2_TOKEN_ENPOINT_URL,
+    refresh_token = app_config.O2_TOKEN_ENPOINT_URL,
+    authorize_url = app_config.O2_TOKEN_ENPOINT_URL,
+    api_base_url = app_config.O2_TOKEN_ENPOINT_URL+'/',
+)
+
 create_route_names()
 
 # todo: use teardoun request because with if a f() raise an exception others after_request f() will not execute.
@@ -57,8 +69,8 @@ def add_basic_headers(response):
     """add Origin and Credentials headers to certain request"""
 
     response.headers["Access-Control-Allow-Credentials"] = "true"
-    response.headers["Access-Control-Allow-Origin"] = ALLOWED_CLIENT_ORIGIN
-    response.headers["Access-Control-Allow-Methods"] = ALLOWED_CLIENT_METHODS # post work also if not present here, why?
+    response.headers["Access-Control-Allow-Origin"] = app_config.ALLOWED_CLIENT_ORIGIN
+    response.headers["Access-Control-Allow-Methods"] = app_config.ALLOWED_CLIENT_METHODS # post work also if not present here, why?
     response.headers["Access-Control-Allow-Headers"] = "content-type"
 
     html_endpoints = ["homepage"]
@@ -97,12 +109,10 @@ app.add_url_rule('/v1/oembed/twitter', view_func=routes.oembed_twitter)
 app.add_url_rule('/notifications', view_func=routes.notifications)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8400, debug=True, ssl_context=('./cert/localhost.pem', './cert/localhost-key.pem'))
+    app.run(host='0.0.0.0', port=80, debug=True, ssl_context=('./cert/localhost.pem', './cert/localhost-key.pem'))
 
 # """HTTP traffic is handled by a Gunicorn web server
 # in a Google Cloud Run container. """
 # if __name__ == "__main__":
 #     app.run(debug=True, host="127.0.0.0", port=int(os.environ.get("PORT", 8080)))
 #     # app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
-
-

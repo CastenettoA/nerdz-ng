@@ -1,20 +1,33 @@
-name: nerdz-ng
-
 services:
   backend:
     build:
       context: backend/app/
-      dockerfile: dev.Dockerfile
+      dockerfile: docker/dev.Dockerfile
       target: builder
     ports:
-      - "8400:8400"
-      - "443:443"
+      - "8400:80"
+    configs:
+      - app_config
+    secrets:
+      - app_secret
+  
+  # frontend:
+  #   build:
+  #     context: frontend/
+  #     dockerfile: docker/dev.Dockerfile 
+  #     target: builder
+  #   ports:
+  #     - "4200:4200"
+  #   volumes:
+  #     - ./nerdz-ne/node_modules
 
-  frontend:
-    build:
-      context: frontend/
-      dockerfile: docker/dev.Dockerfile 
-      target: builder
-    ports:
-      - "4200:4200"
-      - "443:443"
+
+configs:
+  app_config:
+    file: backend/app/app_config.py 
+  other_config:
+    external: true
+
+secrets:
+  app_secret:
+    file: backend/app/app_secret.py

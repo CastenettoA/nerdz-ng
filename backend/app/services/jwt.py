@@ -1,4 +1,3 @@
-from config import *
 import logging
 import jwt
 from flask import request, current_app
@@ -6,13 +5,17 @@ from authlib.integrations.flask_client import token_update
 from datetime import datetime
 from models import AuthorizeToken
 
+import imp
+app_config = imp.load_source("app_config", "/app_config")
+app_secret = imp.load_source("app_secret", "/run/secrets/app_secret")
+
 def get_decoded_client_jwt():
      "return the decoded client JWT"
      # todo: if a user, browser, ecc delete the cookie this will go in error.
      # need to implement the redirect to /login and after the redirect to what the user will bee doing before.
      try:
           _jwt = request.cookies.get("client_jwt")
-          decoded_jwt = jwt.decode(_jwt, SECRET_KEY, algorithms=["HS256"])
+          decoded_jwt = jwt.decode(_jwt, app_secret.SECRET_KEY, algorithms=["HS256"])
      except Exception as e: 
           print(e)
      # except jwt.InvalidTokenError:
