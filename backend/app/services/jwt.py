@@ -99,5 +99,5 @@ def create_jwt(res):
           "expires_at": res.expires_at,
           "scope": res.scope
      }
-     encoded_jwt = jwt.encode(payload, SECRET_KEY, algorithm="HS256")
+     encoded_jwt = jwt.encode(payload, app_secret.SECRET_KEY, algorithm="HS256")
      return encoded_jwt
