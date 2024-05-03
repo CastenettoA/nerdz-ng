@@ -5,7 +5,7 @@
 
 export const environment = {
 	production: false,
-	baseurl: 'https://127.0.0.1:8000/v1',
+	baseurl: 'https://127.0.0.1:8400/v1',
 	clientId: 6,
 	redirectUri: 'https://127.0.0.1:4200/oauth/code'
 };

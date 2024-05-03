@@ -21,6 +21,10 @@ import http
 http.client.HTTPConnection.debuglevel = 1
 
 
+logging.info('INIT FLASK APP')
+logging.info('SECRET_KEY:')
+logging.info(app_secret.SECRET_KEY)
+
 # init flask app
 app = Flask(__name__)
 app.secret_key = app_secret.SECRET_KEY
@@ -49,7 +53,10 @@ def handle_error(error):
 @app.before_request
 def before_request_handler():
     """check jwt validity on certain routes"""
-    skip_endpoints = ["heartbeat","homepage", "login", "authorize", "logout", "notifications"] # endpoints that do not need a valid access token
+    skip_endpoints = ["heartbeat","homepage", "login", "authorize", "logout", "notifications", "favicon.ico"] # endpoints that do not need a valid access token
+
+    logging.info("request.endpoint")
+    logging.info(request.endpoint)
 
     if request.endpoint in skip_endpoints or request.method == "OPTIONS":
         logging.info("bypass jwt validation")

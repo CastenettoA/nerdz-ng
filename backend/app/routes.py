@@ -11,6 +11,7 @@ app_config = imp.load_source("app_config", "/app_config")
 app_secret = imp.load_source("app_secret", "/run/secrets/app_secret")
 
 def login():
+    logging.info(app_secret.SECRET_KEY)
     """init grant flow: (1) redirect usr to authorize_url (2) user get autenticated
      (3) server redirect to redirect_url with auth_code (..4) client request the access token send
      the autorization code to the server"""

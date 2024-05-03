@@ -2,7 +2,7 @@
 FROM python:3.11-alpine AS builder
 
 # Allow statements and log messages to immediately appear in the Cloud Run logs
-ENV PYTHONUNBUFFERED True
+ENV PYTHONUNBUFFERED=1
 
 # Create and set the working dir
 WORKDIR /app

@@ -34,6 +34,8 @@ def check_jwt()->str|None:
      """Check client JTW validity and expiration
         [token refresh] the access_token refresh logic is handled by the on_token_udate() via token update signal
         """
+     
+     logging.info("inside check_jwt")
 
      jwt_exceptions = [
           jwt.InvalidTokenError,
@@ -99,5 +101,6 @@ def create_jwt(res):
           "expires_at": res.expires_at,
           "scope": res.scope
      }
+     logging.info(app_secret.SECRET_KEY)
      encoded_jwt = jwt.encode(payload, app_secret.SECRET_KEY, algorithm="HS256")
      return encoded_jwt

@@ -1,4 +1,15 @@
+# docker-compose build --no-cache
+
 services:
+  log-test:
+    build:
+      context: log-test/app
+      dockerfile: docker/Dockerfile
+      target: builder
+    ports:
+      - "8000:8000"
+    stop_signal: SIGINT # needed to Flask to stop gracefully instead of SIGTERM
+
   backend:
     build:
       context: backend/app/
@@ -10,7 +21,9 @@ services:
       - app_config
     secrets:
       - app_secret
-  
+    # flask requires SIGINT to stop gracefully
+    # (default stop signal from Compose is SIGTERM)
+    stop_signal: SIGINT
   # frontend:
   #   build:
   #     context: frontend/
@@ -19,8 +32,7 @@ services:
   #   ports:
   #     - "4200:4200"
   #   volumes:
-  #     - ./nerdz-ne/node_modules
-
+  #     - ./nerdz-ng/node_modules
 
 configs:
   app_config:
